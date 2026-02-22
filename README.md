@@ -48,6 +48,10 @@ Add to `.claude/settings.json` so all team members get access:
 }
 ```
 
+## TODO
+
+- [ ] **Plugin rules support**: `rules/` is not a recognized plugin component. Once supported, convert `codebase-tools/skills/*/references/` (core-principles, context-management) into always-active rules. Current workaround: agent system prompt (`agents/` + `settings.json`) or `SessionStart` hook.
+
 ## Development
 
 Open in the devcontainer for a ready-made editing environment, or run:
@@ -57,6 +61,13 @@ make setup     # Install Claude Code + npm tools
 make validate  # Validate plugin structure + JSON syntax
 make lint_md   # Lint markdown files
 ```
+
+## Resources
+
+- [Claude Code Plugins](https://code.claude.com/docs/en/plugins) — Creating plugins
+- [Plugins Reference](https://code.claude.com/docs/en/plugins-reference) — Plugin spec and component types
+- [Claude Code Memory](https://code.claude.com/docs/en/memory) — Rules, CLAUDE.md, and memory management
+- [agentskills.io Specification](https://agentskills.io/specification) — SKILL.md frontmatter spec
 
 ## License
 
