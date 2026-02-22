@@ -1,0 +1,7 @@
+{
+  "name": "commit-helper",
+  "version": "1.0.0",
+  "description": "Generate conventional commit messages with GPG signing and approval workflow",
+  "author": { "name": "Agents-eval Team" },
+  "keywords": ["commit", "conventional-commits", "git", "gpg"]
+}

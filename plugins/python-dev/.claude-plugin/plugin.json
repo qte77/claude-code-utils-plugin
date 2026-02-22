@@ -1,0 +1,7 @@
+{
+  "name": "python-dev",
+  "version": "1.0.0",
+  "description": "Python implementation, testing, and code review skills",
+  "author": { "name": "Agents-eval Team" },
+  "keywords": ["python", "implementation", "testing", "review", "pytest"]
+}

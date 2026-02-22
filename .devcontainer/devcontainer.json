@@ -1,0 +1,30 @@
+{
+  "name": "claude-code-utils-plugin-dev",
+  "image": "mcr.microsoft.com/vscode/devcontainers/python:3.13",
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "anthropic.claude-code",
+        "charliermarsh.ruff",
+        "davidanson.vscode-markdownlint",
+        "editorconfig.editorconfig",
+        "redhat.vscode-yaml",
+        "tamasfe.even-better-toml",
+        "yzhang.markdown-all-in-one",
+        "mhutchie.git-graph"
+      ],
+      "settings": {
+        "editor.lineNumbers": "on",
+        "editor.wordWrap": "on",
+        "files.autoSave": "onFocusChange",
+        "git.autofetch": true,
+        "git.enableSmartCommit": true,
+        "redhat.telemetry.enabled": false
+      }
+    }
+  },
+  "postCreateCommand": "make setup"
+}

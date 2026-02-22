@@ -1,0 +1,7 @@
+{
+  "name": "codebase-tools",
+  "version": "1.0.0",
+  "description": "Codebase research and context compaction skills with ACE-FCA principles",
+  "author": { "name": "Agents-eval Team" },
+  "keywords": ["research", "context", "compaction", "exploration"]
+}

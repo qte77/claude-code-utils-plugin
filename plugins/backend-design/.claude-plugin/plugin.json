@@ -1,0 +1,7 @@
+{
+  "name": "backend-design",
+  "version": "1.0.0",
+  "description": "Backend system architecture and API design skills",
+  "author": { "name": "Agents-eval Team" },
+  "keywords": ["backend", "architecture", "api", "pydantic"]
+}
