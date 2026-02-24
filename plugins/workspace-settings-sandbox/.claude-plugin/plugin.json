@@ -1,0 +1,8 @@
+{
+  "name": "workspace-settings-sandbox",
+  "version": "1.0.0",
+  "description": "Distributes recommended workspace settings (statusLine, attribution, enabled plugins) via SessionStart hook",
+  "author": {
+    "name": "Agents-eval Team"
+  }
+}

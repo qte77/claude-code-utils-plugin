@@ -1,0 +1,14 @@
+{
+  "statusLine": {
+    "type": "command",
+    "command": "bash .claude/scripts/statusline.sh"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true,
+    "plugin-dev@claude-plugins-official": true
+  },
+  "attribution": {
+    "commit": "🤖 Co-Authored-By: Claude <noreply@anthropic.com>",
+    "pr": "🤖 Generated with Claude <noreply@anthropic.com>"
+  }
+}

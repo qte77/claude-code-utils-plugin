@@ -50,6 +50,18 @@
       "source": "docs-generator",
       "description": "Academic writeup generation, PRD-to-JSON conversion, and interactive user story builder",
       "version": "1.0.0"
+    },
+    {
+      "name": "workspace-settings-sandbox",
+      "source": "workspace-settings-sandbox",
+      "description": "Distributes recommended workspace settings (statusLine, attribution, enabled plugins)",
+      "version": "1.0.0"
+    },
+    {
+      "name": "workspace-settings-simple",
+      "source": "workspace-settings-simple",
+      "description": "Distributes recommended workspace settings (statusLine, attribution, enabled plugins)",
+      "version": "1.0.0"
     }
   ]
 }
