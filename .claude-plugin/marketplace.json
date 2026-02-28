@@ -1,7 +1,7 @@
 {
   "name": "claude-code-utils",
   "owner": {
-    "name": "Agents-eval Team"
+    "name": "qte77"
   },
   "metadata": {
     "description": "Claude Code utility plugins for Python development, architecture, auditing, and documentation workflows",
@@ -52,15 +52,9 @@
       "version": "1.0.0"
     },
     {
-      "name": "workspace-settings-sandbox",
-      "source": "workspace-settings-sandbox",
-      "description": "Distributes recommended workspace settings (statusLine, attribution, enabled plugins)",
-      "version": "1.0.0"
-    },
-    {
-      "name": "workspace-settings-simple",
-      "source": "workspace-settings-simple",
-      "description": "Distributes recommended workspace settings (statusLine, attribution, enabled plugins)",
+      "name": "workspace-setup",
+      "source": "workspace-setup",
+      "description": "Deploys workspace rules, statusline script, and base settings via SessionStart hook",
       "version": "1.0.0"
     }
   ]

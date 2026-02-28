@@ -1,11 +1,12 @@
 # claude-code-utils
 
-Claude Code plugin marketplace — 9 plugins, 15 skills from production workflows.
+Claude Code plugin marketplace — 8 plugins, 15 skills from production workflows.
 
 ## Install
 
 ```bash
 /plugin marketplace add qte77/claude-code-utils
+/plugin install workspace-setup@claude-code-utils
 /plugin install python-dev@claude-code-utils
 ```
 
@@ -13,17 +14,18 @@ Claude Code plugin marketplace — 9 plugins, 15 skills from production workflow
 
 | Plugin | Skills | Purpose |
 | -------- | -------- | --------- |
-| **python-dev** | `implementing-python` `testing-python` `reviewing-code` | Python TDD, implementation, code review |
+| **python-dev** | `implementing-python` `testing-python` `reviewing-code` | Python TDD, implementation, code review + uv permissions hook |
 | **commit-helper** | `committing-staged-with-message` | Conventional commits with GPG signing |
 | **codebase-tools** | `researching-codebase` `compacting-context` | Isolated code exploration, context compression |
 | **backend-design** | `designing-backend` | System architecture and API design |
 | **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO |
 | **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` | Design research, UX audit, WCAG 2.1 AA |
 | **docs-generator** | `generating-writeup` `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` | Academic writeups, PRD-to-JSON, user stories |
-| **workspace-settings-simple** | — | Recommended workspace settings via SessionStart hook |
-| **workspace-settings-sandbox** | — | Settings + sandbox, permissions, env vars |
+| **workspace-setup** | — | Deploys rules, statusline, and base settings via SessionStart hook |
 
 Skills activate automatically based on task context.
+
+> **Project-specific settings:** The `workspace-setup` hook deploys defaults only if files are missing — existing `.claude/settings.json` is never overwritten. Override or extend via `.claude/settings.json` or `.claude/settings.local.json`. A `settings-sandbox.json` template is included for hardened setups.
 
 ## Team Setup
 
@@ -53,9 +55,11 @@ Each member installs plugins individually with `/plugin install`.
 ## Development
 
 ```bash
-make setup     # Install Claude Code + npm tools
-make validate  # Validate plugin structure + JSON syntax
-make lint_md   # Lint markdown files
+make setup      # Install Claude Code + npm tools
+make validate   # Validate plugin structure + JSON syntax
+make sync       # Sync .claude/ SoT into plugin dirs
+make check_sync # Verify all copies match SoT
+make lint_md    # Lint markdown files
 ```
 
 ## Resources

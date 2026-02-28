@@ -2,6 +2,6 @@
   "name": "docs-generator",
   "version": "1.0.0",
   "description": "Academic writeup generation, PRD-to-JSON conversion, and interactive user story builder",
-  "author": { "name": "Agents-eval Team" },
+  "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["docs", "writeup", "prd", "userstory", "pandoc", "citations"]
 }

@@ -2,6 +2,6 @@
   "name": "mas-design",
   "version": "1.0.0",
   "description": "Multi-agent system plugin design and OWASP MAESTRO security framework",
-  "author": { "name": "Agents-eval Team" },
+  "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["mas", "multi-agent", "plugin", "security", "maestro", "owasp", "pydantic"]
 }
