@@ -6,6 +6,7 @@ Claude Code plugin marketplace — 8 plugins, 15 skills from production workflow
 
 ```bash
 /plugin marketplace add qte77/claude-code-utils
+/plugin install workspace-setup@claude-code-utils
 /plugin install python-dev@claude-code-utils
 ```
 
@@ -24,7 +25,7 @@ Claude Code plugin marketplace — 8 plugins, 15 skills from production workflow
 
 Skills activate automatically based on task context.
 
-> **Project-specific settings:** Sandbox paths, allowed hosts, and edit scopes are project-specific. The `workspace-setup` plugin ships generic templates (`settings-base.json`, `settings-sandbox.json`) — override locally via `.claude/settings.local.json` for your project's paths and permissions.
+> **Project-specific settings:** Sandbox paths, allowed hosts, and edit scopes are project-specific. The `workspace-setup` plugin deploys generic defaults and ships a `settings-sandbox.json` template — override via `.claude/settings.json` or `.claude/settings.local.json` for your project's paths and permissions.
 
 ## Team Setup
 

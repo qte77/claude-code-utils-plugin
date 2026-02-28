@@ -1,7 +1,7 @@
 {
   "name": "claude-code-utils",
   "owner": {
-    "name": "Claude Code Utils Contributors"
+    "name": "qte77"
   },
   "metadata": {
     "description": "Claude Code utility plugins for Python development, architecture, auditing, and documentation workflows",
