@@ -2,6 +2,6 @@
   "name": "python-dev",
   "version": "1.0.0",
   "description": "Python implementation, testing, and code review skills",
-  "author": { "name": "Agents-eval Team" },
+  "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["python", "implementation", "testing", "review", "pytest"]
 }

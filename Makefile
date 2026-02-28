@@ -3,7 +3,7 @@
 
 .SILENT:
 .ONESHELL:
-.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install help
+.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts check_sync help
 .DEFAULT_GOAL := help
 
 
@@ -22,6 +22,32 @@ setup_npm_tools:  ## Install markdownlint for linting skill markdown
 	echo "Installing npm dev tools ..."
 	npm install -gs markdownlint-cli
 	echo "markdownlint version: $$(markdownlint --version)"
+
+
+# MARK: sync
+
+
+sync: sync_rules sync_scripts  ## Sync .claude/ SoT into plugin dirs
+
+sync_rules:  ## Sync rules from .claude/rules/ to plugin copies
+	cp .claude/rules/core-principles.md plugins/workspace-setup/rules/
+	cp .claude/rules/context-management.md plugins/workspace-setup/rules/
+	cp .claude/rules/core-principles.md plugins/codebase-tools/skills/researching-codebase/references/
+	cp .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/
+	cp .claude/rules/context-management.md plugins/codebase-tools/skills/compacting-context/references/
+
+sync_scripts:  ## Sync statusline script from .claude/scripts/ to plugin
+	cp .claude/scripts/statusline.sh plugins/workspace-setup/scripts/
+
+check_sync:  ## Verify all copies are in sync with .claude/ SoT
+	@echo "Checking sync..."
+	@diff -q .claude/rules/core-principles.md plugins/workspace-setup/rules/core-principles.md
+	@diff -q .claude/rules/context-management.md plugins/workspace-setup/rules/context-management.md
+	@diff -q .claude/rules/core-principles.md plugins/codebase-tools/skills/researching-codebase/references/core-principles.md
+	@diff -q .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/context-management.md
+	@diff -q .claude/rules/context-management.md plugins/codebase-tools/skills/compacting-context/references/context-management.md
+	@diff -q .claude/scripts/statusline.sh plugins/workspace-setup/scripts/statusline.sh
+	@echo "All copies in sync."
 
 
 # MARK: quality

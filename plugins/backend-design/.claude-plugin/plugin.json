@@ -2,6 +2,6 @@
   "name": "backend-design",
   "version": "1.0.0",
   "description": "Backend system architecture and API design skills",
-  "author": { "name": "Agents-eval Team" },
+  "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["backend", "architecture", "api", "pydantic"]
 }
