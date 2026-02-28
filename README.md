@@ -1,4 +1,4 @@
-# claude-code-utils
+# qte77-claude-code-utils
 
 Claude Code plugin marketplace — 8 plugins, 15 skills from production workflows.
 
@@ -6,9 +6,35 @@ Claude Code plugin marketplace — 8 plugins, 15 skills from production workflow
 
 ```bash
 /plugin marketplace add qte77/claude-code-utils
-/plugin install workspace-setup@claude-code-utils
-/plugin install python-dev@claude-code-utils
+/plugin install workspace-setup@qte77-claude-code-utils
+/plugin install python-dev@qte77-claude-code-utils
 ```
+
+<details>
+
+<summary><strong>
+  Full Setup
+</strong></summary>
+
+```bash
+# 1. Add the marketplace
+claude plugin marketplace add qte77/claude-code-utils-plugin
+
+# 2. Install all 8 plugins
+claude plugin install python-dev@qte77-claude-code-utils
+claude plugin install commit-helper@qte77-claude-code-utils
+claude plugin install codebase-tools@qte77-claude-code-utils
+claude plugin install backend-design@qte77-claude-code-utils
+claude plugin install mas-design@qte77-claude-code-utils
+claude plugin install website-audit@qte77-claude-code-utils
+claude plugin install docs-generator@qte77-claude-code-utils
+claude plugin install workspace-setup@qte77-claude-code-utils
+
+# 3. Verify
+claude plugin list
+```
+
+</details>
 
 ## Plugins
 
@@ -34,7 +60,7 @@ Add to `.claude/settings.json` so teammates get marketplace access:
 ```json
 {
   "extraKnownMarketplaces": {
-    "claude-code-utils": {
+    "qte77-claude-code-utils": {
       "source": { "source": "github", "repo": "qte77/claude-code-utils" }
     }
   }
@@ -47,9 +73,9 @@ Each member installs plugins individually with `/plugin install`.
 
 ```bash
 /plugin list                                 # List installed
-/plugin install python-dev@claude-code-utils # Install
+/plugin install python-dev@qte77-claude-code-utils # Install
 /plugin update --all                         # Update all
-/plugin remove python-dev@claude-code-utils  # Remove
+/plugin remove python-dev@qte77-claude-code-utils  # Remove
 ```
 
 ## Development

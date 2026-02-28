@@ -66,14 +66,16 @@ lint_md:  ## Lint all markdown files in plugins/
 # MARK: test
 
 
-test_install:  ## Test local marketplace install (add + install first plugin)
-	echo "Testing local marketplace install ..."
-	FIRST_PLUGIN=$$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['name'])")
+test_install:  ## Test marketplace add + install first plugin, then clean up
 	MARKETPLACE=$$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['name'])")
+	FIRST_PLUGIN=$$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['name'])")
 	echo "Adding marketplace: $$MARKETPLACE"
-	claude plugin marketplace add .
+	claude plugin marketplace add "$(CURDIR)"
 	echo "Installing plugin: $$FIRST_PLUGIN@$$MARKETPLACE"
 	claude plugin install "$$FIRST_PLUGIN@$$MARKETPLACE"
+	echo "Cleaning up ..."
+	claude plugin uninstall "$$FIRST_PLUGIN@$$MARKETPLACE" || true
+	claude plugin marketplace remove "$$MARKETPLACE" || true
 	echo "Test install succeeded."
 
 

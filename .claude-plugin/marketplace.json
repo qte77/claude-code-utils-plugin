@@ -1,59 +1,58 @@
 {
-  "name": "claude-code-utils",
+  "name": "qte77-claude-code-utils",
   "owner": {
     "name": "qte77"
   },
   "metadata": {
     "description": "Claude Code utility plugins for Python development, architecture, auditing, and documentation workflows",
-    "version": "1.0.0",
-    "pluginRoot": "./plugins"
+    "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "python-dev",
-      "source": "python-dev",
+      "source": "./plugins/python-dev",
       "description": "Python implementation, testing, and code review skills",
       "version": "1.0.0"
     },
     {
       "name": "commit-helper",
-      "source": "commit-helper",
+      "source": "./plugins/commit-helper",
       "description": "Generate conventional commit messages with GPG signing and approval workflow",
       "version": "1.0.0"
     },
     {
       "name": "codebase-tools",
-      "source": "codebase-tools",
+      "source": "./plugins/codebase-tools",
       "description": "Codebase research and context compaction skills with ACE-FCA rules",
       "version": "1.0.0"
     },
     {
       "name": "backend-design",
-      "source": "backend-design",
+      "source": "./plugins/backend-design",
       "description": "Backend system architecture and API design skills",
       "version": "1.0.0"
     },
     {
       "name": "mas-design",
-      "source": "mas-design",
+      "source": "./plugins/mas-design",
       "description": "Multi-agent system plugin design and OWASP MAESTRO security framework",
       "version": "1.0.0"
     },
     {
       "name": "website-audit",
-      "source": "website-audit",
+      "source": "./plugins/website-audit",
       "description": "Website design research, usability audit, and WCAG accessibility audit skills",
       "version": "1.0.0"
     },
     {
       "name": "docs-generator",
-      "source": "docs-generator",
+      "source": "./plugins/docs-generator",
       "description": "Academic writeup generation, PRD-to-JSON conversion, and interactive user story builder",
       "version": "1.0.0"
     },
     {
       "name": "workspace-setup",
-      "source": "workspace-setup",
+      "source": "./plugins/workspace-setup",
       "description": "Deploys workspace rules, statusline script, and base settings via SessionStart hook",
       "version": "1.0.0"
     }
