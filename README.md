@@ -14,7 +14,7 @@ Claude Code plugin marketplace — 8 plugins, 15 skills from production workflow
 
 | Plugin | Skills | Purpose |
 | -------- | -------- | --------- |
-| **python-dev** | `implementing-python` `testing-python` `reviewing-code` | Python TDD, implementation, code review |
+| **python-dev** | `implementing-python` `testing-python` `reviewing-code` | Python TDD, implementation, code review + uv permissions hook |
 | **commit-helper** | `committing-staged-with-message` | Conventional commits with GPG signing |
 | **codebase-tools** | `researching-codebase` `compacting-context` | Isolated code exploration, context compression |
 | **backend-design** | `designing-backend` | System architecture and API design |
@@ -25,7 +25,7 @@ Claude Code plugin marketplace — 8 plugins, 15 skills from production workflow
 
 Skills activate automatically based on task context.
 
-> **Project-specific settings:** Sandbox paths, allowed hosts, and edit scopes are project-specific. The `workspace-setup` plugin deploys generic defaults and ships a `settings-sandbox.json` template — override via `.claude/settings.json` or `.claude/settings.local.json` for your project's paths and permissions.
+> **Project-specific settings:** The `workspace-setup` hook deploys defaults only if files are missing — existing `.claude/settings.json` is never overwritten. Override or extend via `.claude/settings.json` or `.claude/settings.local.json`. A `settings-sandbox.json` template is included for hardened setups.
 
 ## Team Setup
 
