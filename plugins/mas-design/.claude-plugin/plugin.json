@@ -1,7 +1,7 @@
 {
   "name": "mas-design",
   "version": "1.0.0",
-  "description": "Multi-agent system plugin design and OWASP MAESTRO security framework",
+  "description": "MAS plugin design and OWASP MAESTRO security framework, deploys best-practices docs via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["mas", "multi-agent", "plugin", "security", "maestro", "owasp", "pydantic"]
 }

@@ -4,17 +4,7 @@ set -euo pipefail
 PLUGIN_DIR="$CLAUDE_PLUGIN_ROOT"
 DEPLOYED=()
 
-# 1. Deploy uv permissions to .claude/settings.local.json (copy-if-not-exists)
-if command -v uv >/dev/null 2>&1; then
-  TARGET=".claude/settings.local.json"
-  if [ ! -f "$TARGET" ]; then
-    mkdir -p .claude
-    cp "$PLUGIN_DIR/settings/settings.local.json" "$TARGET"
-    DEPLOYED+=("settings: settings.local.json (uv permissions)")
-  fi
-fi
-
-# 2. Best-practices docs → docs/best-practices/ (from skill references)
+# Best-practices docs → docs/best-practices/ (from skill references)
 mkdir -p docs/best-practices
 for ref in "$PLUGIN_DIR"/skills/*/references/*.md; do
   [ -f "$ref" ] || continue
@@ -25,9 +15,9 @@ for ref in "$PLUGIN_DIR"/skills/*/references/*.md; do
   fi
 done
 
-# 3. Report
+# Report
 if [ ${#DEPLOYED[@]} -gt 0 ]; then
-  echo "# Python Dev Setup"
+  echo "# MAS Design Setup"
   echo ""
   echo "Deployed ${#DEPLOYED[@]} file(s):"
   for item in "${DEPLOYED[@]}"; do
