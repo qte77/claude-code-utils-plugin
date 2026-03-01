@@ -1,0 +1,28 @@
+site_name: Claude Code Utils
+site_description: Claude Code plugin marketplace — 9 plugins, 15 skills from production workflows.
+repo_url: https://github.com/qte77/claude-code-utils-plugin
+repo_name: qte77/claude-code-utils-plugin
+
+theme:
+  name: material
+
+nav:
+  - Home: README.md
+  - Plugins:
+      - python-dev: plugins/python-dev/README.md
+      - commit-helper: plugins/commit-helper/README.md
+      - codebase-tools: plugins/codebase-tools/README.md
+      - backend-design: plugins/backend-design/README.md
+      - mas-design: plugins/mas-design/README.md
+      - website-audit: plugins/website-audit/README.md
+      - docs-generator: plugins/docs-generator/README.md
+      - workspace-setup: plugins/workspace-setup/README.md
+      - workspace-sandbox: plugins/workspace-sandbox/README.md
+  - Analysis:
+      - Plugin Enhancement: docs/analysis/CC-plugin-enhancement-analysis.md
+      - Session Summaries: docs/analysis/CC-stop-hook-session-summaries.md
+      - Agent Orchestration: docs/analysis/CC-agent-teams-orchestration.md
+      - Fast Mode: docs/analysis/CC-fast-mode-analysis.md
+      - Skills Adoption: docs/analysis/CC-skills-Ralph-adoption-plan.md
+      - MAS Benchmarks: docs/analysis/benchmark_mas_best_practices.md
+  - Changelog: CHANGELOG.md
