@@ -21,7 +21,7 @@ python ralph/scripts/generate_prd_json.py --dry-run
 
 Check output for: declared vs parsed story count mismatch, missing stories, empty acceptance/files. If issues found, fix PRD markdown or note for manual correction in step 3.
 
-2. **Run parser** (Bash tool)
+1. **Run parser** (Bash tool)
 
 ```bash
 python ralph/scripts/generate_prd_json.py
@@ -29,17 +29,17 @@ python ralph/scripts/generate_prd_json.py
 
 Script handles: PRD.md parsing, `(depends: ...)` extraction, content hashing, state preservation.
 
-3. **Validate** (Read tool)
+1. **Validate** (Read tool)
    - Read `ralph/docs/prd.json` (script output)
    - Read `docs/PRD.md` (cross-reference)
    - Check against Validation Checklist
 
-4. **Correct errors** (Write tool, if needed)
+2. **Correct errors** (Write tool, if needed)
    - Fix issues found
    - Recompute `content_hash` if title/description/acceptance changed
    - Write corrected `ralph/docs/prd.json`
 
-5. **Report**
+3. **Report**
    - Story count and status
    - Corrections made
    - Suggest: `make ralph_run`

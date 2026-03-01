@@ -81,4 +81,3 @@ ADOPT: [Underused effective pattern]
 - Extract exact values: hex codes, font names, button text
 - Track cross-references between sites to identify authoritative sources
 - Keep insights concise and actionable for design implementation
-

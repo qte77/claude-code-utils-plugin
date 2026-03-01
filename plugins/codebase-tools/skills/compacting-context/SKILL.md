@@ -17,6 +17,7 @@ Distills verbose outputs into structured summaries following ACE-FCA principles.
 ## When to Use
 
 Per `references/context-management.md`:
+
 - After verbose tool output (logs, JSON, search results)
 - After completing a phase or milestone
 
