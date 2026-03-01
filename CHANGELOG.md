@@ -11,17 +11,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2026-03-01
+
 ### Added
 
+- **embedded-dev**: New plugin with `auditing-pcb-design`, `checking-compliance`, `implementing-firmware`, and `tracing-requirements` skills
+- **docs-generator**: `generating-tech-spec` and `generating-report` skills
 - **website-audit**: WCAG 2.1 AA quick-reference checklist, Further Reading links, demo section
 - **docs-generator**: Bundled pandoc toolchain (Makefile, run-pandoc.sh, setup-pdf-converter.sh), IEEE/APA/Chicago CSL styles, SessionStart prerequisite hook, `project-report-IMRaD` and `technical-doc` templates
 - **mas-design**: MITRE ATLAS, NIST AI RMF, ISO 42001/23894 integration with unified cross-framework threat mapping
 - AI security governance frameworks analysis (`docs/analysis/`)
+- `.gitignore`
 
 ### Changed
 
+- All 21 skills: `allowed-tools` moved from top-level frontmatter to `metadata.allowed-tools` (comma-separated)
+- Marketplace and README updated for new plugins and skills
 - **docs-generator**: Markdown writeups are core output; PDF export via pandoc is optional
 - **docs-generator**: Single `template.md` replaced with `templates/project-report-IMRaD/` and `templates/technical-doc/`
+- **docs-generator**: Templates restructured, redundant reference removed
 - **mas-design**: Plugin description, keywords, and demo updated to reflect all four frameworks
 
 ### Removed
