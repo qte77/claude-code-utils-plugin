@@ -37,6 +37,4 @@ if [ ${#DEPLOYED[@]} -gt 0 ]; then
   for item in "${DEPLOYED[@]}"; do
     echo "  - $item"
   done
-  echo ""
-  echo "Sandbox template: $PLUGIN_DIR/settings/settings-sandbox.json"
 fi

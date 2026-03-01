@@ -23,13 +23,19 @@ if [ ! -f ".claude/scripts/statusline.sh" ]; then
   DEPLOYED+=("script: statusline.sh")
 fi
 
-# 3. Sandbox settings → .claude/settings.json (only if missing)
+# 3. Sandbox .gitignore → project root (hides bwrap phantom files)
+if [ ! -f ".gitignore" ]; then
+  cp "$PLUGIN_DIR/settings/.gitignore" ".gitignore"
+  DEPLOYED+=("gitignore: .gitignore (sandbox phantoms)")
+fi
+
+# 4. Sandbox settings → .claude/settings.json (only if missing)
 if [ ! -f ".claude/settings.json" ]; then
   cp "$PLUGIN_DIR/settings/settings-sandbox.json" ".claude/settings.json"
   DEPLOYED+=("settings: settings.json (sandbox)")
 fi
 
-# 4. Report
+# 5. Report
 if [ ${#DEPLOYED[@]} -gt 0 ]; then
   echo "# Workspace Setup (Sandbox)"
   echo ""

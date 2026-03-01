@@ -55,11 +55,11 @@ claude plugin list
 | **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` | Design research, UX audit, WCAG 2.1 AA |
 | **docs-generator** | `generating-writeup` `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` | Academic writeups, PRD-to-JSON, user stories |
 | **workspace-setup** | — | Deploys rules, statusline, and base settings via SessionStart hook |
-| **workspace-sandbox** | — | Deploys rules, statusline, and sandbox settings via SessionStart hook |
+| **workspace-sandbox** | — | Deploys rules, statusline, sandbox settings, and .gitignore via SessionStart hook |
 
 Skills activate automatically based on task context.
 
-> **Workspace plugins are mutually exclusive** — install `workspace-setup` (lightweight defaults) **or** `workspace-sandbox` (hardened permissions), not both. Both use copy-if-not-exists so the first installed wins.
+> **Workspace plugins are mutually exclusive** — install `workspace-setup` (lightweight defaults) **or** `workspace-sandbox` (hardened permissions + bwrap .gitignore), not both. Both use copy-if-not-exists so the first installed wins.
 
 ## Team Setup
 

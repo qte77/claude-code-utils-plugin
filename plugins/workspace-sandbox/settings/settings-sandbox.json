@@ -7,6 +7,17 @@
   "outputStyle": "default",
   "spinnerTipsEnabled": true,
   "prefersReducedMotion": true,
+  "statusLine": {
+    "type": "command",
+    "command": "bash .claude/scripts/statusline.sh"
+  },
+  "enabledPlugins": {
+    "context7@claude-plugins-official": true
+  },
+  "attribution": {
+    "commit": "Co-Authored-By: Claude <noreply@anthropic.com>",
+    "pr": "Generated with Claude <noreply@anthropic.com>"
+  },
   "sandbox": {
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
@@ -76,16 +87,5 @@
       "Edit(pyproject.toml)",
       "Edit(README.md)"
     ]
-  },
-  "statusLine": {
-    "type": "command",
-    "command": "bash .claude/scripts/statusline.sh"
-  },
-  "enabledPlugins": {
-    "context7@claude-plugins-official": true
-  },
-  "attribution": {
-    "commit": "Co-Authored-By: Claude <noreply@anthropic.com>",
-    "pr": "Generated with Claude <noreply@anthropic.com>"
   }
 }
