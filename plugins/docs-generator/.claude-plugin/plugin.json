@@ -3,5 +3,6 @@
   "version": "1.0.0",
   "description": "Academic/technical writeup generation with IEEE citations and pandoc PDF output",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["docs", "writeup", "pandoc", "citations"]
+  "keywords": ["docs", "writeup", "pandoc", "citations"],
+  "hooks": "./hooks/hooks.json"
 }
