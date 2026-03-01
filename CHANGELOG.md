@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Deduplicated workspace plugins: workspace-sandbox owns sandbox-specific settings (.gitignore, settings-sandbox.json), workspace-setup owns base settings (settings-base.json)
+- Broke shared settings symlink so each workspace plugin only contains its own settings
+- Moved plugin READMEs from settings/ to plugin root
+- workspace-sandbox deploys .gitignore to project root for bwrap phantom files
+
 ## [1.0.0] - 2026-03-01
 
 ### Added
