@@ -89,11 +89,12 @@ Each member installs plugins individually with `/plugin install`.
 ## Development
 
 ```bash
-make setup      # Install Claude Code + npm tools
-make validate   # Validate plugin structure + JSON syntax
-make sync       # Sync .claude/ SoT into plugin dirs
-make check_sync # Verify all copies match SoT
-make lint_md    # Lint markdown files
+make setup        # Install Claude Code + npm tools
+make validate     # Validate plugin structure + JSON syntax
+make test_install # Install all plugins from local marketplace, check for broken refs
+make sync         # Sync .claude/ SoT into plugin dirs
+make check_sync   # Verify all copies match SoT
+make lint_md      # Lint markdown files
 ```
 
 ### Standalone install and DRY

@@ -66,17 +66,22 @@ lint_md:  ## Lint all markdown files in plugins/
 # MARK: test
 
 
-test_install:  ## Test marketplace add + install first plugin, then clean up
+test_install:  ## Test local marketplace add + install all plugins, then clean up
 	MARKETPLACE=$$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['name'])")
-	FIRST_PLUGIN=$$(python3 -c "import json; print(json.load(open('.claude-plugin/marketplace.json'))['plugins'][0]['name'])")
-	echo "Adding marketplace: $$MARKETPLACE"
+	PLUGINS=$$(python3 -c "import json; print(' '.join(p['name'] for p in json.load(open('.claude-plugin/marketplace.json'))['plugins']))")
+	echo "Adding local marketplace: $$MARKETPLACE"
 	claude plugin marketplace add "$(CURDIR)"
-	echo "Installing plugin: $$FIRST_PLUGIN@$$MARKETPLACE"
-	claude plugin install "$$FIRST_PLUGIN@$$MARKETPLACE"
+	for p in $$PLUGINS; do \
+		echo "Installing: $$p@$$MARKETPLACE"; \
+		claude plugin install "$$p@$$MARKETPLACE"; \
+	done
+	echo "Checking for broken symlinks ..."
+	BROKEN=$$(find "$$HOME/.claude/plugins/cache/$$MARKETPLACE/" -xtype l 2>/dev/null | wc -l)
+	if [ "$$BROKEN" -gt 0 ]; then echo "FAIL: $$BROKEN broken symlinks"; exit 1; fi
 	echo "Cleaning up ..."
-	claude plugin uninstall "$$FIRST_PLUGIN@$$MARKETPLACE" || true
-	claude plugin marketplace remove "$$MARKETPLACE" || true
-	echo "Test install succeeded."
+	for p in $$PLUGINS; do claude plugin uninstall "$$p@$$MARKETPLACE" 2>/dev/null || true; done
+	claude plugin marketplace remove "$$MARKETPLACE" 2>/dev/null || true
+	echo "All $$( echo $$PLUGINS | wc -w ) plugins installed standalone successfully."
 
 
 # MARK: help
