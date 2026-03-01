@@ -1,5 +1,5 @@
 site_name: Claude Code Utils
-site_description: Claude Code plugin marketplace — 9 plugins, 15 skills from production workflows.
+site_description: Claude Code plugin marketplace — 10 plugins, 15 skills from production workflows.
 repo_url: https://github.com/qte77/claude-code-utils-plugin
 repo_name: qte77/claude-code-utils-plugin
 
@@ -16,6 +16,7 @@ nav:
       - mas-design: plugins/mas-design/README.md
       - website-audit: plugins/website-audit/README.md
       - docs-generator: plugins/docs-generator/README.md
+      - ralph: plugins/ralph/README.md
       - workspace-setup: plugins/workspace-setup/README.md
       - workspace-sandbox: plugins/workspace-sandbox/README.md
   - Analysis:
