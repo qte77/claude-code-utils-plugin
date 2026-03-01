@@ -1,7 +1,8 @@
 {
   "name": "python-dev",
   "version": "1.0.0",
-  "description": "Python implementation, testing, and code review skills",
+  "description": "Python implementation, testing, and code review skills, deploys uv permissions via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["python", "implementation", "testing", "review", "pytest"]
+  "keywords": ["python", "implementation", "testing", "review", "pytest"],
+  "hooks": "./hooks/hooks.json"
 }

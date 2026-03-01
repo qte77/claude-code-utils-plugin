@@ -3,5 +3,6 @@
   "version": "1.0.0",
   "description": "Deploys workspace rules, statusline script, and sandbox settings via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["workspace", "settings", "rules", "statusline", "sandbox"]
+  "keywords": ["workspace", "settings", "rules", "statusline", "sandbox"],
+  "hooks": "./hooks/hooks.json"
 }

@@ -22,7 +22,7 @@ Run these commands using the Bash tool to gather context:
 
 ## Step 2: Generate Commit Message
 
-Use the Read tool to check `.gitmessage` for commit message format and syntax.
+Use the Read tool to check `references/.gitmessage` for commit message format and syntax.
 
 **The commit message body MUST include (concisely — no padding, no redundancy):**
 

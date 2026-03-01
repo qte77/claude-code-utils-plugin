@@ -96,6 +96,12 @@ make check_sync # Verify all copies match SoT
 make lint_md    # Lint markdown files
 ```
 
+### Standalone install and DRY
+
+Every plugin must work when installed individually via `claude plugin install`. No symlinks or references to files outside the plugin directory — `claude plugin install` may not preserve symlinks across platforms.
+
+Shared references (e.g., `python-best-practices.md` in two skills, `workspace-sandbox` duplicating `workspace-setup`'s rules) use real copies. Use `make sync` and `make check_sync` to keep copies in sync.
+
 ## Resources
 
 - [Claude Code Plugins](https://code.claude.com/docs/en/plugins) — Creating plugins
