@@ -55,6 +55,12 @@
       "source": "./plugins/workspace-setup",
       "description": "Deploys workspace rules, statusline script, and base settings via SessionStart hook",
       "version": "1.0.0"
+    },
+    {
+      "name": "workspace-sandbox",
+      "source": "./plugins/workspace-sandbox",
+      "description": "Deploys workspace rules, statusline script, and sandbox settings via SessionStart hook",
+      "version": "1.0.0"
     }
   ]
 }

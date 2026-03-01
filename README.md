@@ -1,6 +1,13 @@
+<!-- markdownlint-disable MD033 -->
+
 # qte77-claude-code-utils
 
-Claude Code plugin marketplace — 8 plugins, 15 skills from production workflows.
+Claude Code plugin marketplace — 9 plugins, 15 skills from production workflows.
+
+[![License](https://img.shields.io/badge/license-BSD3Clause-58f4c2.svg)](LICENSE.md)
+![Version](https://img.shields.io/badge/version-1.0.0-58f4c2.svg)
+[![CodeQL](https://github.com/qte77/claude-code-utils-plugin/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/claude-code-utils-plugin/actions/workflows/codeql.yaml)
+[![CodeFactor](https://www.codefactor.io/repository/github/qte77/claude-code-utils-plugin/badge/main)](https://www.codefactor.io/repository/github/qte77/claude-code-utils-plugin/overview/main)
 
 ## Install
 
@@ -20,7 +27,7 @@ Claude Code plugin marketplace — 8 plugins, 15 skills from production workflow
 # 1. Add the marketplace
 claude plugin marketplace add qte77/claude-code-utils-plugin
 
-# 2. Install all 8 plugins
+# 2. Install all 9 plugins (pick ONE workspace plugin)
 claude plugin install python-dev@qte77-claude-code-utils
 claude plugin install commit-helper@qte77-claude-code-utils
 claude plugin install codebase-tools@qte77-claude-code-utils
@@ -28,7 +35,7 @@ claude plugin install backend-design@qte77-claude-code-utils
 claude plugin install mas-design@qte77-claude-code-utils
 claude plugin install website-audit@qte77-claude-code-utils
 claude plugin install docs-generator@qte77-claude-code-utils
-claude plugin install workspace-setup@qte77-claude-code-utils
+claude plugin install workspace-setup@qte77-claude-code-utils    # OR workspace-sandbox
 
 # 3. Verify
 claude plugin list
@@ -48,10 +55,11 @@ claude plugin list
 | **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` | Design research, UX audit, WCAG 2.1 AA |
 | **docs-generator** | `generating-writeup` `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` | Academic writeups, PRD-to-JSON, user stories |
 | **workspace-setup** | — | Deploys rules, statusline, and base settings via SessionStart hook |
+| **workspace-sandbox** | — | Deploys rules, statusline, and sandbox settings via SessionStart hook |
 
 Skills activate automatically based on task context.
 
-> **Project-specific settings:** The `workspace-setup` hook deploys defaults only if files are missing — existing `.claude/settings.json` is never overwritten. Override or extend via `.claude/settings.json` or `.claude/settings.local.json`. A `settings-sandbox.json` template is included for hardened setups.
+> **Workspace plugins are mutually exclusive** — install `workspace-setup` (lightweight defaults) **or** `workspace-sandbox` (hardened permissions), not both. Both use copy-if-not-exists so the first installed wins.
 
 ## Team Setup
 
