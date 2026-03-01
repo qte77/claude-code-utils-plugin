@@ -2,8 +2,8 @@
 name: generating-tech-spec
 description: Generates structured technical specifications including ADR (MADR), RFC, design documents, and proposals. Use when writing a spec, creating an ADR, drafting an RFC, or creating a design document.
 compatibility: Designed for Claude Code
-allowed-tools: Read Write Glob Grep WebSearch WebFetch
 metadata:
+  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [spec-type] [topic]
 ---
 

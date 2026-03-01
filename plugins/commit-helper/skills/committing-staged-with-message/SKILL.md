@@ -2,8 +2,8 @@
 name: committing-staged-with-message
 description: Generate commit message for staged changes, pause for approval, then commit. Stage files first with `git add`, then run this skill.
 compatibility: Designed for Claude Code
-allowed-tools: Bash Read Glob Grep
 metadata:
+  allowed-tools: Bash, Read, Glob, Grep
   model: haiku
   argument-hint: (no arguments needed)
   disable-model-invocation: true

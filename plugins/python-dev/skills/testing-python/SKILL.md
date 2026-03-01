@@ -2,8 +2,8 @@
 name: testing-python
 description: Writes tests following TDD (using pytest and Hypothesis) and BDD best practices. Use when writing unit tests, integration tests, or BDD scenarios.
 compatibility: Designed for Claude Code
-allowed-tools: Read Grep Glob Edit Write Bash
 metadata:
+  allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [test-scope or component-name]
 ---
 

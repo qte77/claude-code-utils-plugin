@@ -2,8 +2,8 @@
 name: designing-mas-plugins
 description: Design evaluation plugins following 12-Factor + MAESTRO principles
 compatibility: Designed for Claude Code
-allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
+  allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [component-name]
 ---
 

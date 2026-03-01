@@ -2,8 +2,8 @@
 name: generating-report
 description: Generates structured reports including status updates, assessments, post-mortems, and executive summaries. Use when writing a report, creating a project status update, or documenting an incident post-mortem.
 compatibility: Designed for Claude Code
-allowed-tools: Read Write Glob Grep WebSearch WebFetch
 metadata:
+  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [report-type] [topic]
 ---
 

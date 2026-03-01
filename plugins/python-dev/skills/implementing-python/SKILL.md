@@ -2,8 +2,8 @@
 name: implementing-python
 description: Implements concise, streamlined Python code matching exact architect specifications. Use when writing Python code, creating modules, or when the user asks to implement features in Python.
 compatibility: Designed for Claude Code
-allowed-tools: Read Grep Glob Edit Write Bash WebSearch WebFetch
 metadata:
+  allowed-tools: Read, Grep, Glob, Edit, Write, Bash, WebSearch, WebFetch
   argument-hint: [feature-name]
 ---
 

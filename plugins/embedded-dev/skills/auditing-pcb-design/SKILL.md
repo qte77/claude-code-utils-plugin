@@ -2,8 +2,8 @@
 name: auditing-pcb-design
 description: Runs KiCad DRC/ERC checks, exports gerbers and BOM, and generates a structured findings report. Use when reviewing PCB designs, running design rule checks, or preparing manufacturing outputs.
 compatibility: Designed for Claude Code
-allowed-tools: Read Write Bash Glob Grep
 metadata:
+  allowed-tools: Read, Write, Bash, Glob, Grep
   argument-hint: [kicad-project-path]
 ---
 

@@ -2,8 +2,8 @@
 name: securing-mas
 description: Apply OWASP MAESTRO, MITRE ATLAS, NIST AI RMF, and ISO 42001/23894 security frameworks to MAS designs
 compatibility: Designed for Claude Code
-allowed-tools: Read Grep Glob WebSearch WebFetch
 metadata:
+  allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [component-or-feature]
 ---
 

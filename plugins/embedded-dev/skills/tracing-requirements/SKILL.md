@@ -2,8 +2,8 @@
 name: tracing-requirements
 description: Validates the SYS→PRD→SW requirement traceability chain by reconciling database entries with code docstring tags. Use when checking requirement coverage, finding orphaned code, or generating a coverage matrix.
 compatibility: Designed for Claude Code
-allowed-tools: Read Grep Glob Bash
 metadata:
+  allowed-tools: Read, Grep, Glob, Bash
   argument-hint: [requirements-file-or-directory]
 ---
 

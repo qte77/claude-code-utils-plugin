@@ -2,8 +2,8 @@
 name: researching-website-design
 description: Analyzes industry websites for design patterns, layout, typography, and content strategies using first-principles thinking. Use when researching website design, UI patterns, or competitive design analysis.
 compatibility: Designed for Claude Code
-allowed-tools: Read Write Glob Grep WebSearch WebFetch
 metadata:
+  allowed-tools: Read, Write, Glob, Grep, WebSearch, WebFetch
   argument-hint: [industry-or-topic]
 ---
 
