@@ -1,7 +1,7 @@
 {
   "name": "docs-generator",
   "version": "1.0.0",
-  "description": "Academic writeup generation, PRD-to-JSON conversion, and interactive user story builder",
+  "description": "Academic/technical writeup generation with IEEE citations and pandoc PDF output",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["docs", "writeup", "prd", "userstory", "pandoc", "citations"]
+  "keywords": ["docs", "writeup", "pandoc", "citations"]
 }

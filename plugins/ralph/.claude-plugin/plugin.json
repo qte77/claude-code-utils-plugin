@@ -1,0 +1,7 @@
+{
+  "name": "ralph",
+  "version": "1.0.0",
+  "description": "PRD-to-JSON conversion and interactive user story builder for the Ralph loop",
+  "author": { "name": "Claude Code Utils Contributors" },
+  "keywords": ["ralph", "prd", "userstory"]
+}
