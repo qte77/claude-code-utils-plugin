@@ -5,15 +5,9 @@ PLUGIN_DIR="$CLAUDE_PLUGIN_ROOT"
 DEPLOYED=()
 
 # Best-practices docs → docs/best-practices/ (from skill references)
-mkdir -p docs/best-practices
-for ref in "$PLUGIN_DIR"/skills/*/references/*.md; do
-  [ -f "$ref" ] || continue
-  target="docs/best-practices/$(basename "$ref")"
-  if [ ! -f "$target" ]; then
-    cp -L "$ref" "$target"
-    DEPLOYED+=("doc: $(basename "$ref")")
-  fi
-done
+SHARED_DIR="$(cd "$(dirname "$0")/../../.." && pwd)/_shared/scripts"
+# shellcheck source=plugins/_shared/scripts/deploy-references.sh
+source "$SHARED_DIR/deploy-references.sh"
 
 # Report
 if [ ${#DEPLOYED[@]} -gt 0 ]; then
