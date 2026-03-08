@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gcc:*)",
+      "Bash(cppcheck:*)",
+      "Bash(clang-tidy:*)",
+      "Bash(clang-format:*)",
+      "Bash(sqlite3:*)",
+      "Bash(doxygen:*)",
+      "Edit(src/**)",
+      "Edit(test/**)",
+      "Edit(schema/**)",
+      "Edit(hw/**)"
+    ]
+  }
+}

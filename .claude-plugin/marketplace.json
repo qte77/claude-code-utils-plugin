@@ -60,7 +60,7 @@
       "name": "embedded-dev",
       "source": "./plugins/embedded-dev",
       "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
-      "version": "1.0.0"
+      "version": "1.1.0"
     },
     {
       "name": "workspace-setup",
