@@ -3,6 +3,5 @@
   "version": "1.0.0",
   "description": "Document generation for writeups, tech specs (ADR/RFC/design docs), and reports with optional pandoc PDF export",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["docs", "writeup", "pandoc", "citations", "adr", "rfc", "design-doc", "report"],
-  "hooks": "./hooks/hooks.json"
+  "keywords": ["docs", "writeup", "pandoc", "citations", "adr", "rfc", "design-doc", "report"]
 }
