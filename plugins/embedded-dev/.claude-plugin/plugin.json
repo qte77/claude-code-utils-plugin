@@ -1,6 +1,6 @@
 {
   "name": "embedded-dev",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Embedded firmware development with CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, and KiCad PCB auditing",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["embedded", "firmware", "esp-idf", "platformio", "compliance", "misra", "kicad", "pcb", "traceability", "requirements"]

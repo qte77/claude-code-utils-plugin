@@ -20,6 +20,12 @@ checking-compliance → implementing-firmware → tracing-requirements
                       auditing-pcb-design (standalone)
 ```
 
+## SessionStart Hook
+
+On session start, if `gcc` is found in `$PATH` and `.claude/settings.local.json`
+does not exist, the plugin deploys embedded toolchain permissions (gcc, cppcheck,
+clang-tidy, clang-format, sqlite3, doxygen) via copy-if-not-exists.
+
 ## Install
 
 ```bash
