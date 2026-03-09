@@ -1,0 +1,62 @@
+name: Research Monitor
+
+on:
+  schedule:
+    # Wednesdays at 09:00 UTC (offset from changelog-monitor which runs Mondays)
+    - cron: '0 9 * * 3'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  compare:
+    name: Compare research docs against plugin inventory
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout plugins repo
+        uses: actions/checkout@v4
+
+      - name: Checkout claude-code-research
+        uses: actions/checkout@v4
+        with:
+          repository: qte77/claude-code-research
+          path: .research-docs
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run research comparison
+        id: compare
+        run: |
+          set +e
+          python .github/scripts/research-compare.py \
+            --research-dir .research-docs \
+            --plugins-dir plugins \
+            > research-findings.md 2>&1
+          echo "exit_code=$?" >> "$GITHUB_OUTPUT"
+          set -e
+
+      - name: Upload findings artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: research-findings
+          path: research-findings.md
+          retention-days: 30
+
+      - name: Create issue if findings exist
+        if: steps.compare.outputs.exit_code == '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          DATE=$(date -u +"%Y-%m-%d")
+          TITLE="Research Monitor: actionable findings (${DATE})"
+          gh issue create \
+            --title "${TITLE}" \
+            --body-file research-findings.md \
+            --label "research-sync" \
+            --repo "${REPO}"
