@@ -1,11 +1,12 @@
 # ralph
 
-PRD-to-JSON conversion and interactive user story builder for the Ralph loop.
+UserStory → PRD → JSON pipeline and interactive user story builder for the Ralph loop.
 
 ## Skills
 
-- **generating-prd-json-from-prd-md** — Generates prd.json task tracking file from PRD.md requirements document
 - **generating-interactive-userstory-md** — Interactive Q&A to build UserStory.md from user input
+- **generating-prd-md-from-userstory-md** — Converts UserStory.md into a structured PRD.md document
+- **generating-prd-json-from-prd-md** — Generates prd.json task tracking file from PRD.md requirements document
 
 ## Install
 
