@@ -79,6 +79,12 @@
       "source": "./plugins/workspace-sandbox",
       "description": "Deploys workspace rules, statusline script, and sandbox settings via SessionStart hook",
       "version": "1.0.0"
+    },
+    {
+      "name": "market-research",
+      "source": "./plugins/market-research",
+      "description": "GTM market research pipeline with teams mode parallel dispatch and configurable 2x2 strategy matrix",
+      "version": "1.0.0"
     }
   ]
 }
