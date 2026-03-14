@@ -38,7 +38,7 @@ _scaffold_lint() {
         clang-tidy "$@" 2>&1 || true
     else
         cppcheck --enable=all --suppress=missingInclude src/ 2>&1
-        find src/ -name '*.c' -o -name '*.h' | xargs clang-tidy 2>&1 || true
+        find src/ \( -name '*.c' -o -name '*.h' \) -print0 | xargs -0 clang-tidy 2>&1 || true
     fi
 }
 
