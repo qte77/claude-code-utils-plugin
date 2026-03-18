@@ -18,10 +18,10 @@ jobs:
       - name: Checkout plugins repo
         uses: actions/checkout@v4
 
-      - name: Checkout claude-code-research
+      - name: Checkout coding-agents-research
         uses: actions/checkout@v4
         with:
-          repository: qte77/claude-code-research
+          repository: qte77/coding-agents-research
           path: .research-docs
 
       - name: Setup Python 3.12

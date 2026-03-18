@@ -233,7 +233,7 @@ def main() -> int:
         "--research-dir",
         required=True,
         type=Path,
-        help="Path to the cloned claude-code-research repo",
+        help="Path to the cloned coding-agents-research repo",
     )
     parser.add_argument(
         "--plugins-dir",
