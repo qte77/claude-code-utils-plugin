@@ -4,18 +4,41 @@ description: Synthesizes a living big-picture meta-plan from Claude Code session
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: Read, Grep, Glob
-  argument-hint: [project filter, time range, or output path]
+  argument-hint: [project-name] [time-range] [output-path]
   context: fork
 ---
 
 # Big-Picture Synthesis
 
-**Query**: $ARGUMENTS
+**Target**: $ARGUMENTS
 
 Synthesizes a **plan to plan** — an overarching view across all Claude Code
 artifacts. Not a search tool. A reasoning tool that connects sessions, plans,
 tasks, and memories into a coherent narrative of what you're working on, why,
 and where you're headed.
+
+## Arguments
+
+| Position | Name | Required | Default | Description |
+|----------|------|----------|---------|-------------|
+| 1 | `project-name` | no | all projects | Filter to a single project. Matched against decoded project paths (substring, case-insensitive). E.g. `Agents-eval`, `polyforge`. |
+| 2 | `time-range` | no | all time | Limit to recent activity. E.g. `7d`, `30d`, `this-week`. |
+| 3 | `output-path` | no | `~/.claude/bigpicture.md` | Where to write the output file. |
+
+**Examples:**
+
+```
+/synthesizing-cc-bigpicture                          # All projects, all time
+/synthesizing-cc-bigpicture Agents-eval              # Single project
+/synthesizing-cc-bigpicture Agents-eval 7d           # Single project, last 7 days
+/synthesizing-cc-bigpicture all 30d ./bigpicture.md  # All projects, 30 days, custom output
+```
+
+**Project matching**: The `project-name` is matched against the decoded
+`~/.claude/projects/<encoded-path>/` directories. The encoding replaces `/`
+with `-` (e.g. `-workspaces-Agents-eval` → `/workspaces/Agents-eval`). A
+substring match on any path segment is sufficient. Use `all` to explicitly
+select all projects.
 
 ## Three Reasoning Axes
 
@@ -61,42 +84,54 @@ Track these per work stream to surface where you are and what shift is needed:
 
 ```
 ~/.claude/
-├── history.jsonl                              # Global prompt log
+├── history.jsonl                              # Global prompt log (display, timestamp, project, sessionId)
+├── stats-cache.json                           # Daily aggregates (messageCount, sessionCount, toolCallCount)
 ├── projects/<encoded-path>/
-│   ├── sessions-index.json                    # Summaries, counts, branches, timestamps
 │   ├── memory/MEMORY.md                       # Per-project persistent knowledge
-│   └── <session-uuid>.jsonl                   # Full transcripts (DO NOT read in bulk)
-├── plans/*.md                                 # Plan mode files
-├── tasks/<session-id>/<id>.json               # Tasks (subject, status, blocks/blockedBy)
-├── teams/<team-name>.json                     # Team configs
-├── todos/<composite-id>.json                  # Per-session todos
-└── session-memory/<session-id>.md             # Auto-extracted session notes
+│   ├── <session-uuid>.jsonl                   # Full transcripts (metadata-scan only, never bulk-read)
+│   └── <session-uuid>/
+│       ├── subagents/agent-<id>.jsonl         # Subagent transcripts
+│       └── tool-results/toolu_<id>.txt        # Large tool result storage
+├── plans/*.md                                 # Plan mode files (whimsical auto-names)
+├── tasks/<session-or-team-name>/
+│   ├── .lock, .highwatermark                  # State files
+│   └── <N>.json                               # Tasks (id, subject, description, status, activeForm, owner, blocks, blockedBy)
+└── teams/<team-name>/
+    ├── config.json                            # Team config (name, description, members with model/prompt/role)
+    └── inboxes/<member-name>.json             # Agent-to-agent messages (from, text, summary, timestamp)
 ```
 
 See `references/cc-entry-types.md` for JSONL entry type reference.
 
 ## Workflow
 
-1. **Parse arguments** — Extract project filter, time range, focus area, or output
-   path from `$ARGUMENTS`. Default output: `~/.claude/bigpicture.md`.
+1. **Parse arguments** — Extract `project-name`, `time-range`, and `output-path`
+   from `$ARGUMENTS` per the Arguments table above. Apply defaults for omitted params.
 
 2. **Check existing** — Read output path. If bigpicture.md exists, load it for
    incremental update (preserve structure, update content).
 
-3. **Discover projects** — Glob `~/.claude/projects/*/sessions-index.json`.
-   Decode project names from path encoding (`-` → `/`). Filter if arguments
-   specify project name or time range.
+3. **Discover projects** — Glob `~/.claude/projects/*/memory/MEMORY.md` and
+   `~/.claude/projects/*/*.jsonl`. Decode project names from path encoding
+   (`-` → `/`). If `project-name` is set and not `all`, filter to directories
+   whose decoded path contains the value (case-insensitive substring match).
 
 4. **Collect signals** (sequential, metadata-first — no subagents):
-   - **Sessions**: Read `sessions-index.json` per project — summaries, timestamps, branches
-   - **Plans**: Glob + Read `~/.claude/plans/*.md` — goals, open questions, decisions
-   - **Tasks**: Glob + Read `~/.claude/tasks/*/*.json` — dependency graph, status
-   - **Memory**: Read `~/.claude/projects/*/memory/MEMORY.md` — persistent knowledge
-   - **Session memory**: Grep `~/.claude/session-memory/*.md` — learnings, errors
-   - **Teams**: Read `~/.claude/teams/*.json` — active configurations
+   a. **Activity**: Read `~/.claude/stats-cache.json` — daily message/session/tool-call counts for trajectory
+   b. **Sessions**: Read `~/.claude/history.jsonl` — extract unique sessionIds per project, timestamps, prompt topics
+   c. **Projects**: Glob `~/.claude/projects/*/memory/MEMORY.md` — persistent knowledge per project
+   d. **Plans**: Glob + Read `~/.claude/plans/*.md` — goals, open questions, decisions, scope
+   e. **Tasks**: Glob + Read `~/.claude/tasks/*/*.json` — skip `.lock`/`.highwatermark`, parse dependency graph + status
+   f. **Teams**: Glob + Read `~/.claude/teams/*/config.json` — team structure, member roles, models
+   g. **Team comms**: Glob + Read `~/.claude/teams/*/inboxes/*.json` — agent findings, cross-agent synthesis
+   h. **Session metadata**: For recent sessions, read first+last 5 lines of `.jsonl` files
+      to extract timestamps, branches, user prompts (never bulk-read full transcripts)
+   i. **Project docs**: For each project in `projects/`, decode the project path
+      and scan for `docs/roadmap.md`, `CHANGELOG.md`, `AGENT_REQUESTS.md`.
+      Extract: sprint status table, `[Unreleased]` changes, backlog items, open requests.
 
    **Critical**: Never read full session `.jsonl` transcripts in bulk. Use
-   `sessions-index.json` summaries and `session-memory/*.md` notes instead.
+   `history.jsonl` for session discovery and first+last lines for metadata only.
 
 5. **Classify reasoning modes** per work stream:
    - Count open questions vs. closed decisions in plans → diverge/converge
@@ -146,6 +181,25 @@ Legend: D/C = Diverge/Converge, I/D = Inductive/Deductive, T/B = Top-down/Bottom
 | Plan | Project | Mode | Status | Key Goals |
 |------|---------|------|--------|-----------|
 
+## Project-Arching TODOs & DONEs
+
+### <Project Name>
+
+**Shipped (DONEs):**
+- <Sprint/version>: <summary> — from roadmap.md / CHANGELOG.md
+
+**In Progress:**
+- [Unreleased]: <summary> — from CHANGELOG.md
+- <N> tasks across <M> team dirs (<team names>)
+
+**Pending (TODOs):**
+- Backlog: <items> — from roadmap.md
+- <N> pending CC tasks across <M> task dirs
+- <N> open agent requests — from AGENT_REQUESTS.md
+
+**Stale:**
+- Tasks pending >7 days with no activity
+
 ## Blockers & Stale Items
 - Task "<subject>" blocked since <date>
 - Project "<name>" — no sessions in <N> days
@@ -160,7 +214,7 @@ Legend: D/C = Diverge/Converge, I/D = Inductive/Deductive, T/B = Top-down/Bottom
 
 - **Data dump instead of synthesis**: If output exceeds ~200 lines, raise abstraction level. The skill interprets, not lists.
 - **Stale big picture**: Only as fresh as last invocation. Not auto-updating.
-- **Reading full transcripts**: Use `sessions-index.json` + `session-memory/*.md`. Never bulk-read `.jsonl` files.
+- **Reading full transcripts**: Use `history.jsonl` for session discovery and first+last lines for metadata. Never bulk-read `.jsonl` files.
 - **False mode classification**: Reasoning modes are heuristic signals, not definitive judgments. Present as evidence-based assessment.
 - **Spawning subagents**: Do not use Agent tool. Sequential processing within the fork context is sufficient. Only justified at extreme scale (50+ projects) with explicit user request.
 
