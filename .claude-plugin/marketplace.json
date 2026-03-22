@@ -4,7 +4,7 @@
     "name": "qte77"
   },
   "metadata": {
-    "description": "Claude Code utility plugins for Python development, architecture, auditing, and documentation workflows",
+    "description": "Claude Code utility plugins for development, architecture, auditing, documentation, market research, and CC meta-skills",
     "version": "1.0.0"
   },
   "plugins": [
@@ -59,7 +59,7 @@
     {
       "name": "ralph",
       "source": "./plugins/ralph",
-      "description": "PRD-to-JSON conversion and interactive user story builder for the Ralph loop",
+      "description": "PRD-to-JSON conversion, interactive user story builder, and PRD generation for the Ralph loop",
       "version": "1.0.1"
     },
     {
