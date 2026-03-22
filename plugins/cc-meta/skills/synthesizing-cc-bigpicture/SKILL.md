@@ -118,20 +118,44 @@ See `references/cc-entry-types.md` for JSONL entry type reference.
 
 4. **Collect signals** (sequential, metadata-first — no subagents):
    a. **Activity**: Read `~/.claude/stats-cache.json` — daily message/session/tool-call counts for trajectory
-   b. **Sessions**: Read `~/.claude/history.jsonl` — extract unique sessionIds per project, timestamps, prompt topics
+   b. **Sessions**: Read `~/.claude/history.jsonl` — extract unique sessionIds per project, timestamps, prompt topics.
+      **When `project-name` is set**: filter history entries to those whose `project` field
+      contains the project name (case-insensitive). Collect the matching `sessionId` values
+      into a **session allowlist** for use in steps 4e and 4h.
    c. **Projects**: Glob `~/.claude/projects/*/memory/MEMORY.md` — persistent knowledge per project
-   d. **Plans**: Glob + Read `~/.claude/plans/*.md` — goals, open questions, decisions, scope
-   e. **Tasks**: Glob + Read `~/.claude/tasks/*/*.json` — skip `.lock`/`.highwatermark`, parse dependency graph + status
-   f. **Teams**: Glob + Read `~/.claude/teams/*/config.json` — team structure, member roles, models
-   g. **Team comms**: Glob + Read `~/.claude/teams/*/inboxes/*.json` — agent findings, cross-agent synthesis
+      (already filtered by step 3)
+   d. **Plans**: Glob + Read `~/.claude/plans/*.md` — goals, open questions, decisions, scope.
+      **When `project-name` is set**: only include plans that mention the project name
+      in their content (case-insensitive grep). Exclude plans that don't reference the
+      filtered project. This is a content-based filter since plan files have no project
+      metadata in their filenames.
+   e. **Tasks**: Glob + Read `~/.claude/tasks/*/*.json` — skip `.lock`/`.highwatermark`,
+      parse dependency graph + status.
+      **When `project-name` is set**: correlate task directory names against the session
+      allowlist from step 4b. Task dirs named as session UUIDs match if the UUID is in the
+      allowlist. Task dirs named as team names match via step 4f. Exclude unmatched dirs.
+   f. **Teams**: Glob + Read `~/.claude/teams/*/config.json` — team structure, member roles, models.
+      **When `project-name` is set**: only include teams whose `config.json` description or
+      member prompts reference the project name (case-insensitive grep). Collect matching
+      team names for use in step 4e task dir correlation.
+   g. **Team comms**: Glob + Read `~/.claude/teams/*/inboxes/*.json` — agent findings,
+      cross-agent synthesis. Only read inboxes for teams that passed the filter in step 4f.
    h. **Session metadata**: For recent sessions, read first+last 5 lines of `.jsonl` files
-      to extract timestamps, branches, user prompts (never bulk-read full transcripts)
+      to extract timestamps, branches, user prompts (never bulk-read full transcripts).
+      **When `project-name` is set**: only read `.jsonl` files whose session UUID is in
+      the session allowlist from step 4b.
    i. **Project docs**: For each project in `projects/`, decode the project path
       and scan for `docs/roadmap.md`, `CHANGELOG.md`, `AGENT_REQUESTS.md`.
       Extract: sprint status table, `[Unreleased]` changes, backlog items, open requests.
+      (Already filtered by step 3.)
 
    **Critical**: Never read full session `.jsonl` transcripts in bulk. Use
    `history.jsonl` for session discovery and first+last lines for metadata only.
+
+   **Critical**: When `project-name` is set, ALL sections of the output must respect the
+   filter. Do not include plans, tasks, teams, blockers, or mode transitions from other
+   projects. The only exception is "Cross-Project Connections" which may reference other
+   projects but only as they relate *to* the filtered project (outbound connections).
 
 5. **Classify reasoning modes** per work stream:
    - Count open questions vs. closed decisions in plans → diverge/converge
@@ -146,6 +170,11 @@ See `references/cc-entry-types.md` for JSONL entry type reference.
    - Identify recurring themes across project memories
    - Surface blockers: tasks with unresolved `blockedBy`
    - Detect trajectory: momentum (recent activity) vs. stale (no sessions in N days)
+   - **When `project-name` is set**: Only synthesize filtered data. The "Cross-Project
+     Connections" section shows only outbound connections *from* the filtered project.
+     All other sections (Active Plans, Blockers, Mode Transitions, TODOs & DONEs) must
+     contain ONLY items from the filtered project. If a plan/task/team didn't pass the
+     filter in step 4, it must not appear anywhere in the output.
 
 7. **Output** using format below. Write to output path.
 
@@ -174,7 +203,9 @@ Legend: D/C = Diverge/Converge, I/D = Inductive/Deductive, T/B = Top-down/Bottom
 - **Trajectory:** <accelerating/steady/stalled>
 
 ## Cross-Project Connections
-- <Project A> learning X informs <Project B> design Y (inductive→deductive bridge)
+<!-- When project-name is set: only show outbound connections FROM the filtered project.
+     When no filter: show all cross-project links. Omit section entirely if no connections. -->
+- <Filtered Project> depends on / informs <Other Project>: <specific connection>
 - Shared pattern: "<theme across memories>"
 
 ## Active Plans

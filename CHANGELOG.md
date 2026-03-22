@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **cc-meta**: Workflow steps use real data sources (`history.jsonl`, `stats-cache.json`, team inboxes, project docs) instead of non-existent ones
 - **cc-meta**: `cc-entry-types.md` reference rewritten with accurate schemas and examples
 - **cc-meta**: Frontmatter aligned to agentskills.io conventions (`argument-hint` kebab-case, `Target` not `Query`)
+- **cc-meta**: Project filter now applies to global sources (plans, tasks, teams) — plans filtered by content grep, tasks/teams by session allowlist correlation. Previously these leaked unfiltered data from all projects.
 
 ### Changed
 
