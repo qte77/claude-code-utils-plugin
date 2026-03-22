@@ -11,6 +11,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **cc-meta**: `synthesizing-cc-bigpicture` — project filter param (`[project-name] [time-range] [output-path]`), usage examples
+- **cc-meta**: Project-Arching TODOs & DONEs output section (from roadmap.md, CHANGELOG.md, AGENT_REQUESTS.md)
+- **cc-meta**: `stats-cache.json` and `history.jsonl` as data sources for activity trajectory and session discovery
+- **cc-meta**: Team inbox parsing (`teams/*/inboxes/*.json`) and subagent transcript paths
+- Root README: cc-meta row in Plugins table (was missing), plugin count 11 → 12, skill count 21 → 22
+
+### Fixed
+
+- **cc-meta**: CC Data Sources tree — removed non-existent `sessions-index.json`, `session-memory/`, `todos/`; fixed teams structure (`config.json` + `inboxes/` not flat `.json`); added `activeForm`/`owner` task fields
+- **cc-meta**: Workflow steps use real data sources (`history.jsonl`, `stats-cache.json`, team inboxes, project docs) instead of non-existent ones
+- **cc-meta**: `cc-entry-types.md` reference rewritten with accurate schemas and examples
+- **cc-meta**: Frontmatter aligned to agentskills.io conventions (`argument-hint` kebab-case, `Target` not `Query`)
+
+### Changed
+
+- **cc-meta**: Plugin version 1.0.0 → 1.1.0
+
 ## [3.0.0] - 2026-03-01
 
 ### Added

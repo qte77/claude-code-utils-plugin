@@ -2,7 +2,7 @@
 
 # qte77-claude-code-utils
 
-Claude Code plugin marketplace — 11 plugins, 21 skills from production workflows.
+Claude Code plugin marketplace — 12 plugins, 22 skills from production workflows.
 
 [![License](https://img.shields.io/badge/license-BSD3Clause-58f4c2.svg)](LICENSE.md)
 ![Version](https://img.shields.io/badge/version-3.0.0-58f4c2.svg)
@@ -27,7 +27,7 @@ Claude Code plugin marketplace — 11 plugins, 21 skills from production workflo
 # 1. Add the marketplace
 claude plugin marketplace add qte77/claude-code-utils-plugin
 
-# 2. Install all 11 plugins (pick ONE workspace plugin)
+# 2. Install all 12 plugins (pick ONE workspace plugin)
 claude plugin install python-dev@qte77-claude-code-utils
 claude plugin install commit-helper@qte77-claude-code-utils
 claude plugin install codebase-tools@qte77-claude-code-utils
@@ -37,6 +37,7 @@ claude plugin install website-audit@qte77-claude-code-utils
 claude plugin install docs-generator@qte77-claude-code-utils
 claude plugin install ralph@qte77-claude-code-utils
 claude plugin install embedded-dev@qte77-claude-code-utils
+claude plugin install cc-meta@qte77-claude-code-utils
 claude plugin install workspace-setup@qte77-claude-code-utils    # OR workspace-sandbox
 
 # 3. Verify
@@ -58,6 +59,7 @@ claude plugin list
 | **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC/design docs), reports |
 | **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` | PRD-to-JSON, interactive user stories |
 | **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, KiCad PCB audit |
+| **cc-meta** | `synthesizing-cc-bigpicture` | Cross-project synthesis from `~/.claude/` artifacts (sessions, plans, tasks, teams) |
 | **workspace-setup** | — | Deploys rules, statusline, and base settings via SessionStart hook |
 | **workspace-sandbox** | — | Deploys rules, statusline, sandbox settings, and .gitignore via SessionStart hook |
 
