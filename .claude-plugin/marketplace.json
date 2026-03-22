@@ -23,14 +23,14 @@
     {
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
-      "description": "Codebase research and context compaction skills with ACE-FCA rules",
-      "version": "1.0.1"
+      "description": "Isolated codebase research and exploration via subagent",
+      "version": "1.1.0"
     },
     {
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
-      "description": "Claude Code meta-skills for cross-project synthesis and session intelligence",
-      "version": "1.1.0"
+      "description": "Claude Code meta-skills for cross-project synthesis, context compaction, and session intelligence",
+      "version": "1.2.0"
     },
     {
       "name": "backend-design",

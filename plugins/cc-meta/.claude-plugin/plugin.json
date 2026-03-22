@@ -1,7 +1,7 @@
 {
   "name": "cc-meta",
-  "version": "1.1.0",
-  "description": "Claude Code meta-skills for cross-project synthesis and session intelligence",
+  "version": "1.2.0",
+  "description": "Claude Code meta-skills for cross-project synthesis, context compaction, and session intelligence",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["meta", "big-picture", "synthesis", "sessions", "plans", "reasoning-modes"]
+  "keywords": ["meta", "big-picture", "synthesis", "context", "compaction", "sessions", "plans", "reasoning-modes"]
 }

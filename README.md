@@ -53,14 +53,14 @@ claude plugin list
 | -------- | -------- | --------- |
 | **python-dev** | `implementing-python` `testing-python` `reviewing-code` | Python TDD, implementation, code review + uv permissions hook |
 | **commit-helper** | `committing-staged-with-message` | Conventional commits with GPG signing |
-| **codebase-tools** | `researching-codebase` `compacting-context` | Isolated code exploration, context compression |
+| **codebase-tools** | `researching-codebase` | Isolated codebase research and exploration via subagent |
 | **backend-design** | `designing-backend` | System architecture and API design |
 | **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO |
 | **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` | Design research, UX audit, WCAG 2.1 AA |
 | **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC/design docs), reports |
 | **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` `generating-prd-md-from-userstory-md` | PRD-to-JSON, interactive user stories, PRD generation |
 | **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, KiCad PCB audit |
-| **cc-meta** | `synthesizing-cc-bigpicture` | Cross-project synthesis from `~/.claude/` artifacts (sessions, plans, tasks, teams) |
+| **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` | Cross-project synthesis + CC context window compaction (ACE-FCA) |
 | **market-research** | `researching-market` `researching-industry-landscape` `analyzing-source-project` `analyzing-contradictions` `synthesizing-research` `validating-product-market-fit` `developing-gtm-strategy` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix, contradiction analysis |
 | **workspace-setup** | — | Deploys rules, statusline, and base settings via SessionStart hook |
 | **workspace-sandbox** | — | Deploys rules, statusline, sandbox settings, and .gitignore via SessionStart hook |
