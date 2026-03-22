@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - **cc-meta**: `synthesizing-cc-bigpicture` — project filter param (`[project-name] [time-range] [output-path]`), usage examples
+- **cc-meta**: Auto-resolve output path — project-filtered runs write to `<project>/docs/bigpicture.md`, unfiltered to `~/.claude/bigpicture.md`
 - **cc-meta**: Project-Arching TODOs & DONEs output section (from roadmap.md, CHANGELOG.md, AGENT_REQUESTS.md)
 - **cc-meta**: `stats-cache.json` and `history.jsonl` as data sources for activity trajectory and session discovery
 - **cc-meta**: Team inbox parsing (`teams/*/inboxes/*.json`) and subagent transcript paths

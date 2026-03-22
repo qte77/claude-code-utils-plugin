@@ -23,15 +23,22 @@ and where you're headed.
 |----------|------|----------|---------|-------------|
 | 1 | `project-name` | no | all projects | Filter to a single project. Matched against decoded project paths (substring, case-insensitive). E.g. `Agents-eval`, `polyforge`. |
 | 2 | `time-range` | no | all time | Limit to recent activity. E.g. `7d`, `30d`, `this-week`. |
-| 3 | `output-path` | no | `~/.claude/bigpicture.md` | Where to write the output file. |
+| 3 | `output-path` | no | auto (see below) | Where to write the output file. |
+
+**Default output path:**
+- When `project-name` is `all` or omitted: `~/.claude/bigpicture.md` (global)
+- When `project-name` is set: `<decoded-project-path>/docs/bigpicture.md` (project-local).
+  The project path is decoded from `~/.claude/projects/<encoded-path>/` (e.g.
+  `-workspaces-Agents-eval` → `/workspaces/Agents-eval/docs/bigpicture.md`).
+- When `output-path` is explicitly provided: uses that path regardless of filter.
 
 **Examples:**
 
 ```
-/synthesizing-cc-bigpicture                          # All projects, all time
-/synthesizing-cc-bigpicture Agents-eval              # Single project
-/synthesizing-cc-bigpicture Agents-eval 7d           # Single project, last 7 days
-/synthesizing-cc-bigpicture all 30d ./bigpicture.md  # All projects, 30 days, custom output
+/synthesizing-cc-bigpicture                          # All projects → ~/.claude/bigpicture.md
+/synthesizing-cc-bigpicture Agents-eval              # Single project → /workspaces/Agents-eval/docs/bigpicture.md
+/synthesizing-cc-bigpicture Agents-eval 7d           # Single project, last 7 days → project docs/
+/synthesizing-cc-bigpicture all 30d ./bigpicture.md  # All projects, 30 days, custom output path
 ```
 
 **Project matching**: The `project-name` is matched against the decoded
@@ -107,6 +114,10 @@ See `references/cc-entry-types.md` for JSONL entry type reference.
 
 1. **Parse arguments** — Extract `project-name`, `time-range`, and `output-path`
    from `$ARGUMENTS` per the Arguments table above. Apply defaults for omitted params.
+   **Resolve output path**: If `output-path` is not explicitly provided, apply the
+   default: when `project-name` is set (not `all`), decode the matched project path
+   from `~/.claude/projects/<encoded-path>/` and write to `<decoded-path>/docs/bigpicture.md`.
+   When `project-name` is `all` or omitted, write to `~/.claude/bigpicture.md`.
 
 2. **Check existing** — Read output path. If bigpicture.md exists, load it for
    incremental update (preserve structure, update content).
