@@ -13,12 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- **cc-meta**: `synthesizing-cc-bigpicture` — project filter param (`[project-name] [time-range] [output-path]`), usage examples
+- **market-research**: New plugin with 8 skills — GTM pipeline with teams mode parallel dispatch, 2x2 strategy matrix, contradiction analysis, slide deck generation
+- **python-dev**: Scaffold adapter for Ralph loop (`scaffold/adapter.sh`, project templates, GHA workflows)
+- **embedded-dev**: Scaffold adapter with `find -print0 | xargs -0` safe filenames
+- **cc-meta**: `synthesizing-cc-bigpicture` skill — project filter param (`[project-name] [time-range] [output-path]`), usage examples
 - **cc-meta**: Auto-resolve output path — project-filtered runs write to `<project>/docs/bigpicture.md`, unfiltered to `~/.claude/bigpicture.md`
 - **cc-meta**: Project-Arching TODOs & DONEs output section (from roadmap.md, CHANGELOG.md, AGENT_REQUESTS.md)
 - **cc-meta**: `stats-cache.json` and `history.jsonl` as data sources for activity trajectory and session discovery
 - **cc-meta**: Team inbox parsing (`teams/*/inboxes/*.json`) and subagent transcript paths
-- Root README: cc-meta row in Plugins table (was missing), plugin count 11 → 12, skill count 21 → 22
+- `examples/memory/`: MEMORY.md and claude-cowork-api.md example templates
+- `CODEOWNERS`: skill file ownership for content protection
+- `scaffolds.json`: scaffold registry for python-dev and embedded-dev
+- CI: `check-skill-integrity.yaml` + `compute-skill-hashes.sh` for content-hash skill protection
+- CI: `research-monitor` GHA for tracking upstream CC changes (#19)
+- Root README: cc-meta and market-research rows in Plugins table, plugin count 12 → 13, skill count 22 → 31
 
 ### Fixed
 
@@ -27,10 +35,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **cc-meta**: `cc-entry-types.md` reference rewritten with accurate schemas and examples
 - **cc-meta**: Frontmatter aligned to agentskills.io conventions (`argument-hint` kebab-case, `Target` not `Query`)
 - **cc-meta**: Project filter now applies to global sources (plans, tasks, teams) — plans filtered by content grep, tasks/teams by session allowlist correlation. Previously these leaked unfiltered data from all projects.
+- Removed duplicate hooks manifest references from 4 plugins (#16)
+- **embedded-dev**: `find -print0 | xargs -0` for safe filenames in scaffold adapter
 
 ### Changed
 
 - **cc-meta**: Plugin version 1.0.0 → 1.1.0
+- **embedded-dev**: Plugin version 1.0.1 → 1.2.0 (scaffold adapter + hooks/settings)
+- All plugins: stability metadata added to plugin.json via version bumps
+- **commit-helper**: Synced SKILL.md with latest conventions (#19)
+- Renamed `claude-code-research` references to `coding-agents-research` (#21)
 
 ## [3.0.0] - 2026-03-01
 

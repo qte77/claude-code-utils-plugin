@@ -2,7 +2,7 @@
 
 # qte77-claude-code-utils
 
-Claude Code plugin marketplace — 12 plugins, 22 skills from production workflows.
+Claude Code plugin marketplace — 13 plugins, 31 skills from production workflows.
 
 [![License](https://img.shields.io/badge/license-BSD3Clause-58f4c2.svg)](LICENSE.md)
 ![Version](https://img.shields.io/badge/version-3.0.0-58f4c2.svg)
@@ -27,7 +27,7 @@ Claude Code plugin marketplace — 12 plugins, 22 skills from production workflo
 # 1. Add the marketplace
 claude plugin marketplace add qte77/claude-code-utils-plugin
 
-# 2. Install all 12 plugins (pick ONE workspace plugin)
+# 2. Install all 13 plugins (pick ONE workspace plugin)
 claude plugin install python-dev@qte77-claude-code-utils
 claude plugin install commit-helper@qte77-claude-code-utils
 claude plugin install codebase-tools@qte77-claude-code-utils
@@ -38,6 +38,7 @@ claude plugin install docs-generator@qte77-claude-code-utils
 claude plugin install ralph@qte77-claude-code-utils
 claude plugin install embedded-dev@qte77-claude-code-utils
 claude plugin install cc-meta@qte77-claude-code-utils
+claude plugin install market-research@qte77-claude-code-utils
 claude plugin install workspace-setup@qte77-claude-code-utils    # OR workspace-sandbox
 
 # 3. Verify
@@ -57,9 +58,10 @@ claude plugin list
 | **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO |
 | **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` | Design research, UX audit, WCAG 2.1 AA |
 | **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC/design docs), reports |
-| **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` | PRD-to-JSON, interactive user stories |
+| **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` `generating-prd-md-from-userstory-md` | PRD-to-JSON, interactive user stories, PRD generation |
 | **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, KiCad PCB audit |
 | **cc-meta** | `synthesizing-cc-bigpicture` | Cross-project synthesis from `~/.claude/` artifacts (sessions, plans, tasks, teams) |
+| **market-research** | `researching-market` `researching-industry-landscape` `analyzing-source-project` `analyzing-contradictions` `synthesizing-research` `validating-product-market-fit` `developing-gtm-strategy` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix, contradiction analysis |
 | **workspace-setup** | — | Deploys rules, statusline, and base settings via SessionStart hook |
 | **workspace-sandbox** | — | Deploys rules, statusline, sandbox settings, and .gitignore via SessionStart hook |
 
