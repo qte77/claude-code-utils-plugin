@@ -30,7 +30,7 @@
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
       "description": "Claude Code meta-skills for cross-project synthesis and session intelligence",
-      "version": "1.0.0"
+      "version": "1.1.0"
     },
     {
       "name": "backend-design",

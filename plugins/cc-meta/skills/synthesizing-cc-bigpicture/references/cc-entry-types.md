@@ -19,18 +19,38 @@ Each line in a session `.jsonl` file is a JSON object with a `type` field:
 | `summary` | Conversation summaries (from auto-compaction) | `timestamp`, `content` |
 | `result` | Session completion markers | `timestamp`, `status` |
 
-## Sessions Index
+## Global History
 
-`~/.claude/projects/<path>/sessions-index.json` — metadata cache per project:
+`~/.claude/history.jsonl` — global prompt log, one entry per user message:
 
-- Auto-generated summaries per session
-- Message counts
-- Git branch at time of session
-- Creation and last-update timestamps
-- Session UUIDs (link to `.jsonl` files)
+```json
+{
+  "display": "the user prompt text",
+  "timestamp": "2026-03-20T14:30:00Z",
+  "project": "/workspaces/my-project",
+  "sessionId": "uuid"
+}
+```
 
-**Prefer this over reading individual .jsonl files** — it's the metadata-first
-approach for discovering what sessions contain.
+Use for session discovery (unique `sessionId` values), timeline reconstruction,
+and prompt topic analysis. Preferred over globbing `.jsonl` files when
+`sessions-index.json` is unavailable.
+
+## Stats Cache
+
+`~/.claude/stats-cache.json` — daily activity aggregates:
+
+```json
+{
+  "2026-03-20": {
+    "messageCount": 42,
+    "sessionCount": 5,
+    "toolCallCount": 128
+  }
+}
+```
+
+Use for trajectory signal (active vs. stale days, trend detection).
 
 ## Plans
 
@@ -39,7 +59,7 @@ approach for discovering what sessions contain.
 
 ## Tasks
 
-`~/.claude/tasks/<session-id>/<id>.json` — structured objects:
+`~/.claude/tasks/<session-or-team-name>/<N>.json` — structured objects:
 
 ```json
 {
@@ -47,23 +67,55 @@ approach for discovering what sessions contain.
   "subject": "Task title",
   "description": "Task details",
   "status": "in_progress",
+  "activeForm": "agent-form",
+  "owner": "member-name",
   "blocks": ["4", "5"],
   "blockedBy": ["1"]
 }
 ```
 
 The `blocks`/`blockedBy` arrays create a dependency graph within a task list.
+Task directories also contain `.lock` and `.highwatermark` state files (skip these).
 
 ## Teams
 
-`~/.claude/teams/<team-name>.json` — team configuration including model
-assignments per role.
+`~/.claude/teams/<team-name>/` — directory per team:
 
-## Session Memory
+- `config.json` — team configuration:
 
-`~/.claude/session-memory/<session-id>.md` — auto-extracted notes with sections:
-Current State, Task Specification, Files and Functions, Workflow, Errors &
-Corrections, Learnings, Key Results.
+  ```json
+  {
+    "name": "team-name",
+    "description": "Team purpose",
+    "members": [
+      {
+        "name": "member-name",
+        "model": "claude-sonnet-4-6",
+        "prompt": "system prompt",
+        "role": "developer"
+      }
+    ]
+  }
+  ```
+
+- `inboxes/<member-name>.json` — agent-to-agent messages:
+
+  ```json
+  [
+    {
+      "from": "other-member",
+      "text": "Full message content",
+      "summary": "Brief summary",
+      "timestamp": "2026-03-20T14:30:00Z"
+    }
+  ]
+  ```
+
+## Subagent Transcripts
+
+`~/.claude/projects/<path>/<session-uuid>/subagents/agent-<id>.jsonl` — full
+transcripts of subagent sessions spawned within a parent session. Same entry
+format as session `.jsonl` files.
 
 ## Project Memory
 
@@ -74,4 +126,5 @@ loaded at conversation start.
 
 Project paths are URL-encoded with dashes:
 - `/home/user/myapp` → `-home-user-myapp`
+- `/workspaces/Agents-eval` → `-workspaces-Agents-eval`
 - `C:\Users\name\project` → `C--Users-name-project`
