@@ -1,6 +1,6 @@
 {
   "name": "workspace-setup",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Deploys workspace rules, statusline script, and base settings via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["workspace", "settings", "rules", "statusline", "setup"]

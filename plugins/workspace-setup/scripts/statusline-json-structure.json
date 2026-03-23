@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Claude Code Statusline Input Structure",
+  "description": "JSON structure passed to statusline command scripts via stdin. Used by statusline.sh",
+
+  "_comment": "=== EXAMPLE STRUCTURE (Real values replace placeholders) ===",
+
+  "session_id": "550e8400-e29b-41d4-a716-446655440000",
+  "transcript_path": "/home/user/.claude/projects/-workspaces-project/session-abc123.jsonl",
+  "cwd": "/workspaces/project-name",
+
+  "agent": {
+    "type": "main"
+  },
+
+  "model": {
+    "id": "claude-opus-4-6",
+    "display_name": "Claude Opus 4.6"
+  },
+
+  "workspace": {
+    "current_dir": "/workspaces/project-name",
+    "project_dir": "/workspaces/project-name"
+  },
+
+  "version": "2.1.52",
+
+  "output_style": {
+    "name": "default"
+  },
+
+  "cost": {
+    "total_cost_usd": 0.52,
+    "total_duration_ms": 120000,
+    "total_api_duration_ms": 45000,
+    "total_lines_added": 120,
+    "total_lines_removed": 35
+  },
+
+  "context_window": {
+    "total_input_tokens": 65000,
+    "total_output_tokens": 8500,
+    "context_window_size": 200000,
+    "current_usage": {
+      "input_tokens": 2000,
+      "output_tokens": 500,
+      "cache_creation_input_tokens": 15000,
+      "cache_read_input_tokens": 48000
+    },
+    "used_percentage": 36.75,
+    "remaining_percentage": 63.25
+  },
+
+  "exceeds_200k_tokens": false,
+
+  "_fields_used_by_statusline_sh": {
+    "agent.type": "Extracted with jq -r '(.agent.type // \"main\")' → displayed as 'agent:{value}'",
+    "workspace.current_dir": "Extracted with jq -r '.workspace.current_dir' → basename shown in statusline",
+    "model.id": "Extracted with jq -r '.model.id' → displayed as 'model:{value}'",
+    "version": "Extracted with jq -r '.version // \"\"' → displayed as 'ver:{value}'",
+    "cost.total_cost_usd": "Formatted: (value * 100 | round / 100 | tostring) + '$'",
+    "cost.total_api_duration_ms": "Converted to minutes: (value / 1000 / 60 | round | tostring) + 'm'",
+    "cost.total_lines_added": "Combined as '+{added}/-{removed}'",
+    "cost.total_lines_removed": "Combined as '+{added}/-{removed}'",
+    "context_window.total_input_tokens": "Converted to k: (value / 1000 | floor | tostring) + 'k'",
+    "context_window.total_output_tokens": "Converted to k: (value / 1000 | floor | tostring) + 'k'",
+    "context_window.remaining_percentage": "Used to compute true free space after autocompact buffer",
+    "context_window.current_usage.*": "Preferred over remaining_percentage: computes (in+cc+cr)/win*100 for precise usage",
+    "exceeds_200k_tokens": "Boolean flag displayed as '>200k:{value}'"
+  },
+
+  "_color_thresholds": {
+    "context_remaining": {
+      "_note": "Based on TRUE free space = remaining_pct - autocompact_buffer (default 16.5%)",
+      "critical": "≤10% true free → Yellow fg on Red bg (\\033[93;41m)",
+      "warning": "≤20% true free → Bright Red fg on Dark Gray bg (\\033[91;48;5;237m)",
+      "caution": "≤35% true free → Yellow fg (\\033[93m)",
+      "ok": ">35% true free → Green fg (\\033[0;32m)"
+    },
+    "autocompact_buffer": {
+      "_note": "Subtracted from remaining_pct to get usable space",
+      "env_override": "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE (sets compaction trigger %)",
+      "default": "16.5% (observed; docs claim 5% but compaction triggers at ~78-85%)"
+    }
+  },
+
+  "_statusline_output_format": {
+    "line1": "agent:{type} model:{id} ver:{version} cost:{usd} dur:{minutes}m",
+    "line2": "lines:+{added}/-{removed} tokens(i/o):{in}k/{out}k ctx(free):{pct} >200k:{bool}",
+    "line3": "dir:{basename} branch:{git_branch} user:{whoami} time:{HH:MM:SS}"
+  },
+
+  "_usage_notes": {
+    "stdin_input": "This JSON is passed to statusline scripts via stdin (read with 'cat' in bash)",
+    "jq_extraction": "All fields extracted in a single jq call, tab-delimited, via bash read",
+    "script_location": "plugins/workspace-setup/scripts/statusline.sh",
+    "config_reference": "settings.json → statusLine.command → 'bash .claude/scripts/statusline.sh'",
+    "fallback_values": "Use // operator for optional fields: jq -r '.version // \"\"'"
+  }
+}
