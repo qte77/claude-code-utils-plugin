@@ -5,6 +5,9 @@ on:
     paths:
       - "plugins/*/skills/*/SKILL.md"
 
+permissions:
+  contents: read
+
 jobs:
   verify-skill-hashes:
     runs-on: ubuntu-latest

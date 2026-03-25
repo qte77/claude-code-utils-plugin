@@ -1,0 +1,7 @@
+{
+  "name": "docs-governance",
+  "version": "1.0.0",
+  "description": "Audit and maintain documentation hierarchy and agent governance files",
+  "author": { "name": "Claude Code Utils Contributors" },
+  "keywords": ["docs", "governance", "agents-md", "hierarchy", "audit", "single-source-of-truth"]
+}

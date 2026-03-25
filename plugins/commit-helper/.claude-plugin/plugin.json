@@ -1,7 +1,7 @@
 {
   "name": "commit-helper",
-  "version": "1.0.1",
-  "description": "Generate conventional commit messages with GPG signing and approval workflow",
+  "version": "1.1.0",
+  "description": "Generate conventional commit messages and pull requests with approval workflow",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["commit", "conventional-commits", "git", "gpg"]
+  "keywords": ["commit", "conventional-commits", "git", "gpg", "pull-request"]
 }
