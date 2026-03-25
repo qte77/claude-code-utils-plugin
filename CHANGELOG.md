@@ -44,7 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **embedded-dev**: Plugin version 1.0.1 → 1.2.0 (scaffold adapter + hooks/settings)
 - All plugins: stability metadata added to plugin.json via version bumps
 - **commit-helper**: Synced SKILL.md with latest conventions (#19)
-- Renamed `claude-code-research` references to `coding-agents-research` (#21)
+- Renamed `claude-code-research` references to `ai-agents-research` (#21)
 
 ## [3.0.0] - 2026-03-01
 
