@@ -16,6 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **market-research**: New plugin with 8 skills — GTM pipeline with teams mode parallel dispatch, 2x2 strategy matrix, contradiction analysis, slide deck generation
 - **python-dev**: Scaffold adapter for Ralph loop (`scaffold/adapter.sh`, project templates, GHA workflows)
 - **embedded-dev**: Scaffold adapter with `find -print0 | xargs -0` safe filenames
+- **commit-helper**: `creating-pr-from-branch` skill — branch analysis, PR template population, approval gate, Codespaces auth handling
+- **docs-governance**: New plugin (1.0.0) with `enforcing-doc-hierarchy` and `maintaining-agents-md` skills
 - **cc-meta**: `synthesizing-cc-bigpicture` skill — project filter param (`[project-name] [time-range] [output-path]`), usage examples
 - **cc-meta**: Auto-resolve output path — project-filtered runs write to `<project>/docs/bigpicture.md`, unfiltered to `~/.claude/bigpicture.md`
 - **cc-meta**: Project-Arching TODOs & DONEs output section (from roadmap.md, CHANGELOG.md, AGENT_REQUESTS.md)
@@ -36,11 +38,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **cc-meta**: Frontmatter aligned to agentskills.io conventions (`argument-hint` kebab-case, `Target` not `Query`)
 - **cc-meta**: Project filter now applies to global sources (plans, tasks, teams) — plans filtered by content grep, tasks/teams by session allowlist correlation. Previously these leaked unfiltered data from all projects.
 - Removed duplicate hooks manifest references from 4 plugins (#16)
+- **check-skill-integrity.yaml**: Add `permissions: contents: read` (CodeQL alert fix)
 - **embedded-dev**: `find -print0 | xargs -0` for safe filenames in scaffold adapter
 
 ### Changed
 
-- **cc-meta**: Plugin version 1.0.0 → 1.1.0
+- **cc-meta**: Simplify bigpicture skill (274→156 lines) — merge 3 reasoning axes to 2, extract project filtering to single section
+- **commit-helper**: Simplify commit skill — drop mandatory diff stats/symbols, allow subject-only for small changes
+- **cc-meta**: Plugin version 1.0.0 → 1.1.0 → 1.2.0 → 1.3.0
 - **embedded-dev**: Plugin version 1.0.1 → 1.2.0 (scaffold adapter + hooks/settings)
 - All plugins: stability metadata added to plugin.json via version bumps
 - **commit-helper**: Synced SKILL.md with latest conventions (#19)
