@@ -1,5 +1,11 @@
 # GHA Marketplace Checklist
 
+**First-party references:**
+
+- [Creating a composite action](https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action) — official guide for `runs: using: composite`
+- [Publishing actions to GitHub Marketplace](https://docs.github.com/en/actions/sharing-automations/creating-actions/publishing-actions-in-github-marketplace) — Marketplace listing requirements, branding, and publish flow
+- [Git Database API (create commits)](https://docs.github.com/en/rest/git/commits?apiVersion=2022-11-28#create-a-commit) — the API behind the signed commit pattern (blob→tree→commit)
+
 ## Required action.yaml Fields
 
 ```yaml
