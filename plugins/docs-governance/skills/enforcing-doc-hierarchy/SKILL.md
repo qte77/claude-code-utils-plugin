@@ -1,6 +1,6 @@
 ---
 name: enforcing-doc-hierarchy
-description: Audits and aligns project documentation against authority chains (project docs and Claude Code infrastructure). Detects broken references, duplicates, scope creep, and chain breaks. Use when reviewing documentation health, fixing stale references, or enforcing single-source-of-truth.
+description: Audits and aligns project documentation against its own declared hierarchy. Discovers authority chains from CONTRIBUTING.md (or equivalent), then detects broken links, duplicates, and misplaced content. Use when reviewing doc health, fixing stale references, or enforcing single-source-of-truth.
 compatibility: Designed for Claude Code
 metadata:
   argument-hint: [file-directory-or-full]
@@ -11,54 +11,26 @@ metadata:
 
 **Scope**: $ARGUMENTS
 
-Audits documentation against authority chains, then aligns violations with user
-approval.
+Audits documentation against the project's declared hierarchy, then aligns
+violations with user approval.
 
-## Authority Chains
+## Phase 1: Discover
 
-### 1. Project Documentation
+Read the project's hierarchy declaration. Look for (in order):
 
-Discover from the project's `CONTRIBUTING.md` "Documentation Hierarchy" section
-(or equivalent). Typical chain:
+1. `CONTRIBUTING.md` — "Documentation Hierarchy" section (table or list)
+2. `AGENTS.md` — "Key references" or "Information sources" section
+3. `README.md` — "Documentation" section (links to authoritative docs)
 
-```
-UserStory / PRD (requirements, scope — PRIMARY AUTHORITY)
-  → architecture.md (technical design)
-    → Sprint / implementation docs (current state)
-      → Usage guides / howtos (operations)
-        ^ Research / landscape docs (INFORMATIONAL ONLY — never requirements)
-```
+Extract:
 
-### 2. Claude Code Infrastructure
+- **Entry points**: which docs are human vs agent entry points
+- **Authority map**: which doc owns which content type
+- **Anti-redundancy rule**: stated or implied (default: no duplication across docs)
 
-```
-CLAUDE.md (entry point)
-  → AGENTS.md (behavioral rules, compliance, decision framework)
-    → CONTRIBUTING.md (technical workflows, commands, coding standards)
-    → .claude/rules/*.md (session-loaded rules)
-    → .claude/skills/*/SKILL.md (on-demand capabilities)
-```
+If no hierarchy is declared, report that as the first finding and stop.
 
-### Content Authority
-
-| Content Type | Authoritative Source | NOT here |
-|---|---|---|
-| Requirements/scope | PRDs ONLY | architecture, howtos, research |
-| User workflows | User stories ONLY | architecture, sprint docs |
-| Technical design | architecture.md ONLY | sprint docs, howtos, research |
-| Current status | Sprint/impl docs ONLY | architecture, user stories |
-| Operations | Usage guides ONLY | architecture, sprint docs |
-| Research | Research/landscape docs | INFORMATIONAL — never requirements |
-
-## When to Use
-
-- After moving/renaming/deleting documentation files
-- Before or after a sprint to verify doc health
-- When adding new documents (verify correct tier placement)
-- When reviewing PRs that touch docs
-- Periodically as hygiene (`/enforcing-doc-hierarchy full`)
-
-## Phase 1: Audit
+## Phase 2: Audit
 
 Detect violations across the scope. For each finding, record:
 
@@ -68,60 +40,44 @@ Detect violations across the scope. For each finding, record:
 
 ### Violation Types
 
-- **broken-ref**: Reference points to moved, renamed, or deleted file
-- **stale-path**: File path in docs doesn't match actual location
-- **duplicate**: Same content in multiple documents (DRY violation)
-- **scope-creep**: Requirement-like content in research/landscape docs
-- **wrong-authority**: Content in wrong doc per Content Authority table
-- **chain-break**: Missing link in an authority chain
+- **broken-link**: Reference target does not exist (moved, renamed, deleted, wrong case)
+- **duplicate**: Same content (3+ lines) appears in both an authority doc and a dependent doc
+- **misplaced**: Content is in the wrong doc per the discovered authority map, OR a doc in the hierarchy is not referenced by its parent
 
 ### Audit Procedure
 
 1. **Determine scope** from `$ARGUMENTS`:
-   - Specific file: audit that file's references and content placement
+   - File: audit that file's outbound references and content placement
    - Directory: audit all `.md` files in that directory
-   - `full` or empty: audit both authority chains end-to-end
+   - `full` or empty: audit every `.md` file in the repo
 
-2. **Validate cross-references**: Run `make lint_links` if available (lychee).
-   Then grep for `@file` references and relative paths that lychee may miss.
+2. **Check links**: For each `[text](path)` and `@file` reference, verify the
+   target exists. Check case sensitivity.
 
-3. **Detect duplicates**: Look for substantial content (3+ lines) in both an
-   authoritative document and a dependent document.
+3. **Check duplicates**: For each authority doc, search dependent docs for
+   substantial repeated content (3+ lines or identical tables).
 
-4. **Check content placement** against Content Authority table:
-   - Research/landscape: flag requirement-like language (`must`, `shall`,
-     `required`, `will implement`) — scope-creep
-   - architecture.md: flag user workflows or acceptance criteria — wrong-authority
-   - Sprint docs: flag design decisions belonging in architecture.md
-   - Distinguish informational references from project-level mandates.
+4. **Check placement**: For each doc, verify its content matches its declared
+   authority. Flag content that belongs in a different doc per the authority map.
 
-5. **Verify chain integrity**: Confirm each document in both chains references
-   the next document in the chain.
+5. **Check chain**: Verify each doc in the hierarchy is referenced by at least
+   one parent doc. Flag orphaned docs.
 
-6. **Output findings table** sorted by violation type.
+6. **Output findings table** sorted by type, then file.
 
-## Phase 2: Align
+## Phase 3: Align
 
 Resolve findings with user confirmation. Propose each fix and wait for approval.
 
-| Violation | Procedure |
-|---|---|
-| **broken-ref** | Update path. If target deleted, remove reference. |
-| **stale-path** | Grep all docs for old path, replace with current. |
-| **duplicate** | Identify authority by tier. Replace duplicate with reference link. |
-| **scope-creep** | Move requirement-like content to PRD/architecture. Leave summary. |
-| **wrong-authority** | Move to correct doc per table. Replace with reference link. |
-| **chain-break** | Add missing reference to restore chain link. |
+| Violation | Fix |
+|-----------|-----|
+| **broken-link** | Update path. If target deleted, remove reference. |
+| **duplicate** | Keep in authority doc, replace in dependent doc with reference link. |
+| **misplaced** | Move content to authority doc, replace original with reference link. |
 
-### Alignment Rules
+### Rules
 
-- Update the **authoritative** document first, then fix dependents
-- Never duplicate — replace with a reference to the authority
-- Confirm each fix with user before applying
-- Keep edits minimal and targeted
-
-## References
-
-- CONTRIBUTING.md "Documentation Hierarchy" — authority structure and rules
-- AGENTS.md "Decision Framework" — anti-scope-creep and anti-redundancy rules
-- `.claude/rules/core-principles.md` — DRY, KISS principles
+- Fix the **authority doc first**, then fix dependents
+- Never duplicate — replace with a reference
+- Confirm each fix before applying
+- Keep edits minimal
