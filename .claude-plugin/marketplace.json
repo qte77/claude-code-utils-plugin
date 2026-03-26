@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Claude Code utility plugins for development, architecture, auditing, documentation, market research, and CC meta-skills",
-    "version": "3.1.0"
+    "version": "3.3.0"
   },
   "plugins": [
     {
@@ -90,6 +90,18 @@
       "name": "market-research",
       "source": "./plugins/market-research",
       "description": "GTM market research pipeline with teams mode parallel dispatch and configurable 2x2 strategy matrix",
+      "version": "1.0.0"
+    },
+    {
+      "name": "rust-dev",
+      "source": "./plugins/rust-dev",
+      "description": "Rust implementation, testing, code review skills, and scaffold adapter for Ralph loop",
+      "version": "1.0.0"
+    },
+    {
+      "name": "gha-dev",
+      "source": "./plugins/gha-dev",
+      "description": "Skills and rules for creating GitHub Actions for the Marketplace",
       "version": "1.0.0"
     }
   ]
