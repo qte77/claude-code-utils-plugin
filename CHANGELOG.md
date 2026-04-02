@@ -13,6 +13,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **workspace-setup**: `settings-project.json` — slim project-only settings for sideload into existing projects (edit paths only)
+
+### Changed
+
+- **workspace-setup**: Strip `settings-base.json` to full baseline (used by dotfiles for fresh envs); hook now deploys `settings-project.json` instead
+- **workspace-sandbox**: Strip `settings-sandbox.json` to sandbox config + project-specific edit paths only — all other settings moved to user-level via dotfiles
+- **workspace-setup**: Remove statusline deployment from hook (now deployed by dotfiles to `~/.claude/scripts/`)
+- **workspace-sandbox**: Remove statusline deployment from hook (same reason)
+- **workspace-setup**: Plugin description/keywords updated (removed "statusline")
+- **workspace-sandbox**: Plugin description/keywords updated (removed "statusline")
+
+### Added
+
 - **market-research**: New plugin with 8 skills — GTM pipeline with teams mode parallel dispatch, 2x2 strategy matrix, contradiction analysis, slide deck generation
 - **python-dev**: Scaffold adapter for Ralph loop (`scaffold/adapter.sh`, project templates, GHA workflows)
 - **embedded-dev**: Scaffold adapter with `find -print0 | xargs -0` safe filenames
