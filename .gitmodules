@@ -1,0 +1,3 @@
+[submodule "plugins/cc-tts"]
+	path = plugins/cc-tts
+	url = https://github.com/qte77/cc-tts-plugin-protoype.git

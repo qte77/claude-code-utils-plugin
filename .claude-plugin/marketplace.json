@@ -115,6 +115,12 @@
       "source": "./plugins/tdd-core",
       "description": "Language-agnostic TDD methodology: Red-Green-Refactor, Arrange-Act-Assert, testing strategy",
       "version": "1.0.0"
+    },
+    {
+      "name": "cc-tts",
+      "source": "./plugins/cc-tts",
+      "description": "Live TTS via PTY proxy, batch TTS via Stop hook, /speak skill (prototype, git submodule)",
+      "version": "0.1.0"
     }
   ]
 }
