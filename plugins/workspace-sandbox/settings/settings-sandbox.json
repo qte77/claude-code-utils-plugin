@@ -60,6 +60,8 @@
       "Edit(tests/)",
       "Edit(src/**)",
       "mcp__ide__getDiagnostics",
+      "mcp__plugin_context7_context7__resolve-library-id",
+      "mcp__plugin_context7_context7__query-docs",
       "Read(.claude/skills/)",
       "Read(.claude/rules/)",
       "SlashCommand",
