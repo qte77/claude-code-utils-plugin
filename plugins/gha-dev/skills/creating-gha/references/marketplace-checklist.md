@@ -34,9 +34,10 @@ runs:
 ## Standard Action Pins
 
 ```yaml
-actions/checkout@v4
-actions/setup-python@v5
-callowayproject/bump-my-version@1.2.7
+actions/checkout@v6
+actions/setup-python@v6
+callowayproject/bump-my-version@1.3.0
+astral-sh/setup-uv@v6
 ```
 
 ## Signed Commit Pattern (blob→tree→commit→branch→PR→squash)
@@ -75,10 +76,10 @@ gh api repos/OWNER/REPO/git/refs/heads/BRANCH \
 
 # 6. Create PR and squash merge
 gh pr create --title "feat: my change" --body "..."
-gh api repos/OWNER/REPO/pulls/NUM/merge -X PUT \
-  -f merge_method=squash \
-  -f commit_title="PR feat: my change (#NUM)" \
-  -f commit_message="* feat: my change"
+GH_TOKEN="${GH_PAT}" gh pr merge NUM --squash \
+  --subject "PR feat: my change (#NUM)" \
+  --body "* feat: my change"
+# Note: GITHUB_TOKEN from Codespaces lacks merge permission; use PAT.
 ```
 
 ## Version Tags
@@ -104,6 +105,24 @@ tag = false
 - **Workflows disabled after 60 days inactivity** — re-enable via Actions tab
 - **`bump-my-version` always increments** — for first release, create tag manually via API
 - **Marketplace publish**: must check the box on the GitHub Release page; can't be done via API
+- **Blob overflow**: for large CSVs/generated files exceeding API payload, write to temp file, base64-encode, use `--input` with jq rawfile:
+  ```bash
+  base64 -w0 < large.csv > /tmp/blob.b64
+  gh api repos/OWNER/REPO/git/blobs \
+    --input <(jq -n --rawfile b /tmp/blob.b64 '{encoding:"base64",content:$b}') \
+    --jq '.sha'
+  ```
+- **S310 pattern**: for Python actions using `urllib.request.urlopen()`, add an `_ensure_https()` guard function that validates URL scheme before opening, then annotate with `# noqa: S310`
+- **Merge via `gh api` silently drops `.github/workflows/`**: use `gh pr merge N --squash` instead — the REST API merge endpoint silently drops workflow file changes
+
+## Security Settings API
+
+```bash
+# Set workflow permissions to read-only + allow PR creation
+gh api repos/OWNER/REPO/actions/permissions/workflow -X PUT \
+  -f default_workflow_permissions=read \
+  -F can_approve_pull_request_reviews=true
+```
 
 ## Publish Steps
 

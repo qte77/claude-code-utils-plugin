@@ -108,7 +108,7 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.0.0"
+      "version": "1.0.1"
     },
     {
       "name": "tdd-core",
