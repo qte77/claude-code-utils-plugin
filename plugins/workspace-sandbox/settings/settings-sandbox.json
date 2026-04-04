@@ -22,18 +22,25 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true,
     "allowUnsandboxedCommands": false,
-    "enableWeakerNestedSandbox": false,
+    "enableWeakerNestedSandbox": true,
+    "excludedCommands": ["docker *"],
     "network": {
       "allowLocalBinding": true,
-      "allowedHosts": ["api.github.com"]
+      "allowedDomains": [
+        "api.github.com",
+        "github.com",
+        "*.npmjs.org",
+        "registry.yarnpkg.com",
+        "pypi.org",
+        "files.pythonhosted.org"
+      ]
     },
     "filesystem": {
-      "write": {
-        "allowOnly": [
-          "/tmp/claude-1000",
-          ".git"
-        ]
-      }
+      "allowWrite": [
+        "/tmp/claude-1000",
+        ".git",
+        "/workspaces"
+      ]
     }
   },
   "permissions": {

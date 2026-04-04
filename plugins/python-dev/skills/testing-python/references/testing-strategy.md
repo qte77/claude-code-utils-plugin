@@ -6,8 +6,11 @@ purpose: High-level testing strategy aligned with KISS/DRY/YAGNI
 see-also: tdd-best-practices.md, bdd-best-practices.md
 ---
 
-**Purpose**: What to test, when to use each tool, test organization,
-running commands.
+**Purpose**: Python-specific testing tools and when to use each.
+
+> Language-agnostic testing strategy (what to test, mocking, organization)
+> is in the `tdd-core` plugin. This file extends it with Python tools
+> (pytest, Hypothesis, inline-snapshot, pytest-bdd).
 
 ## Core Principles
 

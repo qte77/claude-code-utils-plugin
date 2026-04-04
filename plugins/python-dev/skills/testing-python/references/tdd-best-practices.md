@@ -5,8 +5,10 @@ based-on: Industry research 2025-2026
 see-also: testing-strategy.md, bdd-best-practices.md
 ---
 
-**Purpose**: How to do TDD - Red-Green-Refactor cycle, AAA structure,
-best practices, anti-patterns.
+**Purpose**: Python-specific TDD examples with pytest and Hypothesis.
+
+> Language-agnostic TDD principles (cycle, AAA, anti-patterns) are in
+> the `tdd-core` plugin. This file extends those with Python tooling.
 
 ## Test-Driven Development (TDD)
 

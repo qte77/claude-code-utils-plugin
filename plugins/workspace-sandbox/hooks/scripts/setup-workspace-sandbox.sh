@@ -1,6 +1,7 @@
 #!/bin/bash
 set -euo pipefail
-# Deploy workspace rules, scripts, and sandbox settings (copy-if-not-exists)
+# Deploy workspace rules, scripts, governance, and sandbox settings (copy-if-not-exists)
+# Self-contained — all CC-specific files bundled in plugin
 
 PLUGIN_DIR="$CLAUDE_PLUGIN_ROOT"
 DEPLOYED=()
@@ -35,7 +36,17 @@ if [ ! -f ".claude/settings.json" ]; then
   DEPLOYED+=("settings: settings.json (sandbox)")
 fi
 
-# 5. Report
+# 5. Governance files → project root
+for file in "$PLUGIN_DIR/governance/"*.md; do
+  [ -f "$file" ] || continue
+  target="$(basename "$file")"
+  if [ ! -f "$target" ]; then
+    cp "$file" "$target"
+    DEPLOYED+=("governance: $target")
+  fi
+done
+
+# 6. Report
 if [ ${#DEPLOYED[@]} -gt 0 ]; then
   echo "# Workspace Setup (Sandbox)"
   echo ""

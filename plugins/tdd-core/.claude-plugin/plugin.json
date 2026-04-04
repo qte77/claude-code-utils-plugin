@@ -1,0 +1,7 @@
+{
+  "name": "tdd-core",
+  "version": "1.0.0",
+  "description": "Language-agnostic TDD methodology: Red-Green-Refactor cycle, Arrange-Act-Assert, testing strategy, anti-patterns",
+  "author": { "name": "Claude Code Utils Contributors" },
+  "keywords": ["tdd", "testing", "red-green-refactor", "arrange-act-assert", "test-driven"]
+}

@@ -18,11 +18,13 @@ Writes **focused, behavior-driven tests** following project testing strategy.
 
 ## Quick Reference
 
-**Full documentation**: `references/`
+**TDD methodology** (language-agnostic): See `tdd-core` plugin (`testing-tdd` skill)
 
-- `references/testing-strategy.md` - Strategy, what to test, patterns to remove
-- `references/tdd-best-practices.md` - TDD methodology
-- `references/bdd-best-practices.md` - BDD methodology
+**Python-specific documentation**: `references/`
+
+- `references/testing-strategy.md` - Python tools (pytest, Hypothesis, inline-snapshot, pytest-bdd)
+- `references/tdd-best-practices.md` - Python TDD examples (extends tdd-core)
+- `references/bdd-best-practices.md` - BDD methodology with pytest-bdd
 
 ## Quick Decision
 
