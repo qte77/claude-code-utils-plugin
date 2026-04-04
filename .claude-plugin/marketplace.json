@@ -95,7 +95,13 @@
     {
       "name": "rust-dev",
       "source": "./plugins/rust-dev",
-      "description": "Rust implementation, testing, code review skills, and scaffold adapter for Ralph loop",
+      "description": "Rust implementation, testing, and code review skills, deploys cargo permissions via SessionStart hook",
+      "version": "1.0.0"
+    },
+    {
+      "name": "go-dev",
+      "source": "./plugins/go-dev",
+      "description": "Go implementation, testing, and code review skills, deploys go tool permissions via SessionStart hook",
       "version": "1.0.0"
     },
     {
