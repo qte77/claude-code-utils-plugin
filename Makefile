@@ -3,7 +3,7 @@
 
 .SILENT:
 .ONESHELL:
-.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts check_sync help
+.PHONY: setup setup_claude_code setup_npm_tools validate lint_md test_install sync sync_rules sync_scripts sync_refs check_sync help
 .DEFAULT_GOAL := help
 
 
@@ -28,7 +28,7 @@ setup_npm_tools:  ## Install markdownlint for linting skill markdown
 # MARK: sync
 
 
-sync: sync_rules sync_scripts  ## Sync .claude/ SoT into plugin dirs
+sync: sync_rules sync_scripts sync_refs  ## Sync .claude/ SoT into plugin dirs
 
 sync_rules:  ## Sync rules from .claude/rules/ to plugin copies
 	cp .claude/rules/core-principles.md plugins/workspace-setup/rules/
@@ -43,6 +43,11 @@ sync_scripts:  ## Sync scripts from .claude/scripts/ to plugin copies
 	cp .claude/scripts/read-once/hook.sh plugins/workspace-sandbox/scripts/read-once/
 	cp .claude/scripts/read-once/compact.sh plugins/workspace-sandbox/scripts/read-once/
 
+sync_refs:  ## Sync shared references within plugins (implementing → reviewing)
+	cp plugins/python-dev/skills/implementing-python/references/python-best-practices.md plugins/python-dev/skills/reviewing-code/references/
+	cp plugins/rust-dev/skills/implementing-rust/references/rust-best-practices.md plugins/rust-dev/skills/reviewing-rust/references/
+	cp plugins/go-dev/skills/implementing-go/references/go-best-practices.md plugins/go-dev/skills/reviewing-go/references/
+
 check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@echo "Checking sync..."
 	@diff -q .claude/rules/core-principles.md plugins/workspace-setup/rules/core-principles.md
@@ -54,6 +59,9 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@diff -q .claude/scripts/read-once/compact.sh plugins/workspace-setup/scripts/read-once/compact.sh
 	@diff -q .claude/scripts/read-once/hook.sh plugins/workspace-sandbox/scripts/read-once/hook.sh
 	@diff -q .claude/scripts/read-once/compact.sh plugins/workspace-sandbox/scripts/read-once/compact.sh
+	@diff -q plugins/python-dev/skills/implementing-python/references/python-best-practices.md plugins/python-dev/skills/reviewing-code/references/python-best-practices.md
+	@diff -q plugins/rust-dev/skills/implementing-rust/references/rust-best-practices.md plugins/rust-dev/skills/reviewing-rust/references/rust-best-practices.md
+	@diff -q plugins/go-dev/skills/implementing-go/references/go-best-practices.md plugins/go-dev/skills/reviewing-go/references/go-best-practices.md
 	@echo "All copies in sync."
 
 
