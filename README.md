@@ -70,7 +70,7 @@ claude plugin list
 | **gha-dev** | `creating-gha` | GitHub Actions workflow creation and Marketplace publishing |
 | **rust-dev** | — | Rust implementation, testing, review skills + scaffold adapter (unreleased) |
 | **workspace-setup** | — | Deploys rules, statusline, governance files, and base settings via SessionStart hook |
-| **cc-tts** ⚙️ | `speak` | Live TTS via PTY proxy, batch Stop hook, /speak skill ([prototype, submodule](https://github.com/qte77/cc-tts-plugin-protoype)) |
+| **cc-voice** ⚙️ | `speak` | E2E voice — TTS via PTY proxy, STT planned ([prototype, submodule](https://github.com/qte77/cc-voice-plugin-prototype)) |
 | **workspace-sandbox** | — | Deploys rules, statusline, governance files, sandbox settings, and .gitignore via SessionStart hook |
 
 Skills activate automatically based on task context.

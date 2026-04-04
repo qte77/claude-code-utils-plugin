@@ -117,10 +117,10 @@
       "version": "1.0.0"
     },
     {
-      "name": "cc-tts",
-      "source": "./plugins/cc-tts",
-      "description": "Live TTS via PTY proxy, batch TTS via Stop hook, /speak skill (prototype, git submodule)",
-      "version": "0.1.0"
+      "name": "cc-voice",
+      "source": "./plugins/cc-voice",
+      "description": "E2E voice — TTS via PTY proxy (/speak), STT via Moonshine (/listen, planned). Prototype, git submodule.",
+      "version": "0.2.0"
     }
   ]
 }
