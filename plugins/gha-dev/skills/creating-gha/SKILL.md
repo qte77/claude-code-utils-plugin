@@ -83,3 +83,24 @@ bats tests/unit/
 ```
 
 All must pass before PR creation.
+
+## Repository Security Settings
+
+- **Actions permissions**: allow owner + selected non-owner actions only
+- **Commit SHA pinning**: require for all third-party actions
+- **Workflow permissions**: read-only default (workflows declare writes explicitly)
+- **Artifact/log retention**: 30 days (not default 90)
+- **Cache retention**: 7 days, 1 GB limit
+- **Fork PR approval**: require for all external contributors
+- **Allow Actions to create PRs**: enabled (for bump + data workflows)
+
+## Python GHA Pattern (uv)
+
+```yaml
+- uses: astral-sh/setup-uv@v6
+  with:
+    enable-cache: true
+- run: |
+    uv sync --frozen --no-dev --project "${{ github.action_path }}"
+    uv run --project "${{ github.action_path }}" python "${{ github.action_path }}/src/app.py"
+```

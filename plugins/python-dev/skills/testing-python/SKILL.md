@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, Edit, Write, Bash
   argument-hint: [test-scope or component-name]
   stability: stable
-  content-hash: sha256:947b57f2dff1b22099a3db482b365d7d568d3e31782109926f4a5b29cc72cee6
+  content-hash: sha256:7ec36cfc580c044cc46fd4fece46741526f9252b688e55b741223b2397d42064
   last-verified-cc-version: 1.0.34
 ---
 
