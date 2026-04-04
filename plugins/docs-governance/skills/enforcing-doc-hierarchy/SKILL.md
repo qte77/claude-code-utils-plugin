@@ -43,6 +43,7 @@ Detect violations across the scope. For each finding, record:
 - **broken-link**: Reference target does not exist (moved, renamed, deleted, wrong case)
 - **duplicate**: Same content (3+ lines) appears in both an authority doc and a dependent doc
 - **misplaced**: Content is in the wrong doc per the discovered authority map, OR a doc in the hierarchy is not referenced by its parent
+- **lint-compat**: HTML comments before frontmatter or inline markdownlint disable/enable pairs
 
 ### Audit Procedure
 
@@ -63,7 +64,11 @@ Detect violations across the scope. For each finding, record:
 5. **Check chain**: Verify each doc in the hierarchy is referenced by at least
    one parent doc. Flag orphaned docs.
 
-6. **Output findings table** sorted by type, then file.
+6. **Check markdownlint compatibility**: Flag files where:
+   - HTML comments appear before frontmatter on line 1
+   - Inline `<!-- markdownlint-disable/enable -->` pairs exist (should use `.markdownlint.json`)
+
+7. **Output findings table** sorted by type, then file.
 
 ## Phase 3: Align
 
@@ -74,6 +79,7 @@ Resolve findings with user confirmation. Propose each fix and wait for approval.
 | **broken-link** | Update path. If target deleted, remove reference. |
 | **duplicate** | Keep in authority doc, replace in dependent doc with reference link. |
 | **misplaced** | Move content to authority doc, replace original with reference link. |
+| **lint-compat** | Remove HTML comments before frontmatter. Remove inline disable/enable pairs; configure `.markdownlint.json` instead. |
 
 ### Rules
 

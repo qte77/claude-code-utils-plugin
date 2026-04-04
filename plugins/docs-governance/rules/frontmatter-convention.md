@@ -49,8 +49,30 @@ their own YAML frontmatter format (`name`, `description`, `labels`, etc.).
 
 `mkdocs.yml`-referenced nav files, `docs/index.md` (if auto-generated).
 
+## Markdownlint Compatibility
+
+Frontmatter **must be on line 1**. No HTML comments (`<!-- -->`) before the
+opening `---` — this breaks markdownlint's frontmatter parser and causes
+false MD041 (first-line-heading) and MD003 (heading-style) errors.
+
+### Required `.markdownlint.json` config
+
+```json
+{
+  "MD013": false,
+  "MD041": { "front_matter_title": "^\\s*title\\s*[:=]" }
+}
+```
+
+- `MD013: false` — disables line length globally (no inline disable/enable comments needed)
+- `MD041.front_matter_title` — tells markdownlint to recognize `title:` in frontmatter as the first heading, preventing false "first line should be a heading" errors
+
+### Anti-patterns
+
+- **No `<!-- markdownlint-disable MD013 -->` in files** — use `.markdownlint.json` instead. Inline enable/disable pairs re-enable globally disabled rules and cause false positives.
+- **No HTML comments before frontmatter** — anything before `---` on line 1 breaks frontmatter parsing.
+
 ## Rules
 
 - No `sources:` key in frontmatter — sources go in the Sources section at end of file
-- `<!-- markdownlint-disable MD013 -->` at file top only (not inline around tables)
 - Sources section uses reference-style links (`[key]: url` at bottom)
