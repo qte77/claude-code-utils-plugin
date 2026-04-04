@@ -12,7 +12,7 @@
       "name": "python-dev",
       "source": "./plugins/python-dev",
       "description": "Python implementation, testing, code review skills, and scaffold adapter for Ralph loop",
-      "version": "2.0.0"
+      "version": "2.1.0"
     },
     {
       "name": "commit-helper",
@@ -77,8 +77,8 @@
     {
       "name": "workspace-sandbox",
       "source": "./plugins/workspace-sandbox",
-      "description": "Deploys workspace rules, statusline script, and sandbox settings via SessionStart hook",
-      "version": "1.1.0"
+      "description": "Deploys workspace rules, statusline script, and eased sandbox settings via SessionStart hook",
+      "version": "1.2.0"
     },
     {
       "name": "docs-governance",
@@ -102,6 +102,12 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
+      "version": "1.0.0"
+    },
+    {
+      "name": "tdd-core",
+      "source": "./plugins/tdd-core",
+      "description": "Language-agnostic TDD methodology: Red-Green-Refactor, Arrange-Act-Assert, testing strategy",
       "version": "1.0.0"
     }
   ]
