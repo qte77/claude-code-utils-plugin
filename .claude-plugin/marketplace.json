@@ -121,6 +121,12 @@
       "source": "./plugins/cc-voice",
       "description": "E2E voice — TTS via PTY proxy (/speak), STT via Moonshine (/listen, planned). Prototype, git submodule.",
       "version": "0.2.0"
+    },
+    {
+      "name": "typescript-dev",
+      "source": "./plugins/typescript-dev",
+      "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
+      "version": "1.0.0"
     }
   ]
 }
