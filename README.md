@@ -2,7 +2,7 @@
 
 # qte77-claude-code-utils
 
-Claude Code plugin marketplace — 17 plugins, 36 skills from production workflows.
+Claude Code plugin marketplace — 18 plugins, 37 skills from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-58f4c2.svg)](LICENSE)
 ![Version](https://img.shields.io/badge/version-3.3.0-58f4c2.svg)
@@ -70,6 +70,7 @@ claude plugin list
 | **gha-dev** | `creating-gha` | GitHub Actions workflow creation and Marketplace publishing |
 | **rust-dev** | — | Rust implementation, testing, review skills + scaffold adapter (unreleased) |
 | **workspace-setup** | — | Deploys rules, statusline, governance files, and base settings via SessionStart hook |
+| **cc-tts** ⚙️ | `speak` | Live TTS via PTY proxy, batch Stop hook, /speak skill ([prototype, submodule](https://github.com/qte77/cc-tts-plugin-protoype)) |
 | **workspace-sandbox** | — | Deploys rules, statusline, governance files, sandbox settings, and .gitignore via SessionStart hook |
 
 Skills activate automatically based on task context.
