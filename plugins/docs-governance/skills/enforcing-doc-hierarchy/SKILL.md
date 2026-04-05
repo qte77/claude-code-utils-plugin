@@ -4,7 +4,7 @@ description: Audits and aligns project documentation against its own declared hi
 compatibility: Designed for Claude Code
 metadata:
   argument-hint: [file-directory-or-full]
-  allowed-tools: Read, Grep, Glob, Edit
+  allowed-tools: Read, Grep, Glob, Edit, Bash
 ---
 
 # Enforce Documentation Hierarchy
@@ -43,7 +43,9 @@ Detect violations across the scope. For each finding, record:
 - **broken-link**: Reference target does not exist (moved, renamed, deleted, wrong case)
 - **duplicate**: Same content (3+ lines) appears in both an authority doc and a dependent doc
 - **misplaced**: Content is in the wrong doc per the discovered authority map, OR a doc in the hierarchy is not referenced by its parent
-- **lint-compat**: HTML comments before frontmatter or inline markdownlint disable/enable pairs
+- **lint-compat**: HTML comments before frontmatter
+- **config-drift**: Inline `<!-- markdownlint-disable/enable -->` for a rule already disabled in `.markdownlint.json`. These are dead code that causes false positives when the enable directive re-activates a globally-disabled rule
+- **unused-link-def**: `[key]: url` link definition with no corresponding `[text][key]` or `[key]` reference in the file
 
 ### Audit Procedure
 
@@ -64,9 +66,30 @@ Detect violations across the scope. For each finding, record:
 5. **Check chain**: Verify each doc in the hierarchy is referenced by at least
    one parent doc. Flag orphaned docs.
 
-6. **Check markdownlint compatibility**: Flag files where:
-   - HTML comments appear before frontmatter on line 1
-   - Inline `<!-- markdownlint-disable/enable -->` pairs exist (should use `.markdownlint.json`)
+6. **Run markdownlint** (preferred) or manual lint check (fallback):
+
+   **a) If `markdownlint-cli` is available** (`npx markdownlint-cli --version`
+   succeeds): run it with the project config and parse output:
+   ```
+   npx markdownlint-cli -c .markdownlint.json <scope> 2>&1
+   ```
+   Map results to violation types: MD012 → double blanks (fix during align),
+   MD053 → `unused-link-def`, MD022/MD058 → spacing issues from prior
+   directive removal. Report rule ID + line + message.
+
+   **b) Fallback** (no markdownlint available): read `.markdownlint.json`
+   (or `.markdownlintrc`, `.markdownlint.yaml`) to get globally-disabled
+   rules, then manually:
+   - Flag files with HTML comments before frontmatter on line 1 (`lint-compat`)
+   - Flag inline `<!-- markdownlint-disable/enable MDXXX -->` where MDXXX is
+     already disabled in the config file (`config-drift`)
+   - Grep for `[key]: url` definitions with no corresponding reference
+     (`unused-link-def`)
+
+   **In both paths**: read the lint config to detect `config-drift` — even
+   markdownlint doesn't flag dead inline directives for globally-disabled
+   rules. See `frontmatter-convention.md` rule for the required config
+   template.
 
 7. **Output findings table** sorted by type, then file.
 
@@ -79,7 +102,9 @@ Resolve findings with user confirmation. Propose each fix and wait for approval.
 | **broken-link** | Update path. If target deleted, remove reference. |
 | **duplicate** | Keep in authority doc, replace in dependent doc with reference link. |
 | **misplaced** | Move content to authority doc, replace original with reference link. |
-| **lint-compat** | Remove HTML comments before frontmatter. Remove inline disable/enable pairs; configure `.markdownlint.json` instead. |
+| **lint-compat** | Remove HTML comments before frontmatter. |
+| **config-drift** | Delete the inline directive — the rule is already handled by `.markdownlint.json`. Do NOT collapse surrounding blank lines (they may be required spacing around headings/tables). |
+| **unused-link-def** | Add inline reference, or remove the definition if it serves no purpose. |
 
 ### Rules
 
@@ -87,3 +112,15 @@ Resolve findings with user confirmation. Propose each fix and wait for approval.
 - Never duplicate — replace with a reference
 - Confirm each fix before applying
 - Keep edits minimal
+- **Read `.markdownlint.json` before adding any inline lint directives** — if a
+  rule is globally disabled, inline toggles are dead code that causes false
+  positives when the enable half re-activates the rule
+- **When removing inline directives, delete only the directive line** — do NOT
+  collapse surrounding blank lines (use Edit tool, not greedy `sed`)
+- **Commit content changes before repo-wide lint cleanup** — never mix content
+  additions with formatting passes in the same uncommitted state
+
+### References
+
+- `rules/frontmatter-convention.md` — required `.markdownlint.json` config
+  template and anti-patterns for inline directives
