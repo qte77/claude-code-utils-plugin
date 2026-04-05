@@ -154,6 +154,12 @@
       "source": "./plugins/security-audit",
       "description": "Code security audit — OWASP Top 10, dependency vulnerabilities, secrets detection",
       "version": "1.0.0"
+    },
+    {
+      "name": "makefile-core",
+      "source": "./plugins/makefile-core",
+      "description": "Skills and linting for consistent, rigorous Makefiles across projects",
+      "version": "1.0.0"
     }
   ]
 }
