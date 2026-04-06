@@ -1,0 +1,7 @@
+{
+  "name": "rag-core",
+  "version": "1.0.0",
+  "description": "Document indexing and hybrid retrieval with heading-boundary chunking, FAISS vector store, and PageIndex tree filtering",
+  "author": { "name": "Claude Code Utils Contributors" },
+  "keywords": ["rag", "retrieval", "indexing", "chunking", "faiss", "embedding"]
+}

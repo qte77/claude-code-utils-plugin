@@ -1,1 +1,1 @@
-{"name": "gha-dev", "version": "1.0.1", "description": "Skills and rules for creating GitHub Actions for the Marketplace", "author": {"name": "Claude Code Utils Contributors"}, "keywords": ["gha", "github-actions", "marketplace", "composite-action"]}
+{"name": "gha-dev", "version": "1.1.0", "description": "Skills and rules for creating GitHub Actions for the Marketplace", "author": {"name": "Claude Code Utils Contributors"}, "keywords": ["gha", "github-actions", "marketplace", "composite-action"]}

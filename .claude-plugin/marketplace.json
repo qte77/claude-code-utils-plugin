@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Claude Code utility plugins for development, architecture, auditing, documentation, market research, and CC meta-skills",
-    "version": "3.4.0"
+    "version": "3.5.0"
   },
   "plugins": [
     {
@@ -108,12 +108,18 @@
       "name": "gha-dev",
       "source": "./plugins/gha-dev",
       "description": "Skills and rules for creating GitHub Actions for the Marketplace",
-      "version": "1.0.1"
+      "version": "1.1.0"
     },
     {
       "name": "tdd-core",
       "source": "./plugins/tdd-core",
       "description": "Language-agnostic TDD methodology: Red-Green-Refactor, Arrange-Act-Assert, testing strategy",
+      "version": "1.0.0"
+    },
+    {
+      "name": "rag-core",
+      "source": "./plugins/rag-core",
+      "description": "Document indexing and hybrid retrieval with heading-boundary chunking, FAISS vector store, and PageIndex tree filtering",
       "version": "1.0.0"
     },
     {
