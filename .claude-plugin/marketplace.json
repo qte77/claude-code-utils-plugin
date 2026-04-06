@@ -122,8 +122,8 @@
         "source": "github",
         "repo": "qte77/cc-voice-plugin-prototype"
       },
-      "description": "E2E voice \u2014 TTS via PTY proxy (/speak), STT via Moonshine (/listen, planned).",
-      "version": "0.3.0"
+      "description": "E2E voice \u2014 TTS via PTY proxy (/speak), STT via Moonshine (/listen, functional).",
+      "version": "0.4.0"
     },
     {
       "name": "typescript-dev",
