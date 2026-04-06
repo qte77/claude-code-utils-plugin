@@ -8,6 +8,7 @@ Claude Code meta-skills for cross-project synthesis and session intelligence.
 - **distilling-plan-learnings** — Extracts decisions, rejected alternatives, and patterns from recent plans into a persistent learnings document. Use after completing a plan or sprint.
 - **compacting-context** — Distills verbose outputs into structured summaries following ACE-FCA principles. Use after pollution sources (searches, logs, JSON) or at phase milestones.
 - **summarizing-session-end** — Auto-generates a session summary on SessionEnd hook. Writes structured notes to `~/.claude/session-summaries/` for bigpicture synthesis.
+- **handing-off-session** — Generates structured session handoff notes for cross-session continuity. Stateless markdown files in `.claude/handoffs/`.
 
 ## Usage
 
