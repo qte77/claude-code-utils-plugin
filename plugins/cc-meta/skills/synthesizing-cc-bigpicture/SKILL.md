@@ -115,7 +115,13 @@ respect the filter. Apply these rules once, consistently:
 3. **Discover & filter projects** — Glob `~/.claude/projects/*/`. Decode paths.
    Apply project filter if set. Build session allowlist from `history.jsonl`.
 
-4. **Collect signals** (sequential, metadata-first, no subagents):
+4. **Progressive retrieval** — Escalate through tiers, stop when every output
+   section has concrete evidence. See `references/progressive-retrieval.md`
+   for tier definitions, cost estimates, and the escalation rule. Start at
+   Tier 1 (metadata-only).
+
+5. **Collect signals** — Following the progressive retrieval tiers, collect
+   signals starting from Tier 1 (sequential, metadata-first, no subagents):
    - **Activity**: `stats-cache.json` — daily counts for trajectory
    - **Sessions**: `history.jsonl` — unique sessionIds, timestamps, topics
    - **Memory**: `projects/*/memory/MEMORY.md` — persistent knowledge
@@ -128,15 +134,15 @@ respect the filter. Apply these rules once, consistently:
    **Critical**: Never bulk-read full `.jsonl` transcripts. Use `history.jsonl`
    for discovery and first+last lines for metadata only.
 
-5. **Classify reasoning modes** per work stream:
+6. **Classify reasoning modes** per work stream:
    - Open questions vs. closed decisions → diverge/converge
    - Plan-driven tasks vs. learning entries → strategic/tactical
    - Flag imbalances (see alerts above)
 
-6. **Synthesize** — Group by project → time clusters. Link plans↔sessions↔tasks.
+7. **Synthesize** — Group by project → time clusters. Link plans↔sessions↔tasks.
    Surface blockers, trajectory, recurring themes, cross-project connections.
 
-7. **Output** using format below. Write to output path.
+8. **Output** using format below. Write to output path.
 
 ## Output Format
 
