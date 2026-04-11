@@ -1,11 +1,15 @@
 # codebase-tools
 
-Codebase research and context compaction with ACE-FCA principles.
+Codebase research, context compaction, and build/quality support with ACE-FCA principles.
 
 ## Skills
 
 - **researching-codebase** — Investigates codebase before planning, gathering context in an isolated fork
-- **compacting-context** — Compacts verbose context into structured summary after pollution sources or at phase milestones
+- **hardening-codebase** — Seven-phase quality tightening workflow (audit → tighten → fix → tests → review → refactor → ship)
+
+## Agents
+
+- **build-error-resolver** — Build and TypeScript error resolution specialist. Fixes build/type errors with minimal diffs, no architectural edits. Cherry-picked from [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) (MIT).
 
 > **Tip:** For up-to-date library docs during research, install the [context7](https://github.com/upstash/context7) plugin from the Claude Code marketplace (`claude plugin install context7`).
 
