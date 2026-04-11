@@ -1,8 +1,10 @@
-# Skill Authoring
+# Skill and Agent Authoring
 
-Constraints for every `plugins/<name>/skills/<skill-name>/SKILL.md` file in this
-repository. Enforced by issue #103 audit; see `plugins/codebase-tools/skills/hardening-codebase/`
-as the canonical exemplar.
+Constraints for every `plugins/<name>/skills/<skill-name>/SKILL.md` and
+`plugins/<name>/agents/<agent-name>.md` file in this repository. Enforced by
+issue #103 audit; see `plugins/codebase-tools/skills/hardening-codebase/`
+as the canonical skill exemplar and `plugins/codebase-tools/agents/build-error-resolver.md`
+as the canonical agent exemplar.
 
 ## Tooling pointer
 
@@ -74,9 +76,32 @@ bash .github/scripts/compute-skill-hashes.sh --update
 
 The `verify-skill-hashes` CI workflow blocks PRs with stale hashes.
 
+## Agents convention
+
+Plugin-scoped agents live at `plugins/<name>/agents/<agent-name>.md`. There is
+**no** repo-root `.claude/agents/` directory — every agent is plugin-scoped,
+parallel to how skills are plugin-scoped.
+
+- **Host plugin selection:** pick an existing plugin whose description
+  semantically includes the agent's domain. If none fits, create a new minimal
+  plugin. See `plugins/planning/` as the minimum scaffold: `plugin.json`,
+  `README.md`, `agents/<name>.md` (no skills required).
+- **Frontmatter:** standard Claude Code agent schema (`name`, `description`,
+  `tools` array, `model`). Descriptions follow the same ≤ 250 char +
+  front-loaded trigger keywords rule as skill descriptions.
+- **README `## Agents` section:** every plugin hosting an agent MUST list it in
+  its `README.md` under an `## Agents` heading parallel to `## Skills`.
+- **Version bump:** adding or modifying an agent bumps the host plugin's
+  version in both `plugin.json` and `marketplace.json` (plugin-versioning rule).
+- **Cherry-picks from upstream:** include an attribution footer with source URL,
+  license, and adaptations. See `plugins/codebase-tools/agents/build-error-resolver.md`
+  and `plugins/planning/agents/planner.md` for the template.
+
+The canonical agent exemplar is `plugins/codebase-tools/agents/build-error-resolver.md`.
+
 ## Exemplar
 
 `plugins/codebase-tools/skills/hardening-codebase/SKILL.md` (100 lines) is the
-canonical example: 7-phase workflow inlined, reference material split into
+canonical skill example: 7-phase workflow inlined, reference material split into
 `references/lint-tightening-checklist.md` and `references/review-agents.md`.
 Copy its structural layout when creating or refactoring skills.
