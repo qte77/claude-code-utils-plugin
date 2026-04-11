@@ -1,0 +1,7 @@
+{
+  "name": "cpp-desktop",
+  "version": "1.0.0",
+  "description": "C++ desktop application development with wxWidgets, GTK, and Qt frameworks",
+  "author": { "name": "qte77" },
+  "keywords": ["cpp", "c++", "desktop", "wxwidgets", "gtk", "qt", "cmake", "gui"]
+}
