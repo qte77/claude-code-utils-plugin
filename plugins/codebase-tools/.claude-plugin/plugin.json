@@ -1,7 +1,7 @@
 {
   "name": "codebase-tools",
-  "version": "1.1.0",
-  "description": "Isolated codebase research and exploration via subagent",
+  "version": "1.2.0",
+  "description": "Isolated codebase research, exploration, and quality hardening via subagent",
   "author": { "name": "Claude Code Utils Contributors" },
-  "keywords": ["research", "codebase", "exploration"]
+  "keywords": ["research", "codebase", "exploration", "hardening", "lint", "review"]
 }

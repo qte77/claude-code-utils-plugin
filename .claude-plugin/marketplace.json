@@ -23,8 +23,8 @@
     {
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
-      "description": "Isolated codebase research and exploration via subagent",
-      "version": "1.1.0"
+      "description": "Isolated codebase research, exploration, and quality hardening via subagent",
+      "version": "1.2.0"
     },
     {
       "name": "cc-meta",
