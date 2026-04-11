@@ -1,6 +1,6 @@
 {
   "name": "cc-meta",
-  "version": "1.13.0",
+  "version": "1.14.0",
   "description": "Claude Code meta-skills for cross-project synthesis, context compaction, session intelligence, and memory seed template",
   "author": {
     "name": "Claude Code Utils Contributors"

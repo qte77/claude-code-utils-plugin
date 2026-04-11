@@ -11,6 +11,7 @@ Claude Code meta-skills for cross-project synthesis and session intelligence.
 - **handing-off-session** — Generates structured session handoff notes for cross-session continuity. Stateless markdown files in `.claude/handoffs/`.
 - **persisting-bigpicture-learnings** — Persists bigpicture synthesis as dated snapshots in a learnings hub. Maintains latest pointer + append-only archive for cross-session compound learning.
 - **mining-session-patterns** — Extracts actionable patterns from session JSONL files: error-fix sequences, tool failure rates, and cost signals for compound learning.
+- **orchestrating-parallel-workers** — Fan out tasks to parallel background agents with independent context windows. Decomposes work into independent units, dispatches via Agent tool, tracks progress, and collects results.
 
 ## Usage
 
