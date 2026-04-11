@@ -41,24 +41,6 @@ directories (`-` → `/` in encoding). Substring match on any path segment.
 /synthesizing-cc-bigpicture all 30d ./bigpicture.md  # All, 30 days, custom path
 ```
 
-## Two Reasoning Axes
-
-Track per work stream to surface where you are and what shift is needed.
-
-### Diverge / Converge
-
-- **Diverge**: Expanding — brainstorming, exploring options, opening questions
-- **Converge**: Narrowing — selecting approaches, committing, closing decisions
-- **Signals**: Open questions in plans = diverging. Task completion clustering = converging.
-- **Alert**: Diverging for N sessions without convergence → decision debt
-
-### Strategic / Tactical
-
-- **Strategic** (top-down, deductive): Principles → plans → tasks. PRD → architecture → implementation.
-- **Tactical** (bottom-up, inductive): Observations → patterns → principles. Bugs → learnings → plan revisions.
-- **Signals**: PRD→task flow = strategic. AGENT_LEARNINGS, blockers→revisions = tactical.
-- **Alert**: All strategic (no implementation feedback) or all tactical (reactive without direction)
-
 ## When to Use
 
 - Starting a work session — orient across projects
@@ -71,25 +53,6 @@ Track per work stream to surface where you are and what shift is needed.
 - Searching a specific past conversation (use `/resume` or `/history`)
 - Per-session context (session-memory does this automatically)
 - Real-time usage monitoring (use `/insights`)
-
-## CC Data Sources
-
-```
-~/.claude/
-├── history.jsonl                    # Global prompt log (display, timestamp, project, sessionId)
-├── stats-cache.json                 # Daily aggregates (messageCount, sessionCount, toolCallCount)
-├── projects/<encoded-path>/
-│   ├── memory/MEMORY.md             # Per-project persistent knowledge
-│   ├── <session-uuid>.jsonl         # Full transcripts (metadata-scan only)
-│   ├── <session-uuid>/subagents/    # Subagent transcripts
-│   └── subagents/*.jsonl            # Subagent session transcripts
-├── session-summaries/*.md           # Per-session distilled summaries
-├── plans/*.md                       # Plan mode files
-├── tasks/<session-or-team-name>/    # Tasks (*.json, skip .lock/.highwatermark)
-└── teams/<team-name>/               # config.json + inboxes/<member>.json
-```
-
-See `references/cc-entry-types.md` for JSONL entry type reference.
 
 ## Project Filtering
 
@@ -123,58 +86,24 @@ respect the filter. Apply these rules once, consistently:
    Tier 1 (metadata-only).
 
 5. **Collect signals** — Following the progressive retrieval tiers, collect
-   signals starting from Tier 1 (sequential, metadata-first, no subagents):
-   - **Activity**: `stats-cache.json` — daily counts for trajectory
-   - **Sessions**: `history.jsonl` — unique sessionIds, timestamps, topics
-   - **Memory**: `projects/*/memory/MEMORY.md` — persistent knowledge
-   - **Plans**: `plans/*.md` — goals, open questions, decisions
-   - **Tasks**: `tasks/*/*.json` — dependency graph, status
-   - **Teams**: `teams/*/config.json` + `inboxes/*.json` — structure, comms
-   - **Session summaries**: `session-summaries/*.md` — distilled session insights (skip if directory absent)
-   - **Session metadata**: First+last 5 lines of `.jsonl` — timestamps, branches
-   - **Subagent transcripts**: Glob `~/.claude/projects/*/subagents/*.jsonl`,
-     read first 5 + last 5 lines of each (cap at 10 most recent by mtime).
-     Extract: agent name/type, task summary, outcome (success/error), duration.
-   - **Project docs**: Decoded project path → `CHANGELOG.md`, `AGENT_REQUESTS.md`
+   signals starting from Tier 1. See `references/cc-data-sources.md` for the
+   full data source layout. Walk these in order (sequential, metadata-first,
+   no subagents):
+   - `stats-cache.json`, `history.jsonl`, project memory, plans, tasks, teams
+   - Session metadata (first+last 5 lines of each `.jsonl`)
+   - Session summaries (skip if directory absent)
+   - Subagent transcripts (first+last 5 lines, cap 10 most recent by mtime)
+   - Project docs (`CHANGELOG.md`, `AGENT_REQUESTS.md`)
 
-   **Critical**: Never bulk-read full `.jsonl` transcripts. Use `history.jsonl`
-   for discovery and first+last lines for metadata only.
-
-6. **Classify reasoning modes** per work stream:
-   - Open questions vs. closed decisions → diverge/converge
-   - Plan-driven tasks vs. learning entries → strategic/tactical
-   - Flag imbalances (see alerts above)
+6. **Classify reasoning modes** per work stream — diverge/converge and
+   strategic/tactical. See `references/reasoning-modes.md` for axis definitions,
+   signals, and alert conditions.
 
 7. **Synthesize** — Group by project → time clusters. Link plans↔sessions↔tasks.
    Surface blockers, trajectory, recurring themes, cross-project connections.
 
-8. **Output** using format below. Write to output path.
-
-## Output Format
-
-```markdown
-# Big Picture — <date>
-
-## Reasoning Mode Summary
-| Project | Phase | D/C | S/T | Alert |
-|---------|-------|-----|-----|-------|
-
-## Active Work Streams
-### <Project>
-- **Status:** active/stalled — N sessions in last 7d
-- **Focus:** <from memory, session summaries + latest sessions>
-- **Mode:** <diverging+tactical = exploring> | <converging+strategic = building>
-- **Key decisions / Open questions:** <from plans>
-- **Tasks:** N open / N total — blockers: <list>
-- **Subagent activity:** <if present, summarize recent agent runs: type, outcome>
-- **Trajectory:** accelerating/steady/stalled
-
-## Cross-Project Connections
-## Active Plans
-## TODOs & DONEs
-## Blockers & Stale Items
-## Mode Transitions Needed
-```
+8. **Output** using the template in `references/output-template.md`. Write to
+   output path.
 
 ## Common Pitfalls
 
@@ -192,4 +121,8 @@ respect the filter. Apply these rules once, consistently:
 
 ## References
 
-See `references/cc-entry-types.md` for JSONL session entry type taxonomy.
+- `references/progressive-retrieval.md` — tier escalation rule and cost estimates
+- `references/cc-data-sources.md` — full `~/.claude/` directory layout
+- `references/cc-entry-types.md` — JSONL session entry type taxonomy
+- `references/reasoning-modes.md` — diverge/converge and strategic/tactical axes
+- `references/output-template.md` — standard output format
