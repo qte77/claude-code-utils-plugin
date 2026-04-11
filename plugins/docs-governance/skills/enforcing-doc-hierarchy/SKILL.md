@@ -1,6 +1,6 @@
 ---
 name: enforcing-doc-hierarchy
-description: Audits and aligns project documentation against its own declared hierarchy. Discovers authority chains from CONTRIBUTING.md (or equivalent), then detects broken links, duplicates, and misplaced content. Use when reviewing doc health, fixing stale references, or enforcing single-source-of-truth.
+description: Audit documentation against its declared hierarchy — broken links, duplicates, misplaced content, stale references, single-source-of-truth enforcement. Use for doc health reviews.
 compatibility: Designed for Claude Code
 metadata:
   argument-hint: [file-directory-or-full]
