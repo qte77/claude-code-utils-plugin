@@ -11,7 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+<!-- Entries below cover PRs since #37. Older entries at the top of each
+     section were written pre-#37; newer entries are appended. Full backfill
+     completed 2026-04-11. -->
+
 ### Added
+
+<!-- Pre-#37 entries (preserved) -->
 
 - **market-research**: New plugin with 8 skills — GTM pipeline with teams mode parallel dispatch, 2x2 strategy matrix, contradiction analysis, slide deck generation
 - **python-dev**: Scaffold adapter for Ralph loop (`scaffold/adapter.sh`, project templates, GHA workflows)
@@ -30,7 +36,79 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - CI: `research-monitor` GHA for tracking upstream CC changes (#19)
 - Root README: cc-meta and market-research rows in Plugins table, plugin count 12 → 13, skill count 22 → 31
 
+#### New plugins (#38-#112)
+
+- **gha-dev**: New plugin with `creating-gha` skill for GitHub Actions Marketplace (#39); later added security settings, uv pattern, and updated action pins (#68)
+- **tdd-core**: New plugin with language-agnostic TDD methodology — Red-Green-Refactor, Arrange-Act-Assert, testing strategy, shared across language plugins (#57)
+- **rust-dev**: New plugin with `implementing-rust`, `reviewing-rust`, `testing-rust` skills; cargo tool permissions via SessionStart hook (#59)
+- **go-dev**: New plugin with `implementing-go`, `reviewing-go`, `testing-go` skills; go tool permissions via SessionStart hook (#59)
+- **cc-voice**: Submodule for E2E voice — TTS via PTY proxy (`/speak`), STT via Moonshine (`/listen` stub, functional). Originally added as `cc-tts` (#66), renamed to `cc-voice` (#67)
+- **typescript-dev**: New plugin with `implementing-typescript`, `reviewing-typescript`, `testing-typescript` skills; npm/vitest permissions via SessionStart hook (#70)
+- **makefile-core**: New plugin with `creating-makefile` skill — linter script + language-neutral Makefile conventions reference (#84)
+- **security-audit**: New plugin with `auditing-code-security` (OWASP Top 10), `detecting-secrets`, `scanning-dependencies` skills (#87)
+- **cpp-desktop**: New plugin with C++ desktop GUI skills — `implementing-cpp`, `reviewing-cpp`, `analyzing-cpp-codebase`; covers wxWidgets, GTK, Qt (#88)
+- **simplify**: New plugin packaging the `simplifying-code` skill (post-review KISS/DRY/YAGNI enforcement) (#89)
+- **rag-core**: New plugin with `implementing-document-indexing` skill — heading-boundary chunking, FAISS vector store, PageIndex hybrid retrieval (#100)
+- **planning**: New plugin with cherry-picked `planner` agent from `affaan-m/everything-claude-code` (MIT); detailed feature/refactor implementation plans with phased steps, file-level specificity, dependencies, risks, success criteria (#111)
+
+#### New skills in existing plugins (#38-#112)
+
+- **docs-governance**: `maintaining-agents-md` frontmatter convention rule (#54)
+- **docs-governance**: config-drift check and markdownlint integration in `enforcing-doc-hierarchy` (#82)
+- **cc-meta**: `MEMORY.md` seed template + SessionStart hook for new-project bootstrapping (#69)
+- **cc-meta**: `summarizing-session-end` skill + SessionEnd hook for automated session summaries (#91)
+- **cc-meta**: `handing-off-session` skill — structured cross-session handoff notes in `.claude/handoffs/` (#92)
+- **cc-meta**: `orchestrating-parallel-workers` skill — fan out tasks to parallel background agents with independent context windows (#93)
+- **cc-meta**: `persisting-bigpicture-learnings` skill — dated snapshots in a learnings hub for compound learning (#96)
+- **cc-meta**: `mining-session-patterns` skill — extract error-fix sequences, tool failure rates, and cost signals from session JSONL (#97)
+- **cc-meta**: `subagent transcripts` as `synthesizing-cc-bigpicture` data source; workflow updated with dedicated bullet (#98)
+- **cc-meta**: 4-tier progressive retrieval for `synthesizing-cc-bigpicture` (metadata → summaries → deep reads → full scan) in `references/progressive-retrieval.md` (#99)
+- **codebase-tools**: `hardening-codebase` skill — 7-phase quality tightening workflow (audit → tighten → fix → tests → review → refactor → ship) with language-specific lint progressions and 3-agent review framework (#102)
+
+#### New agents (#38-#112)
+
+- **codebase-tools**: `build-error-resolver` agent — cherry-picked from [affaan-m/everything-claude-code](https://github.com/affaan-m/everything-claude-code) (MIT, 151k stars). Build and TypeScript error resolution specialist with minimal-diff philosophy (#104, #110)
+
+#### New infrastructure (#38-#112)
+
+- **workspace-setup / workspace-sandbox**: context7 MCP tool permissions via SessionStart hooks (#71)
+- **workspace-sandbox**: qte77 marketplace registered in base settings (#95)
+- **`.claude/rules/skill-authoring.md`**: Plugin-wide skill and agent authoring conventions — <150-line SKILL.md body cap (3.3× tighter than upstream 500-line soft cap), ≤250 char descriptions with front-loaded trigger keywords, `references/` subdir mandatory, content-hash regeneration for stable skills, plugin-scoped `agents/` layout (#109, #112)
+- **docs**: `cc-entry-types.md` — tool results (detached outputs) JSONL entry type added (#53)
+- **gha-dev**: `python-gha-patterns.md` reference — full Python composite action walkthrough based on gha-biorxiv-stats-action (#100)
+
+### Changed
+
+<!-- Pre-#37 entries (preserved) -->
+
+- **cc-meta**: Simplify bigpicture skill (274→156 lines) — merge 3 reasoning axes to 2, extract project filtering to single section
+- **commit-helper**: Simplify commit skill — drop mandatory diff stats/symbols, allow subject-only for small changes
+- **cc-meta**: Plugin version 1.0.0 → 1.1.0 → 1.2.0 → 1.3.0
+- **embedded-dev**: Plugin version 1.0.1 → 1.2.0 (scaffold adapter + hooks/settings)
+- All plugins: stability metadata added to plugin.json via version bumps
+- **commit-helper**: Synced SKILL.md with latest conventions (#19)
+- Renamed `claude-code-research` references to `ai-agents-research` (#21)
+
+#### Refactors and docs (#38-#112)
+
+- **License**: Migrated to Apache-2.0 (#49)
+- **docs**: Root README updated with current plugin count and table (#58)
+- **docs**: Markdownlint enforcement rules added (#72)
+- **docs-governance**: `enforcing-doc-hierarchy` skill rewritten — generic, KISS-oriented; no longer coupled to specific project layouts (#64)
+- **docs-governance**: `enforcing-doc-hierarchy` description tightened from 295 → 179 chars per skill-authoring convention (#109)
+- **workspace-setup / workspace-sandbox**: `statusline.sh` deduplicated via symlinks (#81)
+- **python-dev**: Removed BDD, enforce TDD-only testing; reference file `bdd-best-practices.md` renamed to `bdd-best-practices-future-use.md` (parked) (#94)
+- **cc-meta**: Plugin version 1.4.0 → 1.15.0 across seven successive feature merges (#91, #92, #93, #96, #97, #98, #99)
+- **cc-meta**: `synthesizing-cc-bigpicture` SKILL.md 195 → 128 lines — extracted Two Reasoning Axes, CC Data Sources, Output Format into `references/reasoning-modes.md`, `references/cc-data-sources.md`, `references/output-template.md` (#108)
+- **mas-design**: `securing-mas` SKILL.md 252 → 68 lines; `designing-mas-plugins` 219 → 83 lines — extracted 8 reference files total (MAESTRO checklist, plugin security checklist, common vulnerabilities, threat matrix template, security testing patterns, core principles with examples, plugin implementation template, plugin testing strategy). Plugin version 1.0.1 → 1.1.0 (#107)
+- **codebase-tools**: Plugin version 1.2.0 → 1.3.0 — added agents/ subdir, description broadened to include build error resolution (#110)
+- **Makefile**: `statusline.sh` added to sync targets (#60)
+- **cc-voice**: Version synced to 0.4.0 in marketplace (#90)
+- **`.claude/rules/skill-authoring.md`**: Agents convention section added — documents `plugins/<name>/agents/<agent-name>.md` layout, host-plugin selection, README `## Agents` section requirement, cherry-pick attribution template (#112)
+
 ### Fixed
+
+<!-- Pre-#37 entries (preserved) -->
 
 - **cc-meta**: CC Data Sources tree — removed non-existent `sessions-index.json`, `session-memory/`, `todos/`; fixed teams structure (`config.json` + `inboxes/` not flat `.json`); added `activeForm`/`owner` task fields
 - **cc-meta**: Workflow steps use real data sources (`history.jsonl`, `stats-cache.json`, team inboxes, project docs) instead of non-existent ones
@@ -41,15 +119,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **check-skill-integrity.yaml**: Add `permissions: contents: read` (CodeQL alert fix)
 - **embedded-dev**: `find -print0 | xargs -0` for safe filenames in scaffold adapter
 
-### Changed
+#### Fixes (#38-#112)
 
-- **cc-meta**: Simplify bigpicture skill (274→156 lines) — merge 3 reasoning axes to 2, extract project filtering to single section
-- **commit-helper**: Simplify commit skill — drop mandatory diff stats/symbols, allow subject-only for small changes
-- **cc-meta**: Plugin version 1.0.0 → 1.1.0 → 1.2.0 → 1.3.0
-- **embedded-dev**: Plugin version 1.0.1 → 1.2.0 (scaffold adapter + hooks/settings)
-- All plugins: stability metadata added to plugin.json via version bumps
-- **commit-helper**: Synced SKILL.md with latest conventions (#19)
-- Renamed `claude-code-research` references to `ai-agents-research` (#21)
+- **marketplace**: Use github source for `cc-voice` plugin (installable from external repo, not local path) (#80)
+- **python-dev**: `testing-python/SKILL.md` content-hash drift from #94 merge — CI `verify-skill-hashes` would have blocked next PR; regenerated via `.github/scripts/compute-skill-hashes.sh --update` as part of #107
+
+### Removed
+
+- Stale analysis docs and compact plugin-dev reference (#62)
+- `TODO.md` — completed 2026-03 phase plan (embedded-dev hooks + ralph `generating-prd-md-from-userstory-md` skill), `status: done` since 2026-03-13. Archived from repo root.
 
 ## [3.0.0] - 2026-03-01
 
