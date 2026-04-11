@@ -81,7 +81,8 @@ Track per work stream to surface where you are and what shift is needed.
 ├── projects/<encoded-path>/
 │   ├── memory/MEMORY.md             # Per-project persistent knowledge
 │   ├── <session-uuid>.jsonl         # Full transcripts (metadata-scan only)
-│   └── <session-uuid>/subagents/    # Subagent transcripts
+│   ├── <session-uuid>/subagents/    # Subagent transcripts
+│   └── subagents/*.jsonl            # Subagent session transcripts
 ├── plans/*.md                       # Plan mode files
 ├── tasks/<session-or-team-name>/    # Tasks (*.json, skip .lock/.highwatermark)
 └── teams/<team-name>/               # config.json + inboxes/<member>.json
@@ -129,6 +130,9 @@ respect the filter. Apply these rules once, consistently:
    - **Tasks**: `tasks/*/*.json` — dependency graph, status
    - **Teams**: `teams/*/config.json` + `inboxes/*.json` — structure, comms
    - **Session metadata**: First+last 5 lines of `.jsonl` — timestamps, branches
+   - **Subagent transcripts**: Glob `~/.claude/projects/*/subagents/*.jsonl`,
+     read first 5 + last 5 lines of each (cap at 10 most recent by mtime).
+     Extract: agent name/type, task summary, outcome (success/error), duration.
    - **Project docs**: Decoded project path → `CHANGELOG.md`, `AGENT_REQUESTS.md`
 
    **Critical**: Never bulk-read full `.jsonl` transcripts. Use `history.jsonl`
@@ -160,6 +164,7 @@ respect the filter. Apply these rules once, consistently:
 - **Mode:** <diverging+tactical = exploring> | <converging+strategic = building>
 - **Key decisions / Open questions:** <from plans>
 - **Tasks:** N open / N total — blockers: <list>
+- **Subagent activity:** <if present, summarize recent agent runs: type, outcome>
 - **Trajectory:** accelerating/steady/stalled
 
 ## Cross-Project Connections
