@@ -136,6 +136,12 @@
       "source": "./plugins/typescript-dev",
       "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
       "version": "1.0.0"
+    },
+    {
+      "name": "simplify",
+      "source": "./plugins/simplify",
+      "description": "Post-review code simplification — KISS, DRY, YAGNI enforcement",
+      "version": "1.0.0"
     }
   ]
 }

@@ -1,0 +1,6 @@
+{
+  "name": "simplify",
+  "version": "1.0.0",
+  "description": "Review changed code for simplification — reuse, quality, efficiency. Enforces KISS, DRY, YAGNI.",
+  "author": { "name": "qte77" }
+}
