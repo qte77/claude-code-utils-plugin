@@ -1,6 +1,6 @@
 {
   "name": "mas-design",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "MAS plugin design and multi-framework security auditing (OWASP MAESTRO, MITRE ATLAS, NIST AI RMF, ISO 42001/23894)",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["mas", "multi-agent", "plugin", "security", "maestro", "owasp", "mitre", "atlas", "nist", "iso", "pydantic"]

@@ -48,7 +48,7 @@
       "name": "mas-design",
       "source": "./plugins/mas-design",
       "description": "Multi-agent system plugin design and OWASP MAESTRO security framework",
-      "version": "1.0.1"
+      "version": "1.1.0"
     },
     {
       "name": "website-audit",

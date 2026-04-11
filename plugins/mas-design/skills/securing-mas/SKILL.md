@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [component-or-feature]
   stability: stable
-  content-hash: sha256:22ef3fab6a9fb01b5370f9340404ea264dc8680ccb3610d34de29cfb9459493e
+  content-hash: sha256:94039e17e94bb06a07cb298b68d4b5a02f3ef882ad08837656d1a82d3e0ad8b2
   last-verified-cc-version: 1.0.34
 ---
 
@@ -22,11 +22,6 @@ Trigger this skill when:
 - Threat modeling for multi-agent architectures
 - Reviewing plugin implementations for security
 - Designing security controls for pipelines
-
-## References
-
-**MUST READ**:
-`references/mas-security.md`
 
 ## Framework Stack
 
@@ -47,198 +42,19 @@ Use all four layers together: ATLAS enumerates attack vectors, MAESTRO maps
 them to MAS-specific controls, NIST AI RMF structures governance, and ISO
 provides the certifiable management system.
 
-## MAESTRO 7-Layer Security Check
+## Workflow
 
-For each new component, verify across all 7 layers:
+1. **Review the framework stack** — `references/mas-security.md` for the conceptual overview of MAESTRO, ATLAS, NIST AI RMF, and ISO 42001/23894 layers working together.
 
-### Layer 1: Model Layer
+2. **Apply the 7-layer security check** — for each new component, walk through every MAESTRO layer. See `references/maestro-7-layer-checklist.md` for the actionable per-layer checklist (Model → Orchestration).
 
-- [ ] No user-controlled prompts sent to LLM
-- [ ] Structured outputs prevent text injection
-- [ ] No sensitive data in model training/tuning
+3. **Run the plugin security checklist** — before marking an implementation complete, verify input validation, output safety, resource management, observability, and external dependencies. See `references/plugin-security-checklist.md`.
 
-### Layer 2: Agent Logic Layer
+4. **Document threats in the cross-framework matrix** — for each feature, map concerns to ATLAS techniques, MAESTRO layers, NIST functions, and ISO controls. Start from `references/threat-matrix-template.md` and add feature-specific rows.
 
-- [ ] All inputs validated via typed schemas
-- [ ] Type safety enforced at boundaries
-- [ ] Logic bugs prevented by typed interfaces
+5. **Avoid common vulnerability patterns** — consult `references/common-vulnerabilities.md` for vulnerable/secure code examples: prompt injection (L1), type confusion (L2), resource exhaustion (L5), secret leakage (L6).
 
-### Layer 3: Integration Layer
-
-- [ ] Timeouts configured for external services
-- [ ] Graceful degradation on service failures
-- [ ] API keys from environment variables only
-
-### Layer 4: Monitoring Layer
-
-- [ ] Structured logging (no log injection)
-- [ ] No PII in default log output
-- [ ] Trace data integrity protected
-
-### Layer 5: Execution Layer
-
-- [ ] Per-component timeout enforcement
-- [ ] Stateless design (no race conditions)
-- [ ] Resource limits configured
-
-### Layer 6: Environment Layer
-
-- [ ] Container isolation for services
-- [ ] `.env` files excluded from version control
-- [ ] Network segmentation applied
-
-### Layer 7: Orchestration Layer
-
-- [ ] Explicit execution ordering (not configurable)
-- [ ] Registry with type checking
-- [ ] Static imports (no dynamic loading)
-
-## Security Checklist for Plugins
-
-Before marking implementation as complete:
-
-### Input Validation
-
-- [ ] All inputs validated via typed model schema
-- [ ] String inputs sanitized (no code injection)
-- [ ] Numeric inputs range-checked
-- [ ] File paths validated (no directory traversal)
-
-### Output Safety
-
-- [ ] Outputs use typed validated models
-- [ ] No sensitive data in outputs (PII, API keys)
-- [ ] Error messages don't leak internal state
-- [ ] Structured errors for graceful degradation
-
-### Resource Management
-
-- [ ] Timeouts configured per component
-- [ ] Memory usage bounded (no unbounded loops)
-- [ ] File descriptors properly closed
-- [ ] Network connections have timeouts
-
-### Observability
-
-- [ ] Structured logging with context
-- [ ] Trace events emitted for debugging
-- [ ] No sensitive data in logs
-- [ ] Error paths logged for audit
-
-### External Dependencies
-
-- [ ] API keys from environment variables
-- [ ] External service failures handled gracefully
-- [ ] Retry logic with exponential backoff
-- [ ] Circuit breaker for cascading failures
-
-## Common Vulnerabilities
-
-### Prompt Injection (Layer 1)
-
-**Vulnerable**:
-
-```python
-prompt = f"Evaluate: {user_input}"
-```
-
-**Secure**:
-
-```python
-result = agent.run(EvalContext(text=user_input))
-```
-
-### Type Confusion (Layer 2)
-
-**Vulnerable**:
-
-```python
-def evaluate(self, context: dict) -> dict:
-    return {"score": context["data"]}
-```
-
-**Secure**:
-
-```python
-def evaluate(
-    self, context: EvalContext
-) -> EvalResult:
-    return EvalResult(score=context.compute())
-```
-
-### Resource Exhaustion (Layer 5)
-
-**Vulnerable**:
-
-```python
-def evaluate(self, context):
-    while True:  # Infinite loop
-        process(context)
-```
-
-**Secure**:
-
-```python
-def evaluate(self, context):
-    with timeout_context(self.settings.timeout):
-        return process(context)
-```
-
-### Secret Leakage (Layer 6)
-
-**Vulnerable**:
-
-```python
-api_key = "sk-1234..."  # Hardcoded
-```
-
-**Secure**:
-
-```python
-api_key = os.environ["API_KEY"]  # From env
-```
-
-## Threat Matrix Template
-
-For each new feature, document threats with cross-framework mapping:
-
-| Concern | ATLAS Technique | MAESTRO Layer | NIST Function | ISO Control |
-| ------- | --------------- | ------------- | ------------- | ----------- |
-| Prompt injection | AML.T0051 | L1 Model | MEASURE 2.6 | A.7.3 |
-| API credential theft | AML.T0096 | L3 Integration | GOVERN 1.5 | A.8 |
-| Log data leakage | AML.T0024 | L4 Monitoring | MAP 3 | A.7.5 |
-| Resource exhaustion | — | L5 Execution | MANAGE 2 | A.6.6 |
-| Supply chain compromise | AML.T0040 | L6 Environment | MAP 1.6 | A.8 |
-| Agent hijacking | AML.T0056 | L7 Orchestration | MEASURE 2.6 | A.6.4 |
-| Evaluation bias | AML.T0043 | L2 Agent Logic | MEASURE 2.5 | A.7.4 |
-
-## Security Testing
-
-Test security controls explicitly:
-
-```python
-def test_input_validation():
-    """Layer 2: Reject invalid inputs."""
-    plugin = MyPlugin(settings)
-    with pytest.raises(ValidationError):
-        plugin.evaluate(EvalContext(score=999))
-
-
-def test_timeout_enforcement():
-    """Layer 5: Prevent infinite execution."""
-    plugin = MyPlugin(settings)
-    with pytest.raises(TimeoutError):
-        plugin.evaluate(EvalContext(data="loop"))
-
-
-def test_error_message_safety():
-    """Layer 2: Don't leak internal state."""
-    plugin = MyPlugin(settings)
-    result = plugin.evaluate(
-        EvalContext(data="trigger_error")
-    )
-    assert "secret" not in result.error.lower()
-```
+6. **Test security controls explicitly** — write tests that exercise each MAESTRO layer's controls. See `references/security-testing-patterns.md` for pytest examples (input validation, timeout enforcement, error message safety).
 
 ## Further Reading
 

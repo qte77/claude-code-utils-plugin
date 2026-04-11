@@ -6,7 +6,7 @@ metadata:
   allowed-tools: Read, Grep, Glob, WebSearch, WebFetch
   argument-hint: [component-name]
   stability: stable
-  content-hash: sha256:e622a74b96cffd4da81194994178e60b0dadf70fb28d46587f581bba07bc3fec
+  content-hash: sha256:44f931b696bbfe8ea3acf1d6d3e979d90b86144040f596acd7bf9e865f228627
   last-verified-cc-version: 1.0.34
 ---
 
@@ -23,73 +23,17 @@ Trigger this skill when:
 - Architecting new metrics or evaluation tiers
 - Refactoring engines into plugin patterns
 
-## References
-
-**MUST READ**:
-`references/mas-design-principles.md`
-
 ## Core Principles
 
-### Stateless Reducer Pattern
+Plugins follow six principles. For worked code examples of each, see
+`references/core-principles-with-examples.md`.
 
-Each plugin is a pure function:
-`evaluate(context: BaseModel) -> BaseModel`
-
-```python
-def evaluate(self, context: TierContext) -> TierResult:
-    # Pure function - no side effects, no shared state
-    # All inputs from context parameter
-    # All outputs in return value
-    return TierResult(...)
-```
-
-### Own Context Window
-
-Plugin manages its own context - no global state access.
-
-```python
-def get_context_for_next_tier(
-    self, result: TierResult
-) -> NextTierContext:
-    # Explicit context passing
-    # Next tier only sees what this method returns
-    return NextTierContext(
-        relevant_data=result.extract_relevant(),
-    )
-```
-
-### Structured Outputs
-
-All data uses validated models - no raw dicts.
-
-```python
-class TierResult(BaseModel):
-    score: float = Field(ge=0.0, le=1.0)
-    reasoning: str
-    metrics: dict[str, float]
-```
-
-### Own Control Flow
-
-Plugin handles its own errors and timeouts.
-
-```python
-def evaluate(self, context: TierContext) -> TierResult:
-    try:
-        result = self._compute(context)
-        return TierResult(score=result, error=None)
-    except Exception as e:
-        # Return structured error, don't raise
-        return TierResult(score=0.0, error=str(e))
-```
-
-### Compact Errors
-
-Errors produce structured partial results, not exceptions.
-
-### Single Responsibility
-
-One metric or tier per plugin.
+1. **Stateless Reducer** — `evaluate(context) -> result` as a pure function; no side effects, no shared state
+2. **Own Context Window** — plugin manages its own context; no global state access
+3. **Structured Outputs** — all data uses validated models, no raw dicts
+4. **Own Control Flow** — plugin handles its own errors and timeouts
+5. **Compact Errors** — structured partial results, not exceptions
+6. **Single Responsibility** — one metric or tier per plugin
 
 ## Plugin Design Checklist
 
@@ -117,98 +61,18 @@ Before implementing a plugin, verify:
 
 ## Implementation Template
 
-```python
-from abc import ABC, abstractmethod
-from pydantic import BaseModel, Field
-
-
-class PluginContext(BaseModel):
-    """Input context from previous tier."""
-    data: str
-    metadata: dict[str, str]
-
-
-class PluginResult(BaseModel):
-    """Structured output."""
-    score: float = Field(ge=0.0, le=1.0)
-    reasoning: str
-    error: str | None = None
-
-
-class EvaluatorPlugin(ABC):
-    @property
-    @abstractmethod
-    def name(self) -> str: ...
-
-    @property
-    @abstractmethod
-    def tier(self) -> int: ...
-
-    @abstractmethod
-    def evaluate(
-        self, context: PluginContext
-    ) -> PluginResult: ...
-
-    @abstractmethod
-    def get_context_for_next_tier(
-        self, result: PluginResult
-    ) -> BaseModel: ...
-
-
-class MyPlugin(EvaluatorPlugin):
-    def __init__(self, settings):
-        self.settings = settings
-
-    @property
-    def name(self) -> str:
-        return "my_evaluator"
-
-    @property
-    def tier(self) -> int:
-        return 1
-
-    def evaluate(
-        self, context: PluginContext
-    ) -> PluginResult:
-        try:
-            score = self._compute(context)
-            return PluginResult(
-                score=score, reasoning="...",
-            )
-        except Exception as e:
-            return PluginResult(
-                score=0.0, reasoning="", error=str(e),
-            )
-
-    def get_context_for_next_tier(
-        self, result: PluginResult
-    ) -> BaseModel:
-        return NextTierContext(score=result.score)
-
-    def _compute(self, context: PluginContext) -> float:
-        ...
-```
+See `references/plugin-implementation-template.md` for the full `EvaluatorPlugin` abstract base class and a worked `MyPlugin` example with typed context/result models, error handling, and next-tier context filtering.
 
 ## Testing Strategy
 
-Test plugins in isolation with mocked context:
+See `references/plugin-testing-strategy.md` for isolation test patterns — happy path and structured-error-handling tests using mocked context.
 
-```python
-def test_plugin_happy_path():
-    plugin = MyPlugin(settings)
-    context = PluginContext(data="test", metadata={})
-    result = plugin.evaluate(context)
-    assert result.score >= 0.0
-    assert result.error is None
+## References
 
-
-def test_plugin_error_handling():
-    plugin = MyPlugin(settings)
-    context = PluginContext(data="bad", metadata={})
-    result = plugin.evaluate(context)
-    # Structured error, not exception
-    assert result.error is not None
-```
+- `references/mas-design-principles.md` — foundational design principles (existing)
+- `references/core-principles-with-examples.md` — code examples for each of the six core principles
+- `references/plugin-implementation-template.md` — full `EvaluatorPlugin` + `MyPlugin` template
+- `references/plugin-testing-strategy.md` — isolation test patterns
 
 ## Further Reading
 
