@@ -148,6 +148,12 @@
       "source": "./plugins/simplify",
       "description": "Post-review code simplification — KISS, DRY, YAGNI enforcement",
       "version": "1.0.0"
+    },
+    {
+      "name": "security-audit",
+      "source": "./plugins/security-audit",
+      "description": "Code security audit — OWASP Top 10, dependency vulnerabilities, secrets detection",
+      "version": "1.0.0"
     }
   ]
 }

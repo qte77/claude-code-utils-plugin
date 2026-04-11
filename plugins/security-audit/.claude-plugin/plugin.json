@@ -1,0 +1,6 @@
+{
+  "name": "security-audit",
+  "version": "1.0.0",
+  "description": "Code security auditing — OWASP Top 10, dependency scanning, secrets detection",
+  "author": { "name": "qte77" }
+}
