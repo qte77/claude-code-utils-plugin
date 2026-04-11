@@ -36,7 +36,7 @@
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
       "description": "Claude Code meta-skills for cross-project synthesis, context compaction, session intelligence, and memory seed template",
-      "version": "1.9.0"
+      "version": "1.10.0"
     },
     {
       "name": "backend-design",

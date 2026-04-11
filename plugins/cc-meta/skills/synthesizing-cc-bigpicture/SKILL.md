@@ -83,6 +83,7 @@ Track per work stream to surface where you are and what shift is needed.
 │   ├── <session-uuid>.jsonl         # Full transcripts (metadata-scan only)
 │   ├── <session-uuid>/subagents/    # Subagent transcripts
 │   └── subagents/*.jsonl            # Subagent session transcripts
+├── session-summaries/*.md           # Per-session distilled summaries
 ├── plans/*.md                       # Plan mode files
 ├── tasks/<session-or-team-name>/    # Tasks (*.json, skip .lock/.highwatermark)
 └── teams/<team-name>/               # config.json + inboxes/<member>.json
@@ -129,6 +130,7 @@ respect the filter. Apply these rules once, consistently:
    - **Plans**: `plans/*.md` — goals, open questions, decisions
    - **Tasks**: `tasks/*/*.json` — dependency graph, status
    - **Teams**: `teams/*/config.json` + `inboxes/*.json` — structure, comms
+   - **Session summaries**: `session-summaries/*.md` — distilled session insights (skip if directory absent)
    - **Session metadata**: First+last 5 lines of `.jsonl` — timestamps, branches
    - **Subagent transcripts**: Glob `~/.claude/projects/*/subagents/*.jsonl`,
      read first 5 + last 5 lines of each (cap at 10 most recent by mtime).
@@ -160,7 +162,7 @@ respect the filter. Apply these rules once, consistently:
 ## Active Work Streams
 ### <Project>
 - **Status:** active/stalled — N sessions in last 7d
-- **Focus:** <from memory + latest sessions>
+- **Focus:** <from memory, session summaries + latest sessions>
 - **Mode:** <diverging+tactical = exploring> | <converging+strategic = building>
 - **Key decisions / Open questions:** <from plans>
 - **Tasks:** N open / N total — blockers: <list>
