@@ -2,7 +2,7 @@
 
 # qte77-claude-code-utils
 
-Claude Code plugin marketplace — 18 plugins, 37 skills from production workflows.
+Claude Code plugin marketplace — 26 plugins, 61 skills, 2 agents from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-58f4c2.svg)](LICENSE)
 ![Version](https://img.shields.io/badge/version-3.3.0-58f4c2.svg)
@@ -12,9 +12,9 @@ Claude Code plugin marketplace — 18 plugins, 37 skills from production workflo
 ## Install
 
 ```bash
-/plugin marketplace add qte77/claude-code-utils
-/plugin install workspace-setup@qte77-claude-code-utils
-/plugin install python-dev@qte77-claude-code-utils
+claude plugin marketplace add qte77/claude-code-utils
+claude plugin install workspace-setup@qte77-claude-code-utils
+claude plugin install python-dev@qte77-claude-code-utils
 ```
 
 <details>
@@ -29,19 +29,27 @@ claude plugin marketplace add qte77/claude-code-utils-plugin
 
 # 2. Install all plugins (pick ONE workspace plugin)
 claude plugin install python-dev@qte77-claude-code-utils
+claude plugin install rust-dev@qte77-claude-code-utils
+claude plugin install go-dev@qte77-claude-code-utils
+claude plugin install typescript-dev@qte77-claude-code-utils
+claude plugin install cpp-desktop@qte77-claude-code-utils
+claude plugin install tdd-core@qte77-claude-code-utils
 claude plugin install commit-helper@qte77-claude-code-utils
 claude plugin install codebase-tools@qte77-claude-code-utils
+claude plugin install planning@qte77-claude-code-utils
+claude plugin install simplify@qte77-claude-code-utils
 claude plugin install backend-design@qte77-claude-code-utils
 claude plugin install mas-design@qte77-claude-code-utils
-claude plugin install website-audit@qte77-claude-code-utils
-claude plugin install docs-generator@qte77-claude-code-utils
-claude plugin install ralph@qte77-claude-code-utils
-claude plugin install embedded-dev@qte77-claude-code-utils
+claude plugin install security-audit@qte77-claude-code-utils
 claude plugin install cc-meta@qte77-claude-code-utils
 claude plugin install market-research@qte77-claude-code-utils
-claude plugin install tdd-core@qte77-claude-code-utils
+claude plugin install docs-generator@qte77-claude-code-utils
 claude plugin install docs-governance@qte77-claude-code-utils
+claude plugin install ralph@qte77-claude-code-utils
+claude plugin install embedded-dev@qte77-claude-code-utils
 claude plugin install gha-dev@qte77-claude-code-utils
+claude plugin install makefile-core@qte77-claude-code-utils
+claude plugin install rag-core@qte77-claude-code-utils
 claude plugin install workspace-setup@qte77-claude-code-utils    # OR workspace-sandbox
 
 # 3. Verify
@@ -52,26 +60,33 @@ claude plugin list
 
 ## Plugins
 
-| Plugin | Skills | Purpose |
+| Plugin | Skills / Agents | Purpose |
 | -------- | -------- | --------- |
 | **python-dev** | `implementing-python` `testing-python` `reviewing-code` | Python TDD, implementation, code review + uv permissions hook |
-| **commit-helper** | `committing-staged-with-message` | Conventional commits with GPG signing |
-| **codebase-tools** | `researching-codebase` | Isolated codebase research and exploration via subagent |
+| **rust-dev** | `implementing-rust` `testing-rust` `reviewing-rust` | Rust implementation, testing, code review + cargo permissions hook |
+| **go-dev** | `implementing-go` `testing-go` `reviewing-go` | Go implementation, testing, code review + go tool permissions hook |
+| **typescript-dev** | `implementing-typescript` `testing-typescript` `reviewing-typescript` | TypeScript implementation, testing, code review + npm/vitest permissions hook |
+| **cpp-desktop** | `implementing-cpp` `reviewing-cpp` `analyzing-cpp-codebase` | C++ desktop GUI development (wxWidgets, GTK, Qt) |
+| **tdd-core** | `testing-tdd` | Language-agnostic TDD methodology (Red-Green-Refactor, AAA) |
+| **commit-helper** | `committing-staged-with-message` `creating-pr-from-branch` | Conventional commits + PR creation with approval workflow |
+| **codebase-tools** | `researching-codebase` `hardening-codebase` `build-error-resolver` (agent) | Codebase research, quality hardening, build error resolution |
+| **planning** | `planner` (agent) | Feature/refactor planning with phased steps, dependencies, risks |
+| **simplify** | `simplifying-code` | Post-review KISS/DRY/YAGNI enforcement |
 | **backend-design** | `designing-backend` | System architecture and API design |
-| **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO |
-| **website-audit** | `researching-website-design` `auditing-website-usability` `auditing-website-accessibility` | Design research, UX audit, WCAG 2.1 AA |
-| **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC/design docs), reports |
-| **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` `generating-prd-md-from-userstory-md` | PRD-to-JSON, interactive user stories, PRD generation |
-| **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, requirement traceability, KiCad PCB audit |
-| **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` | Cross-project synthesis + CC context window compaction (ACE-FCA) |
-| **market-research** | `researching-market` `researching-industry-landscape` `analyzing-source-project` `analyzing-contradictions` `synthesizing-research` `validating-product-market-fit` `developing-gtm-strategy` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix, contradiction analysis |
-| **tdd-core** | `testing-tdd` | Language-agnostic TDD methodology (Red-Green-Refactor, AAA, anti-patterns) |
-| **docs-governance** | `enforcing-doc-hierarchy` `maintaining-agents-md` | Documentation authority audit + agent governance file maintenance |
-| **gha-dev** | `creating-gha` | GitHub Actions workflow creation and Marketplace publishing |
-| **rust-dev** | — | Rust implementation, testing, review skills + scaffold adapter (unreleased) |
-| **workspace-setup** | — | Deploys rules, statusline, governance files, and base settings via SessionStart hook |
-| **cc-voice** ⚙️ | `speak` | E2E voice — TTS via PTY proxy, STT planned ([prototype, submodule](https://github.com/qte77/cc-voice-plugin-prototype)) |
-| **workspace-sandbox** | — | Deploys rules, statusline, governance files, sandbox settings, and .gitignore via SessionStart hook |
+| **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO security |
+| **security-audit** | `auditing-code-security` `detecting-secrets` `scanning-dependencies` | OWASP Top 10, secrets detection, dependency scanning |
+| **cc-meta** | `synthesizing-cc-bigpicture` `compacting-context` `summarizing-session-end` `distilling-plan-learnings` `handing-off-session` `orchestrating-parallel-workers` `persisting-bigpicture-learnings` `mining-session-patterns` | Cross-project synthesis, context compaction, session intelligence |
+| **market-research** | `analyzing-source-project` `researching-industry-landscape` `researching-market` `validating-product-market-fit` `developing-gtm-strategy` `analyzing-contradictions` `synthesizing-research` `generating-slide-deck` | GTM pipeline with teams mode, 2x2 strategy matrix |
+| **docs-generator** | `generating-writeup` `generating-tech-spec` `generating-report` | Writeups, tech specs (ADR/RFC), reports with pandoc PDF |
+| **docs-governance** | `enforcing-doc-hierarchy` `maintaining-agents-md` | Documentation hierarchy audit + agent governance |
+| **ralph** | `generating-prd-json-from-prd-md` `generating-interactive-userstory-md` `generating-prd-md-from-userstory-md` | PRD pipeline for the Ralph loop |
+| **embedded-dev** | `checking-compliance` `implementing-firmware` `tracing-requirements` `auditing-pcb-design` | CE/FCC compliance, ESP-IDF/PlatformIO, KiCad PCB audit |
+| **gha-dev** | `creating-gha` | GitHub Actions creation and Marketplace publishing |
+| **makefile-core** | `creating-makefile` | Makefile scaffolding, linting, and conventions |
+| **rag-core** | `implementing-document-indexing` | Heading-boundary chunking, FAISS, PageIndex hybrid retrieval |
+| **workspace-setup** | — | Deploys rules, statusline, governance, base settings via SessionStart |
+| **workspace-sandbox** | — | Deploys rules, statusline, sandbox settings via SessionStart |
+| **cc-voice** (external) | — | E2E voice — TTS via PTY proxy, STT planned ([prototype](https://github.com/qte77/cc-voice-plugin-prototype)) |
 
 Skills activate automatically based on task context.
 
@@ -91,15 +106,15 @@ Add to `.claude/settings.json` so teammates get marketplace access:
 }
 ```
 
-Each member installs plugins individually with `/plugin install`.
+Each member installs plugins individually with `claude plugin install`.
 
 ## Manage
 
 ```bash
-/plugin list                                 # List installed
-/plugin install python-dev@qte77-claude-code-utils # Install
-/plugin update --all                         # Update all
-/plugin remove python-dev@qte77-claude-code-utils  # Remove
+claude plugin list                                          # List installed
+claude plugin install python-dev@qte77-claude-code-utils    # Install
+claude plugin update --all                                  # Update all
+claude plugin remove python-dev@qte77-claude-code-utils     # Remove
 ```
 
 ## Development
