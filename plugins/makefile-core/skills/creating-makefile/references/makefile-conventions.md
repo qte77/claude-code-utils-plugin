@@ -25,8 +25,11 @@
 ### Idempotent setup
 ```makefile
 setup_dev:
-	command -v bats >/dev/null || npm install -g bats
-	command -v shellcheck >/dev/null || sudo apt-get install -y shellcheck
+	if ! command -v shellcheck > /dev/null 2>&1; then
+	    mkdir -p ~/.local/bin
+	    curl -sSfL "https://github.com/koalaman/shellcheck/releases/download/stable/shellcheck-stable.linux.x86_64.tar.xz" \
+	        | tar -xJ --strip-components=1 -C ~/.local/bin shellcheck-stable/shellcheck
+	fi
 ```
 
 ### Quiet mode
@@ -50,6 +53,23 @@ quick_validate: lint check_types  ## Fast validation (no tests)
 setup_all: setup_dev setup_cad setup_slicer  ## Install all
 ```
 
+### User-local Node.js tools
+```makefile
+NODE_DIR := $(HOME)/.local/share/node
+NODE_BIN := $(NODE_DIR)/bin
+
+check_docs: ## Lint markdown (user-local node)
+    export PATH="$(NODE_BIN):$$PATH"
+    if command -v markdownlint-cli2 > /dev/null 2>&1; then
+        markdownlint-cli2 "docs/**/*.md"
+    else
+        echo "run: make setup_mdlint"
+        exit 1
+    fi
+```
+
+The `export PATH` inside `.ONESHELL` recipes makes npm-installed tools work without the user editing `~/.bashrc`. Required for any recipe invoking `markdownlint-cli2`, `prettier`, or other npm-based tools installed to a user-local Node prefix.
+
 ## Anti-Patterns
 
 | Don't | Do |
@@ -60,3 +80,4 @@ setup_all: setup_dev setup_cad setup_slicer  ## Install all
 | Missing `.PHONY` | Full list up front |
 | No `help` recipe | Standard awk pattern |
 | `echo` for status | Rely on `.SILENT` + explicit echo only when needed |
+| `sudo apt-get install` in setup | `curl` + `tar` to `~/.local/bin` |

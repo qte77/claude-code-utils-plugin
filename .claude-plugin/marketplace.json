@@ -158,8 +158,8 @@
     {
       "name": "makefile-core",
       "source": "./plugins/makefile-core",
-      "description": "Skills and linting for consistent, rigorous Makefiles across projects",
-      "version": "1.0.1"
+      "description": "Skills and linting for consistent, rigorous Makefiles across projects — auto-detects project type, extensible via scaffold-*.md references",
+      "version": "1.1.0"
     },
     {
       "name": "planning",
