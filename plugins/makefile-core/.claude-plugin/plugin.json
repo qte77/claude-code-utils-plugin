@@ -1,7 +1,7 @@
 {
   "name": "makefile-core",
-  "version": "1.0.1",
-  "description": "Skills and linting for consistent, rigorous Makefiles across projects",
+  "version": "1.1.0",
+  "description": "Skills and linting for consistent, rigorous Makefiles across projects — auto-detects project type, extensible via scaffold-*.md references",
   "author": {
     "name": "Claude Code Utils Contributors"
   },
@@ -10,6 +10,7 @@
     "make",
     "build",
     "automation",
-    "lint"
+    "lint",
+    "scaffold"
   ]
 }
