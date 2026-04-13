@@ -1,6 +1,6 @@
 {
   "name": "website-audit",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Website design research, usability audit, and WCAG accessibility audit skills",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["website", "design", "usability", "accessibility", "wcag", "ux"]

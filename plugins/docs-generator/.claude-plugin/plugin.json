@@ -1,6 +1,6 @@
 {
   "name": "docs-generator",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Document generation for writeups, tech specs (ADR/RFC/design docs), and reports with optional pandoc PDF export",
   "author": {
     "name": "Claude Code Utils Contributors"

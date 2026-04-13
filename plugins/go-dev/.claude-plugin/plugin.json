@@ -1,6 +1,6 @@
 {
   "name": "go-dev",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Go implementation, testing, and code review skills, deploys go tool permissions via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["go", "golang", "implementation", "testing", "review"]

@@ -1,6 +1,6 @@
 {
   "name": "rust-dev",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Rust implementation, testing, and code review skills, deploys cargo permissions via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["rust", "implementation", "testing", "review", "cargo"]
