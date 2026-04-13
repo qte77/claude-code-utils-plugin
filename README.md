@@ -2,7 +2,7 @@
 
 # qte77-claude-code-utils
 
-Claude Code plugin marketplace — 26 plugins, 61 skills, 2 agents from production workflows.
+Claude Code plugin marketplace — 25 plugins, 60 skills, 2 agents from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-58f4c2.svg)](LICENSE)
 ![Version](https://img.shields.io/badge/version-3.3.0-58f4c2.svg)
@@ -37,7 +37,6 @@ claude plugin install tdd-core@qte77-claude-code-utils
 claude plugin install commit-helper@qte77-claude-code-utils
 claude plugin install codebase-tools@qte77-claude-code-utils
 claude plugin install planning@qte77-claude-code-utils
-claude plugin install simplify@qte77-claude-code-utils
 claude plugin install backend-design@qte77-claude-code-utils
 claude plugin install mas-design@qte77-claude-code-utils
 claude plugin install security-audit@qte77-claude-code-utils
@@ -69,9 +68,8 @@ claude plugin list
 | **cpp-desktop** | `implementing-cpp` `reviewing-cpp` `analyzing-cpp-codebase` | C++ desktop GUI development (wxWidgets, GTK, Qt) |
 | **tdd-core** | `testing-tdd` | Language-agnostic TDD methodology (Red-Green-Refactor, AAA) |
 | **commit-helper** | `committing-staged-with-message` `creating-pr-from-branch` | Conventional commits + PR creation with approval workflow |
-| **codebase-tools** | `researching-codebase` `hardening-codebase` `build-error-resolver` (agent) | Codebase research, quality hardening, build error resolution |
+| **codebase-tools** | `researching-codebase` `hardening-codebase` `build-error-resolver` (agent) | Codebase research, 9-phase quality hardening (architecture, docs, 4-agent review), build error resolution |
 | **planning** | `planner` (agent) | Feature/refactor planning with phased steps, dependencies, risks |
-| **simplify** | `simplifying-code` | Post-review KISS/DRY/YAGNI enforcement |
 | **backend-design** | `designing-backend` | System architecture and API design |
 | **mas-design** | `designing-mas-plugins` `securing-mas` | Multi-agent plugin design + OWASP MAESTRO security |
 | **security-audit** | `auditing-code-security` `detecting-secrets` `scanning-dependencies` | OWASP Top 10, secrets detection, dependency scanning |
