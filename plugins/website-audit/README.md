@@ -22,5 +22,5 @@ producing findings with severity levels and implementable code fixes.
 ## Install
 
 ```bash
-claude plugin install website-audit@qte77-claude-code-utils
+claude plugin install website-audit@qte77-claude-code-plugins
 ```

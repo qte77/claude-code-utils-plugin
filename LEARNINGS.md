@@ -1,7 +1,7 @@
 ---
 title: Plugin Development Learnings
 description: Accumulated learnings for maintaining this Claude Code plugin marketplace — schemas, repo governance, CI guards, skill/agent authoring, cherry-pick patterns, and merge-queue handling
-scope: qte77/claude-code-utils-plugin
+scope: qte77/claude-code-plugins
 updated: 2026-04-11
 ---
 

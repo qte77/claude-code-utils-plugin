@@ -20,5 +20,5 @@ The `planner` agent is **prospective** (plans a specific thing); the cc-meta ski
 ## Install
 
 ```bash
-claude plugin install planning@qte77-claude-code-utils
+claude plugin install planning@qte77-claude-code-plugins
 ```

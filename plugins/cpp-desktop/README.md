@@ -11,5 +11,5 @@ C++ desktop application development with wxWidgets, GTK, and Qt frameworks.
 ## Install
 
 ```bash
-claude plugin install cpp-desktop@qte77-claude-code-utils
+claude plugin install cpp-desktop@qte77-claude-code-plugins
 ```

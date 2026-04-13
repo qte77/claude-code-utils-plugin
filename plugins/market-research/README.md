@@ -55,5 +55,5 @@ Then continue through the pipeline phases sequentially.
 ## Install
 
 ```bash
-claude plugin install market-research@qte77-claude-code-utils
+claude plugin install market-research@qte77-claude-code-plugins
 ```

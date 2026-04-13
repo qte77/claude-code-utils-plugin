@@ -15,5 +15,5 @@ Python implementation, testing, and code review skills, deploys uv permissions v
 ## Install
 
 ```bash
-claude plugin install python-dev@qte77-claude-code-utils
+claude plugin install python-dev@qte77-claude-code-plugins
 ```

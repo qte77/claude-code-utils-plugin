@@ -1,5 +1,5 @@
 {
-  "name": "claude-code-utils-plugin-dev",
+  "name": "claude-code-plugins-dev",
   "image": "mcr.microsoft.com/vscode/devcontainers/python:3.13",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {}

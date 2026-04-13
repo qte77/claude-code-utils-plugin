@@ -10,5 +10,5 @@ Audit and maintain documentation hierarchy and agent governance files.
 ## Install
 
 ```bash
-claude plugin install docs-governance@qte77-claude-code-utils
+claude plugin install docs-governance@qte77-claude-code-plugins
 ```

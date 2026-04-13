@@ -11,5 +11,5 @@ UserStory → PRD → JSON pipeline and interactive user story builder for the R
 ## Install
 
 ```bash
-claude plugin install ralph@qte77-claude-code-utils
+claude plugin install ralph@qte77-claude-code-plugins
 ```

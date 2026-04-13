@@ -32,7 +32,7 @@ Based on [Bande-a-Bonnot/Boucle-framework](https://github.com/Bande-a-Bonnot/Bou
 ## Install
 
 ```bash
-claude plugin install workspace-setup@qte77-claude-code-utils
+claude plugin install workspace-setup@qte77-claude-code-plugins
 ```
 
 For sandbox settings, use `workspace-sandbox` instead.

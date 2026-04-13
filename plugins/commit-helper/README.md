@@ -10,5 +10,5 @@ Generate conventional commit messages and pull requests with approval workflow.
 ## Install
 
 ```bash
-claude plugin install commit-helper@qte77-claude-code-utils
+claude plugin install commit-helper@qte77-claude-code-plugins
 ```

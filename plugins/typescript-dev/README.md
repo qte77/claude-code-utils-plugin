@@ -16,5 +16,5 @@ TypeScript implementation, testing, and code review skills, deploys npm/vitest p
 ## Install
 
 ```bash
-claude plugin install typescript-dev@qte77-claude-code-utils
+claude plugin install typescript-dev@qte77-claude-code-plugins
 ```

@@ -48,5 +48,5 @@ make -f $CLAUDE_PLUGIN_ROOT/Makefile setup_pdf_converter
 ## Install
 
 ```bash
-claude plugin install docs-generator@qte77-claude-code-utils
+claude plugin install docs-generator@qte77-claude-code-plugins
 ```

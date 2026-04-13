@@ -1,4 +1,4 @@
-# Makefile for claude-code-utils plugin development.
+# Makefile for claude-code-plugins development.
 # Run `make help` to see all available recipes.
 
 .SILENT:

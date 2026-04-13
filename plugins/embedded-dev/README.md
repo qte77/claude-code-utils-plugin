@@ -29,5 +29,5 @@ clang-tidy, clang-format, sqlite3, doxygen) via copy-if-not-exists.
 ## Install
 
 ```bash
-claude plugin install embedded-dev@qte77-claude-code-utils
+claude plugin install embedded-dev@qte77-claude-code-plugins
 ```

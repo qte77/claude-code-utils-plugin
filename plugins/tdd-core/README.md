@@ -14,5 +14,5 @@ Language-agnostic TDD methodology for any project.
 ## Install
 
 ```bash
-claude plugin install tdd-core@qte77-claude-code-utils
+claude plugin install tdd-core@qte77-claude-code-plugins
 ```

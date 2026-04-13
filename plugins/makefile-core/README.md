@@ -37,5 +37,5 @@ See existing `scaffold-*.md` files for the pattern.
 ## Install
 
 ```bash
-claude plugin install makefile-core@qte77-claude-code-utils
+claude plugin install makefile-core@qte77-claude-code-plugins
 ```

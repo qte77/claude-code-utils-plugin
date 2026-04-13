@@ -15,10 +15,10 @@
     "context7@claude-plugins-official": true
   },
   "extraKnownMarketplaces": {
-    "qte77-claude-code-utils": {
+    "qte77-claude-code-plugins": {
       "source": {
         "source": "github",
-        "repo": "qte77/claude-code-utils-plugin"
+        "repo": "qte77/claude-code-plugins"
       }
     }
   },

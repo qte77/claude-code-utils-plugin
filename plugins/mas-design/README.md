@@ -23,5 +23,5 @@ standards) — producing a unified threat matrix with cross-framework mappings.
 ## Install
 
 ```bash
-claude plugin install mas-design@qte77-claude-code-utils
+claude plugin install mas-design@qte77-claude-code-plugins
 ```

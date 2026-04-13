@@ -1,20 +1,20 @@
 <!-- markdownlint-disable MD033 -->
 
-# qte77-claude-code-utils
+# qte77-claude-code-plugins
 
 Claude Code plugin marketplace — 25 plugins, 60 skills, 2 agents from production workflows.
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-58f4c2.svg)](LICENSE)
 ![Version](https://img.shields.io/badge/version-3.3.0-58f4c2.svg)
-[![CodeQL](https://github.com/qte77/claude-code-utils-plugin/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/claude-code-utils-plugin/actions/workflows/codeql.yaml)
-[![CodeFactor](https://www.codefactor.io/repository/github/qte77/claude-code-utils-plugin/badge/main)](https://www.codefactor.io/repository/github/qte77/claude-code-utils-plugin/overview/main)
+[![CodeQL](https://github.com/qte77/claude-code-plugins/actions/workflows/codeql.yaml/badge.svg)](https://github.com/qte77/claude-code-plugins/actions/workflows/codeql.yaml)
+[![CodeFactor](https://www.codefactor.io/repository/github/qte77/claude-code-plugins/badge/main)](https://www.codefactor.io/repository/github/qte77/claude-code-plugins/overview/main)
 
 ## Install
 
 ```bash
-claude plugin marketplace add qte77/claude-code-utils
-claude plugin install workspace-setup@qte77-claude-code-utils
-claude plugin install python-dev@qte77-claude-code-utils
+claude plugin marketplace add qte77/claude-code-plugins
+claude plugin install workspace-setup@qte77-claude-code-plugins
+claude plugin install python-dev@qte77-claude-code-plugins
 ```
 
 <details>
@@ -25,31 +25,31 @@ claude plugin install python-dev@qte77-claude-code-utils
 
 ```bash
 # 1. Add the marketplace
-claude plugin marketplace add qte77/claude-code-utils-plugin
+claude plugin marketplace add qte77/claude-code-plugins
 
 # 2. Install all plugins (pick ONE workspace plugin)
-claude plugin install python-dev@qte77-claude-code-utils
-claude plugin install rust-dev@qte77-claude-code-utils
-claude plugin install go-dev@qte77-claude-code-utils
-claude plugin install typescript-dev@qte77-claude-code-utils
-claude plugin install cpp-desktop@qte77-claude-code-utils
-claude plugin install tdd-core@qte77-claude-code-utils
-claude plugin install commit-helper@qte77-claude-code-utils
-claude plugin install codebase-tools@qte77-claude-code-utils
-claude plugin install planning@qte77-claude-code-utils
-claude plugin install backend-design@qte77-claude-code-utils
-claude plugin install mas-design@qte77-claude-code-utils
-claude plugin install security-audit@qte77-claude-code-utils
-claude plugin install cc-meta@qte77-claude-code-utils
-claude plugin install market-research@qte77-claude-code-utils
-claude plugin install docs-generator@qte77-claude-code-utils
-claude plugin install docs-governance@qte77-claude-code-utils
-claude plugin install ralph@qte77-claude-code-utils
-claude plugin install embedded-dev@qte77-claude-code-utils
-claude plugin install gha-dev@qte77-claude-code-utils
-claude plugin install makefile-core@qte77-claude-code-utils
-claude plugin install rag-core@qte77-claude-code-utils
-claude plugin install workspace-setup@qte77-claude-code-utils    # OR workspace-sandbox
+claude plugin install python-dev@qte77-claude-code-plugins
+claude plugin install rust-dev@qte77-claude-code-plugins
+claude plugin install go-dev@qte77-claude-code-plugins
+claude plugin install typescript-dev@qte77-claude-code-plugins
+claude plugin install cpp-desktop@qte77-claude-code-plugins
+claude plugin install tdd-core@qte77-claude-code-plugins
+claude plugin install commit-helper@qte77-claude-code-plugins
+claude plugin install codebase-tools@qte77-claude-code-plugins
+claude plugin install planning@qte77-claude-code-plugins
+claude plugin install backend-design@qte77-claude-code-plugins
+claude plugin install mas-design@qte77-claude-code-plugins
+claude plugin install security-audit@qte77-claude-code-plugins
+claude plugin install cc-meta@qte77-claude-code-plugins
+claude plugin install market-research@qte77-claude-code-plugins
+claude plugin install docs-generator@qte77-claude-code-plugins
+claude plugin install docs-governance@qte77-claude-code-plugins
+claude plugin install ralph@qte77-claude-code-plugins
+claude plugin install embedded-dev@qte77-claude-code-plugins
+claude plugin install gha-dev@qte77-claude-code-plugins
+claude plugin install makefile-core@qte77-claude-code-plugins
+claude plugin install rag-core@qte77-claude-code-plugins
+claude plugin install workspace-setup@qte77-claude-code-plugins    # OR workspace-sandbox
 
 # 3. Verify
 claude plugin list
@@ -97,8 +97,8 @@ Add to `.claude/settings.json` so teammates get marketplace access:
 ```json
 {
   "extraKnownMarketplaces": {
-    "qte77-claude-code-utils": {
-      "source": { "source": "github", "repo": "qte77/claude-code-utils" }
+    "qte77-claude-code-plugins": {
+      "source": { "source": "github", "repo": "qte77/claude-code-plugins" }
     }
   }
 }
@@ -110,9 +110,9 @@ Each member installs plugins individually with `claude plugin install`.
 
 ```bash
 claude plugin list                                          # List installed
-claude plugin install python-dev@qte77-claude-code-utils    # Install
+claude plugin install python-dev@qte77-claude-code-plugins    # Install
 claude plugin update --all                                  # Update all
-claude plugin remove python-dev@qte77-claude-code-utils     # Remove
+claude plugin remove python-dev@qte77-claude-code-plugins     # Remove
 ```
 
 ## Development

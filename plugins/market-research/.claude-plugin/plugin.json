@@ -1,6 +1,6 @@
 {
   "name": "market-research",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "GTM market research pipeline with teams mode parallel dispatch and configurable 2x2 strategy matrix",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["market-research", "gtm", "go-to-market", "strategy", "competitive-intelligence", "product-market-fit"]

@@ -1,6 +1,6 @@
 {
   "name": "gha-dev",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Skills and rules for creating GitHub Actions for the Marketplace",
   "author": {
     "name": "Claude Code Utils Contributors"

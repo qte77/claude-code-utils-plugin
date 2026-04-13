@@ -48,5 +48,5 @@ Add to your `.claude/settings.json` to auto-trigger session summaries:
 ## Install
 
 ```bash
-claude plugin install cc-meta@qte77-claude-code-utils
+claude plugin install cc-meta@qte77-claude-code-plugins
 ```

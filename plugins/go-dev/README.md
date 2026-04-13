@@ -15,5 +15,5 @@ Go implementation, testing, and code review skills, deploys go tool permissions 
 ## Install
 
 ```bash
-claude plugin install go-dev@qte77-claude-code-utils
+claude plugin install go-dev@qte77-claude-code-plugins
 ```

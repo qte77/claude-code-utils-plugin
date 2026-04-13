@@ -1,6 +1,6 @@
 {
   "name": "typescript-dev",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "TypeScript implementation, testing, and code review skills, deploys npm/vitest permissions via SessionStart hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["typescript", "react", "vitest", "vite", "implementation", "testing", "review"]
