@@ -5,7 +5,7 @@ Codebase research, context compaction, and build/quality support with ACE-FCA pr
 ## Skills
 
 - **researching-codebase** — Investigates codebase before planning, gathering context in an isolated fork
-- **hardening-codebase** — Seven-phase quality tightening workflow (audit → tighten → fix → tests → review → refactor → ship)
+- **hardening-codebase** — Nine-phase quality tightening workflow (architecture → audit → tighten → fix → docs quality → tests → 4-agent review → refactor → ship)
 
 ## Agents
 

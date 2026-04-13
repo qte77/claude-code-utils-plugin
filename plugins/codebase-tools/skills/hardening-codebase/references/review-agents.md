@@ -1,6 +1,6 @@
 # Review Agent Prompts
 
-Launch all three in parallel via the Agent tool. Pass the diff or file
+Launch all four in parallel via the Agent tool. Pass the diff or file
 list as context to each.
 
 ## Agent 1: Code Reuse
@@ -22,15 +22,17 @@ Report: file, issue, suggested fix. No false positives.
 ## Agent 2: Code Quality
 
 ```
-Review changed files for CODE QUALITY issues.
+Review changed files for CODE QUALITY and ARCHITECTURE issues.
 
 Look for:
-1. Redundant state — duplicates existing state, could be derived
-2. Parameter sprawl — adding params instead of restructuring
-3. Copy-paste with variation — near-duplicate blocks to unify
-4. Leaky abstractions — exposing internals, breaking boundaries
-5. Stringly-typed code — raw strings where constants/enums exist
-6. Logic bugs — off-by-one, unguarded None, silent fallthrough
+1. Boundary violations — module reaching into another's internals
+2. Circular dependencies — A → B → A import cycles
+3. Misplaced logic — business rules in infrastructure, I/O in domain
+4. Redundant state — duplicates existing state, could be derived
+5. Parameter sprawl — adding params instead of restructuring
+6. Leaky abstractions — exposing internals, breaking boundaries
+7. Stringly-typed code — raw strings where constants/enums exist
+8. Logic bugs — off-by-one, unguarded None, silent fallthrough
 
 Report: file, issue, suggested fix. Skip false positives.
 ```
@@ -51,13 +53,43 @@ Look for:
 Report: file, issue, estimated savings. Skip false positives.
 ```
 
+## Agent 4: KISS / DRY / YAGNI
+
+```
+Review changed files for KISS, DRY, and YAGNI violations.
+Also flag deletion candidates.
+
+KISS — over-engineering:
+1. Unnecessary abstractions — interfaces/factories for one implementation
+2. Over-nested logic — deep conditionals that guard clauses could flatten
+3. Clever code — complex one-liners that a simple loop would clarify
+4. Premature generalization — configurable where hardcoded suffices
+
+DRY — duplication:
+1. Repeated logic that should be a shared function
+2. Copy-pasted config/constants across files
+3. Near-identical patterns begging for a single abstraction
+
+YAGNI — speculative and dead code:
+1. Features built for hypothetical future requirements
+2. Unused parameters accepted but never read
+3. Dead branches — unreachable code, impossible conditions
+4. Feature flags or config for non-existent features
+5. Stale TODOs — TODO/FIXME for work that will never happen
+6. Commented-out blocks that should be deleted
+7. Unused imports/dependencies no longer referenced
+
+Report: file, issue, principle violated, suggested action.
+Skip false positives.
+```
+
 ## Aggregation
 
-After all three complete, deduplicate findings (agents often flag the
+After all four complete, deduplicate findings (agents often flag the
 same issue from different angles). Rank by severity:
 
-- **HIGH**: bugs, security, >50 lines of duplication
-- **MEDIUM**: caching, DRY violations, magic strings
+- **HIGH**: bugs, security, boundary violations, >50 lines of duplication
+- **MEDIUM**: caching, DRY violations, magic strings, circular deps
 - **LOW**: minor inefficiency, style preferences
 
 Present to user before fixing. Fix HIGHs and MEDIUMs only.
