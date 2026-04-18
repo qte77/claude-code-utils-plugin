@@ -15,6 +15,12 @@ metadata:
 Creates a **Marketplace-ready** composite GitHub Action with TDD, signed commits,
 and proper release flow.
 
+## References
+
+- `references/marketplace-checklist.md` — action.yaml fields, signed commits, release flow, gotchas
+- `references/python-gha-patterns.md` — full Python composite action walkthrough (uv, pyproject.toml, CI)
+- `references/companion-plugins.md` — companion plugins by workflow phase (tdd-core, python-dev, simplify, security-audit, commit-helper, makefile-core)
+
 ## Marketplace Requirements
 
 See `references/marketplace-checklist.md` for full reference.
@@ -26,13 +32,31 @@ See `references/marketplace-checklist.md` for full reference.
 
 ## Scaffold
 
+Pick the layout that matches the action's language:
+
+**Shell-based** (composite with inline `run:` or `scripts/*.sh`):
+
 ```
 action.yaml           # composite action definition + branding
-scripts/              # shell scripts called by action steps
+scripts/              # extracted shell logic (when inline run: grows too large)
 tests/unit/           # BATS test files
 .github/workflows/    # ci.yaml (bats + actionlint + shellcheck), release.yaml
-README.md             # usage example with @v1, inputs table, version badge
+README.md             # usage example with @vN, inputs table, version badge
 ```
+
+**Python-based** (composite calling `uv run`):
+
+```
+action.yaml           # composite action definition + branding
+src/                  # Python source (app.py entry point)
+tests/                # pytest tests
+.github/workflows/    # ci.yaml (pytest + ruff), release.yaml
+pyproject.toml        # deps, ruff, bumpversion
+uv.lock               # committed, CI uses --frozen
+README.md             # usage example with @vN, inputs table, version badge
+```
+
+See `references/python-gha-patterns.md` for the full Python walkthrough.
 
 ## TDD Workflow
 

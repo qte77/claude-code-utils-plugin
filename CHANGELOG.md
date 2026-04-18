@@ -15,20 +15,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
      section were written pre-#37; newer entries are appended. Full backfill
      completed 2026-04-11. -->
 
-### Changed
-
-- **codebase-tools**: `hardening-codebase` rewritten from 7 to 9 phases — new Phase 1 Architecture (research + module map), new Phase 5 Docs Quality (KISS/DRY/YAGNI for docs), Phase 7 review expanded from 3 to 4 agents (architecture folded into Quality, KISS/DRY/YAGNI + deletion merged into one agent). Absorbs unique checks from removed `simplify` plugin. Plugin version 1.3.0 → 1.4.0 (closes #118)
-- **makefile-core**: Replaced inline scaffolds in SKILL.md with per-language reference files (`scaffold-python.md`, `scaffold-shell.md`, `scaffold-docs.md`). SKILL.md 131 → 107 lines. Plugin version 1.0.1 → 1.1.0 (#116)
-- **docs**: Root README synced with current 26-plugin inventory — count 18 → 26, skills 37 → 61, added 8 missing plugins to table, fixed install commands (#115)
-
-### Removed
-
-- **simplify**: Plugin removed — redundant with CC built-in `/simplify`. YAGNI/deletion checks absorbed into `hardening-codebase` (closes #118)
-
-### Fixed
-
-- **docs**: 6 stale plugin READMEs fixed — missing skills/install sections in docs-generator, gha-dev, makefile-core, security-audit, simplify, embedded-dev. Version bumps: docs-generator 1.0.1 → 1.0.2, gha-dev 1.1.0 → 1.1.1, makefile-core 1.0.0 → 1.0.1, security-audit 1.0.0 → 1.0.1, embedded-dev 1.2.0 → 1.2.1 (#114)
-
 ### Added
 
 <!-- Pre-#37 entries (preserved) -->
@@ -61,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **makefile-core**: New plugin with `creating-makefile` skill — linter script + language-neutral Makefile conventions reference (#84)
 - **security-audit**: New plugin with `auditing-code-security` (OWASP Top 10), `detecting-secrets`, `scanning-dependencies` skills (#87)
 - **cpp-desktop**: New plugin with C++ desktop GUI skills — `implementing-cpp`, `reviewing-cpp`, `analyzing-cpp-codebase`; covers wxWidgets, GTK, Qt (#88)
-- **simplify**: ~~New plugin packaging the `simplifying-code` skill (#89)~~ — removed in same release, see Removed section
+- **simplify**: New plugin packaging the `simplifying-code` skill (post-review KISS/DRY/YAGNI enforcement) (#89)
 - **rag-core**: New plugin with `implementing-document-indexing` skill — heading-boundary chunking, FAISS vector store, PageIndex hybrid retrieval (#100)
 - **planning**: New plugin with cherry-picked `planner` agent from `affaan-m/everything-claude-code` (MIT); detailed feature/refactor implementation plans with phased steps, file-level specificity, dependencies, risks, success criteria (#111)
 
@@ -90,6 +76,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`.claude/rules/skill-authoring.md`**: Plugin-wide skill and agent authoring conventions — <150-line SKILL.md body cap (3.3× tighter than upstream 500-line soft cap), ≤250 char descriptions with front-loaded trigger keywords, `references/` subdir mandatory, content-hash regeneration for stable skills, plugin-scoped `agents/` layout (#109, #112)
 - **docs**: `cc-entry-types.md` — tool results (detached outputs) JSONL entry type added (#53)
 - **gha-dev**: `python-gha-patterns.md` reference — full Python composite action walkthrough based on gha-biorxiv-stats-action (#100)
+- **gha-dev**: Scaffold split — explicit shell-based (`scripts/`) vs Python-based (`src/`) layouts in SKILL.md, with cross-reference to `python-gha-patterns.md`
+- **gha-dev**: `companion-plugins.md` reference — maps companion plugins (tdd-core, python-dev, simplify, security-audit, commit-helper, makefile-core) by workflow phase, plus global rules cross-reference
 
 ### Changed
 
