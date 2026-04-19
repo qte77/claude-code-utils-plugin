@@ -1,0 +1,7 @@
+{
+  "name": "readme-generator",
+  "version": "1.0.0",
+  "description": "Generate and audit README.md files for repos, GitHub accounts, and organizations",
+  "author": { "name": "Claude Code Utils Contributors" },
+  "keywords": ["readme", "profile", "organization", "github", "documentation", "audit"]
+}

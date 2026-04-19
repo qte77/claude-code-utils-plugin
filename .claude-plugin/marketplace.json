@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "Claude Code utility plugins for development, architecture, auditing, documentation, market research, and CC meta-skills",
-    "version": "3.5.0"
+    "version": "3.6.0"
   },
   "plugins": [
     {
@@ -160,6 +160,12 @@
       "source": "./plugins/makefile-core",
       "description": "Skills and linting for consistent, rigorous Makefiles across projects — auto-detects project type, extensible via scaffold-*.md references",
       "version": "1.2.0"
+    },
+    {
+      "name": "readme-generator",
+      "source": "./plugins/readme-generator",
+      "description": "Generate and audit README.md files for repos, GitHub accounts, and organizations",
+      "version": "1.0.0"
     },
     {
       "name": "planning",
