@@ -1,6 +1,6 @@
 {
   "name": "workspace-setup",
-  "version": "1.3.5",
+  "version": "1.3.6",
   "description": "Deploys workspace rules, statusline, governance files, base settings, and read-once deduplication hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["workspace", "settings", "rules", "statusline", "governance", "setup", "read-once"]

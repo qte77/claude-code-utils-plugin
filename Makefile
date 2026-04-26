@@ -33,6 +33,8 @@ sync: sync_rules sync_scripts sync_refs  ## Sync .claude/ SoT into plugin dirs
 sync_rules:  ## Sync rules from .claude/rules/ to plugin copies
 	cp .claude/rules/core-principles.md plugins/workspace-setup/rules/
 	cp .claude/rules/context-management.md plugins/workspace-setup/rules/
+	cp .claude/rules/compound-learning.md plugins/workspace-setup/rules/
+	cp .claude/rules/compound-learning.md plugins/workspace-sandbox/rules/
 	cp .claude/rules/core-principles.md plugins/codebase-tools/skills/researching-codebase/references/
 	cp .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/
 	cp .claude/rules/context-management.md plugins/codebase-tools/skills/compacting-context/references/
