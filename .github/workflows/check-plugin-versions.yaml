@@ -66,3 +66,28 @@ jobs:
           fi
 
           echo "All changed plugins have version bumps."
+
+      - name: Audit all plugins for version drift
+        shell: sh
+        run: |
+          set -eu
+          errors=0
+          # Iterate every plugin entry in marketplace.json with a local source
+          # (skips remote-source entries like cc-voice that have no local plugin.json).
+          for plugin in $(jq -r '.plugins[] | select(.source | type == "string") | .name' .claude-plugin/marketplace.json); do
+            manifest="plugins/$plugin/.claude-plugin/plugin.json"
+            [ -f "$manifest" ] || continue
+            mp_version=$(jq -r --arg n "$plugin" '.plugins[] | select(.name == $n) | .version' .claude-plugin/marketplace.json)
+            pj_version=$(jq -r '.version' "$manifest")
+            if [ "$pj_version" != "$mp_version" ]; then
+              echo "::error::Plugin '$plugin' drift: plugin.json=$pj_version, marketplace.json=$mp_version"
+              errors=$((errors + 1))
+            fi
+          done
+
+          if [ "$errors" -gt 0 ]; then
+            echo "::error::$errors plugin(s) have version drift."
+            exit 1
+          fi
+
+          echo "All plugin versions in sync."
