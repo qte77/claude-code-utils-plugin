@@ -1,6 +1,6 @@
 {
   "name": "codebase-tools",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "Isolated codebase research, quality hardening, and build error resolution via skills and agents",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["research", "codebase", "exploration", "hardening", "lint", "review", "build-errors", "typescript"]

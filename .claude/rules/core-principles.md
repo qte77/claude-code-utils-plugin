@@ -14,6 +14,10 @@ user value, clarity, and usability.
 
 **DRY (Don't Repeat Yourself)** - Single source of truth. Reference, don't duplicate.
 
+**AHA (Avoid Hasty Abstractions)** - Prefer duplication over the wrong abstraction.
+Wait until the pattern is stable before extracting. A bad abstraction costs more
+than repeated code.
+
 **YAGNI (You Aren't Gonna Need It)** - Implement only what's requested. No
 speculative features.
 
@@ -31,6 +35,10 @@ speculative features.
 
 **Rigor and Sufficiency** - Research enough to decide confidently. No more, no less.
 
+**Clarity** - Communicate so the reader can act without re-reading. Name things
+for what they are; state decisions and reasons plainly; prefer concrete examples
+over abstract framing.
+
 **High-Impact Quick Wins** - Prioritize must-do tasks. Ship fast, iterate.
 
 **Actionable and Concrete** - Specific deliverables. Measurable outcomes.
@@ -45,6 +53,7 @@ speculative features.
 - [ ] Do I actually need this?
 - [ ] Am I touching only relevant code?
 - [ ] What's the root cause I'm solving?
+- [ ] Is this clear to a reader who lacks my context?
 
 ## Post-Task Review
 

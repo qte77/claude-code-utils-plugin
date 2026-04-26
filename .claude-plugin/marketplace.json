@@ -24,7 +24,7 @@
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
       "description": "Isolated codebase research, quality hardening, and build error resolution via skills and agents",
-      "version": "1.3.0"
+      "version": "1.4.2"
     },
     {
       "name": "cpp-desktop",
@@ -78,7 +78,7 @@
       "name": "workspace-setup",
       "source": "./plugins/workspace-setup",
       "description": "Deploys workspace rules, statusline, governance files, base settings, and read-once deduplication hook",
-      "version": "1.3.6"
+      "version": "1.3.7"
     },
     {
       "name": "workspace-sandbox",
