@@ -24,7 +24,7 @@
       "name": "codebase-tools",
       "source": "./plugins/codebase-tools",
       "description": "Isolated codebase research, quality hardening, and build error resolution via skills and agents",
-      "version": "1.4.2"
+      "version": "1.4.3"
     },
     {
       "name": "cpp-desktop",
@@ -36,7 +36,7 @@
       "name": "cc-meta",
       "source": "./plugins/cc-meta",
       "description": "Claude Code meta-skills for cross-project synthesis, context compaction, session intelligence, and memory seed template",
-      "version": "1.15.1"
+      "version": "1.15.2"
     },
     {
       "name": "backend-design",
@@ -78,13 +78,13 @@
       "name": "workspace-setup",
       "source": "./plugins/workspace-setup",
       "description": "Deploys workspace rules, statusline, governance files, base settings, and read-once deduplication hook",
-      "version": "1.3.10"
+      "version": "1.3.11"
     },
     {
       "name": "workspace-sandbox",
       "source": "./plugins/workspace-sandbox",
       "description": "Deploys workspace rules, statusline script, eased sandbox settings, and read-once deduplication hook",
-      "version": "1.3.9"
+      "version": "1.3.10"
     },
     {
       "name": "docs-governance",
