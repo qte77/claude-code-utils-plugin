@@ -111,6 +111,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Makefile**: `statusline.sh` added to sync targets (#60)
 - **cc-voice**: Version synced to 0.4.0 in marketplace (#90)
 - **`.claude/rules/skill-authoring.md`**: Agents convention section added — documents `plugins/<name>/agents/<agent-name>.md` layout, host-plugin selection, README `## Agents` section requirement, cherry-pick attribution template (#112)
+- **`.claude/rules/core-principles.md`**: Tightened 73 → 48 lines — dropped restatement glosses (KISS, DRY), added failure-mode glosses for AHA and YAGNI, folded User-Centric section into intro, collapsed overlapping Execution entries, removed Decision Principles section (overlapped with pre-task checklist). workspace-setup 1.3.11 → 1.3.12, workspace-sandbox 1.3.10 → 1.3.11.
+- **`.claude/rules/skill-authoring.md`**: Resolved internal contradiction on `references/` requirement — adopted conditional reading (mandatory only when extraction is triggered by the 150-line cap), consistent with the SKILL.md body-size section.
 
 ### Fixed
 
