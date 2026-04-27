@@ -39,11 +39,8 @@ sync_rules:  ## Sync rules from .claude/rules/ to plugin copies
 	cp .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/
 	cp .claude/rules/context-management.md plugins/cc-meta/skills/compacting-context/references/
 
-sync_scripts:  ## Sync scripts from .claude/scripts/ to plugin copies (statusline.sh uses symlinks)
-	cp .claude/scripts/read-once/hook.sh plugins/workspace-setup/scripts/read-once/
-	cp .claude/scripts/read-once/compact.sh plugins/workspace-setup/scripts/read-once/
-	cp .claude/scripts/read-once/hook.sh plugins/workspace-sandbox/scripts/read-once/
-	cp .claude/scripts/read-once/compact.sh plugins/workspace-sandbox/scripts/read-once/
+sync_scripts:  ## Sync scripts from .claude/scripts/ to plugin copies (all script files use symlinks; this is a no-op kept for the `sync` target wiring)
+	@true
 
 sync_refs:  ## Sync shared references within plugins (implementing → reviewing)
 	cp plugins/python-dev/skills/implementing-python/references/python-best-practices.md plugins/python-dev/skills/reviewing-code/references/
@@ -59,10 +56,10 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@diff -q .claude/rules/context-management.md plugins/cc-meta/skills/compacting-context/references/context-management.md
 	@test -L plugins/workspace-setup/scripts/statusline.sh || (echo "ERROR: plugins/workspace-setup/scripts/statusline.sh is not a symlink" && exit 1)
 	@test -L plugins/workspace-sandbox/scripts/statusline.sh || (echo "ERROR: plugins/workspace-sandbox/scripts/statusline.sh is not a symlink" && exit 1)
-	@diff -q .claude/scripts/read-once/hook.sh plugins/workspace-setup/scripts/read-once/hook.sh
-	@diff -q .claude/scripts/read-once/compact.sh plugins/workspace-setup/scripts/read-once/compact.sh
-	@diff -q .claude/scripts/read-once/hook.sh plugins/workspace-sandbox/scripts/read-once/hook.sh
-	@diff -q .claude/scripts/read-once/compact.sh plugins/workspace-sandbox/scripts/read-once/compact.sh
+	@test -L plugins/workspace-setup/scripts/read-once/hook.sh || (echo "ERROR: plugins/workspace-setup/scripts/read-once/hook.sh is not a symlink" && exit 1)
+	@test -L plugins/workspace-setup/scripts/read-once/compact.sh || (echo "ERROR: plugins/workspace-setup/scripts/read-once/compact.sh is not a symlink" && exit 1)
+	@test -L plugins/workspace-sandbox/scripts/read-once/hook.sh || (echo "ERROR: plugins/workspace-sandbox/scripts/read-once/hook.sh is not a symlink" && exit 1)
+	@test -L plugins/workspace-sandbox/scripts/read-once/compact.sh || (echo "ERROR: plugins/workspace-sandbox/scripts/read-once/compact.sh is not a symlink" && exit 1)
 	@diff -q plugins/python-dev/skills/implementing-python/references/python-best-practices.md plugins/python-dev/skills/reviewing-code/references/python-best-practices.md
 	@diff -q plugins/rust-dev/skills/implementing-rust/references/rust-best-practices.md plugins/rust-dev/skills/reviewing-rust/references/rust-best-practices.md
 	@diff -q plugins/go-dev/skills/implementing-go/references/go-best-practices.md plugins/go-dev/skills/reviewing-go/references/go-best-practices.md
