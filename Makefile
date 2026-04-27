@@ -30,14 +30,8 @@ setup_npm_tools:  ## Install markdownlint for linting skill markdown
 
 sync: sync_rules sync_scripts sync_refs  ## Sync .claude/ SoT into plugin dirs
 
-sync_rules:  ## Sync rules from .claude/rules/ to plugin copies
-	cp .claude/rules/core-principles.md plugins/workspace-setup/rules/
-	cp .claude/rules/context-management.md plugins/workspace-setup/rules/
-	cp .claude/rules/compound-learning.md plugins/workspace-setup/rules/
-	cp .claude/rules/compound-learning.md plugins/workspace-sandbox/rules/
-	cp .claude/rules/core-principles.md plugins/codebase-tools/skills/researching-codebase/references/
-	cp .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/
-	cp .claude/rules/context-management.md plugins/cc-meta/skills/compacting-context/references/
+sync_rules:  ## Sync rules from .claude/rules/ to plugin copies (all consumers use symlinks; this is a no-op kept for the `sync` target wiring)
+	@true
 
 sync_scripts:  ## Sync scripts from .claude/scripts/ to plugin copies (all script files use symlinks; this is a no-op kept for the `sync` target wiring)
 	@true
@@ -49,11 +43,15 @@ sync_refs:  ## Sync shared references within plugins (implementing → reviewing
 
 check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@echo "Checking sync..."
-	@diff -q .claude/rules/core-principles.md plugins/workspace-setup/rules/core-principles.md
-	@diff -q .claude/rules/context-management.md plugins/workspace-setup/rules/context-management.md
-	@diff -q .claude/rules/core-principles.md plugins/codebase-tools/skills/researching-codebase/references/core-principles.md
-	@diff -q .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/context-management.md
-	@diff -q .claude/rules/context-management.md plugins/cc-meta/skills/compacting-context/references/context-management.md
+	@test -L plugins/workspace-setup/rules/core-principles.md || (echo "ERROR: plugins/workspace-setup/rules/core-principles.md is not a symlink" && exit 1)
+	@test -L plugins/workspace-setup/rules/context-management.md || (echo "ERROR: plugins/workspace-setup/rules/context-management.md is not a symlink" && exit 1)
+	@test -L plugins/workspace-setup/rules/compound-learning.md || (echo "ERROR: plugins/workspace-setup/rules/compound-learning.md is not a symlink" && exit 1)
+	@test -L plugins/workspace-sandbox/rules/core-principles.md || (echo "ERROR: plugins/workspace-sandbox/rules/core-principles.md is not a symlink" && exit 1)
+	@test -L plugins/workspace-sandbox/rules/context-management.md || (echo "ERROR: plugins/workspace-sandbox/rules/context-management.md is not a symlink" && exit 1)
+	@test -L plugins/workspace-sandbox/rules/compound-learning.md || (echo "ERROR: plugins/workspace-sandbox/rules/compound-learning.md is not a symlink" && exit 1)
+	@test -L plugins/codebase-tools/skills/researching-codebase/references/core-principles.md || (echo "ERROR: plugins/codebase-tools/skills/researching-codebase/references/core-principles.md is not a symlink" && exit 1)
+	@test -L plugins/codebase-tools/skills/researching-codebase/references/context-management.md || (echo "ERROR: plugins/codebase-tools/skills/researching-codebase/references/context-management.md is not a symlink" && exit 1)
+	@test -L plugins/cc-meta/skills/compacting-context/references/context-management.md || (echo "ERROR: plugins/cc-meta/skills/compacting-context/references/context-management.md is not a symlink" && exit 1)
 	@test -L plugins/workspace-setup/scripts/statusline.sh || (echo "ERROR: plugins/workspace-setup/scripts/statusline.sh is not a symlink" && exit 1)
 	@test -L plugins/workspace-sandbox/scripts/statusline.sh || (echo "ERROR: plugins/workspace-sandbox/scripts/statusline.sh is not a symlink" && exit 1)
 	@test -L plugins/workspace-setup/scripts/read-once/hook.sh || (echo "ERROR: plugins/workspace-setup/scripts/read-once/hook.sh is not a symlink" && exit 1)
