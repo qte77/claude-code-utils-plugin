@@ -37,7 +37,7 @@ sync_rules:  ## Sync rules from .claude/rules/ to plugin copies
 	cp .claude/rules/compound-learning.md plugins/workspace-sandbox/rules/
 	cp .claude/rules/core-principles.md plugins/codebase-tools/skills/researching-codebase/references/
 	cp .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/
-	cp .claude/rules/context-management.md plugins/codebase-tools/skills/compacting-context/references/
+	cp .claude/rules/context-management.md plugins/cc-meta/skills/compacting-context/references/
 
 sync_scripts:  ## Sync scripts from .claude/scripts/ to plugin copies (statusline.sh uses symlinks)
 	cp .claude/scripts/read-once/hook.sh plugins/workspace-setup/scripts/read-once/
@@ -56,7 +56,7 @@ check_sync:  ## Verify all copies are in sync with .claude/ SoT
 	@diff -q .claude/rules/context-management.md plugins/workspace-setup/rules/context-management.md
 	@diff -q .claude/rules/core-principles.md plugins/codebase-tools/skills/researching-codebase/references/core-principles.md
 	@diff -q .claude/rules/context-management.md plugins/codebase-tools/skills/researching-codebase/references/context-management.md
-	@diff -q .claude/rules/context-management.md plugins/codebase-tools/skills/compacting-context/references/context-management.md
+	@diff -q .claude/rules/context-management.md plugins/cc-meta/skills/compacting-context/references/context-management.md
 	@test -L plugins/workspace-setup/scripts/statusline.sh || (echo "ERROR: plugins/workspace-setup/scripts/statusline.sh is not a symlink" && exit 1)
 	@test -L plugins/workspace-sandbox/scripts/statusline.sh || (echo "ERROR: plugins/workspace-sandbox/scripts/statusline.sh is not a symlink" && exit 1)
 	@diff -q .claude/scripts/read-once/hook.sh plugins/workspace-setup/scripts/read-once/hook.sh
