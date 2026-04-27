@@ -18,8 +18,15 @@
 # Zones render in the order you list them. Suggested convention:
 # order east-to-west (sunrise order) so time decreases left-to-right.
 #
+# Each entry is either a bare IANA zone (label defaults to the city, e.g.
+# "Europe/Paris" → "Paris") or "Zone=Label" to override the rendered label
+# (e.g. "America/New_York=NYC" → "NYC"). Mix and match freely.
+#
 # Suggested default (env-var form, copy to your shell rc):
 #   export CC_WORLD_CLOCK="Asia/Tokyo,Europe/Paris,Europe/London,UTC,America/New_York,America/Los_Angeles"
+#
+# Short-label variant (terser statusline):
+#   export CC_WORLD_CLOCK="Asia/Tokyo=TYO,Europe/Paris=PAR,Europe/London=LDN,UTC,America/New_York=NYC,America/Los_Angeles=LA"
 #
 # Live-toggle form:
 #   echo "Asia/Tokyo,Europe/Paris,Europe/London,UTC,America/New_York,America/Los_Angeles" > ~/.claude/world-clock
@@ -121,9 +128,12 @@ clocks=""
 zones_spec="${CC_WORLD_CLOCK:-$(cat "$HOME/.claude/world-clock" 2>/dev/null)}"
 if [ -n "$zones_spec" ]; then
     IFS=',' read -ra _zones <<< "$zones_spec"
-    for tz in "${_zones[@]}"; do
+    for entry in "${_zones[@]}"; do
+        tz="${entry%%=*}"
+        label="${entry#*=}"
+        [ "$label" = "$entry" ] && label="${tz##*/}"
         if [ -f "/usr/share/zoneinfo/$tz" ]; then
-            clocks+=" ${tz##*/}:$(TZ="$tz" date +%H:%M)"
+            clocks+=" ${label}:$(TZ="$tz" date +%H:%M)"
         else
             clocks+=" ?${tz}"
         fi
