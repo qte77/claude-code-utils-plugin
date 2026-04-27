@@ -12,7 +12,8 @@ conflicts arise. Every decision optimizes for user value, clarity, and usability
 
 ## Execution
 
-- **Match existing patterns; ask before diverging.** Reuse what's there, validate against established conventions, clarify vague requirements before acting.
+- **Match existing patterns; ask before diverging.** Reuse what's there; clarify vague requirements before acting.
+- **Consistency and coherence** — validate changes against established conventions; spot inconsistencies before they compound.
 - **Touch only task-related code.** Minimal diff for the task.
 - **Root-cause and first-principles.** Solve root problems, not symptoms; understand the "why" before patching.
 
