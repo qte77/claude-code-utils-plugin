@@ -66,7 +66,7 @@
       "name": "ralph",
       "source": "./plugins/ralph",
       "description": "PRD-to-JSON conversion, interactive user story builder, and PRD generation for the Ralph loop",
-      "version": "1.0.2"
+      "version": "1.0.3"
     },
     {
       "name": "embedded-dev",
@@ -96,7 +96,7 @@
       "name": "market-research",
       "source": "./plugins/market-research",
       "description": "GTM market research pipeline with teams mode parallel dispatch and configurable 2x2 strategy matrix",
-      "version": "1.0.1"
+      "version": "1.0.2"
     },
     {
       "name": "rust-dev",
