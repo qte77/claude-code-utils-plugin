@@ -1,6 +1,6 @@
 ---
 name: synthesizing-research
-description: Phase 5 — Cross-phase integration synthesizing all prior research into a unified GTM narrative. Depends on Phases 0-4. Use after analyzing-contradictions completes to prepare for slide deck generation.
+description: Synthesize all prior research into a unified GTM narrative. Run after `analyzing-contradictions` to prepare for slide deck generation (Phase 5).
 compatibility: Designed for Claude Code
 metadata:
   stability: development

@@ -1,6 +1,6 @@
 ---
 name: analyzing-source-project
-description: Phase 0 — Technical capability assessment of a source project. Reads config/sources.md and produces a structured capability profile. Use to start the GTM pipeline or when evaluating a project's technical differentiators.
+description: Assess a source project's technical capabilities. Reads `config/sources.md` and produces a structured capability profile. Use to start the GTM pipeline or evaluate technical differentiators (Phase 0).
 compatibility: Designed for Claude Code
 metadata:
   stability: development

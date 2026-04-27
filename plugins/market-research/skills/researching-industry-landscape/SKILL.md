@@ -1,6 +1,6 @@
 ---
 name: researching-industry-landscape
-description: Phase 1A — Competitive intelligence and industry landscape mapping. Runs in parallel with Phase 0. Produces a competitor map and whitespace analysis. Use at the start of the GTM pipeline alongside analyzing-source-project.
+description: Map competitive intelligence and industry landscape; produce a competitor map and whitespace analysis. Run alongside `analyzing-source-project` at the start of the GTM pipeline (Phase 1A).
 compatibility: Designed for Claude Code
 metadata:
   stability: development

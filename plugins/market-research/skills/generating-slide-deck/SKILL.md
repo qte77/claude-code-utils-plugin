@@ -1,6 +1,6 @@
 ---
 name: generating-slide-deck
-description: Phase 6 — Investor or stakeholder presentation generated from Phase 5 synthesis. Produces a structured slide outline with headlines, talking points, and data citations. Use after synthesizing-research completes.
+description: Generate an investor or stakeholder presentation from Phase 5 synthesis; produces a structured slide outline with headlines, talking points, and data citations. Run after `synthesizing-research` (Phase 6).
 compatibility: Designed for Claude Code
 metadata:
   stability: development

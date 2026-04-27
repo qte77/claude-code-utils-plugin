@@ -1,6 +1,6 @@
 ---
 name: developing-gtm-strategy
-description: Phase 3 — Customer segmentation, channel selection, and 90-day launch plan. Depends on Phase 2 PMF assessment. Use after validating-product-market-fit completes.
+description: Develop customer segmentation, channel selection, and a 90-day launch plan from Phase 2 PMF assessment. Run after `validating-product-market-fit` (Phase 3).
 compatibility: Designed for Claude Code
 metadata:
   stability: development

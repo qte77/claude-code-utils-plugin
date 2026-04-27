@@ -1,6 +1,6 @@
 ---
 name: researching-market
-description: Phase 1B — Strategic market research integrating Phase 0 and Phase 1A outputs. Produces TAM/SAM/SOM sizing, buyer personas, and market entry signals. Use after analyzing-source-project and researching-industry-landscape complete.
+description: Integrate Phase 0 and Phase 1A outputs into TAM/SAM/SOM sizing, buyer personas, and market entry signals. Run after `analyzing-source-project` and `researching-industry-landscape` (Phase 1B).
 compatibility: Designed for Claude Code
 metadata:
   stability: development
