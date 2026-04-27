@@ -100,6 +100,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **docs-governance**: `enforcing-doc-hierarchy` description tightened from 295 → 179 chars per skill-authoring convention (#109)
 - **workspace-setup / workspace-sandbox**: `statusline.sh` deduplicated via symlinks (#81)
 - **workspace-setup / workspace-sandbox**: `statusline.sh` world-clock — opt-in via `CC_WORLD_CLOCK` env var (comma-separated IANA zones, east-to-west sunrise order recommended), renders on dedicated 4th line, invalid zones marked `?<name>`. workspace-setup 1.3.7 → 1.3.8, workspace-sandbox 1.3.6 → 1.3.7
+- **workspace-setup / workspace-sandbox**: `statusline.sh` world-clock live toggle — `~/.claude/world-clock` file fallback for in-session changes (env var still wins; file picked up on next render, no CC restart needed). workspace-setup 1.3.8 → 1.3.9, workspace-sandbox 1.3.7 → 1.3.8
 - **python-dev**: Removed BDD, enforce TDD-only testing; reference file `bdd-best-practices.md` renamed to `bdd-best-practices-future-use.md` (parked) (#94)
 - **cc-meta**: Plugin version 1.4.0 → 1.15.0 across seven successive feature merges (#91, #92, #93, #96, #97, #98, #99)
 - **cc-meta**: `synthesizing-cc-bigpicture` SKILL.md 195 → 128 lines — extracted Two Reasoning Axes, CC Data Sources, Output Format into `references/reasoning-modes.md`, `references/cc-data-sources.md`, `references/output-template.md` (#108)

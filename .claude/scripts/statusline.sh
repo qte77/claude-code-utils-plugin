@@ -2,14 +2,28 @@
 #
 # World clock (opt-in)
 # --------------------
-# Local time is always shown. To append additional zones, set CC_WORLD_CLOCK.
-# Unset = off (default). Empty = off.
+# Local time is always shown. To append additional zones, configure either:
+#
+#   (1) CC_WORLD_CLOCK env var — set in your shell rc; persistent across
+#       sessions. Requires CC restart to change (env is fixed at launch).
+#
+#   (2) ~/.claude/world-clock file — single line of comma-separated zones.
+#       Live toggle: edit/delete the file and the next prompt render picks
+#       it up, no CC restart needed. Use when you want to flip clocks on/off
+#       inside an active session.
+#
+# Precedence: env var wins; file is the fallback. Unset env + missing/empty
+# file = off (default).
 #
 # Zones render in the order you list them. Suggested convention:
 # order east-to-west (sunrise order) so time decreases left-to-right.
 #
-# Suggested default (copy to your shell rc):
+# Suggested default (env-var form, copy to your shell rc):
 #   export CC_WORLD_CLOCK="Asia/Tokyo,Europe/Paris,Europe/London,UTC,America/New_York,America/Los_Angeles"
+#
+# Live-toggle form:
+#   echo "Asia/Tokyo,Europe/Paris,Europe/London,UTC,America/New_York,America/Los_Angeles" > ~/.claude/world-clock
+#   rm ~/.claude/world-clock                                                                # turn off
 #
 # Other examples:
 #   export CC_WORLD_CLOCK="Asia/Tokyo,Asia/Singapore,UTC"
@@ -98,12 +112,15 @@ fi
 user=$(whoami)
 time=$(date +%H:%M:%S)
 
-# Build world-clock line (rendered on its own line when CC_WORLD_CLOCK is set).
+# Build world-clock line. Source order:
+#   1. $CC_WORLD_CLOCK env var (set in shell rc, requires CC restart to change)
+#   2. ~/.claude/world-clock file content (live toggle — picked up on next render)
 # If your local zone is in the list (e.g. Europe/Paris while in Paris) it will
-# appear twice — omit it from CC_WORLD_CLOCK to avoid duplication.
+# appear twice — omit it to avoid duplication.
 clocks=""
-if [ -n "$CC_WORLD_CLOCK" ]; then
-    IFS=',' read -ra _zones <<< "$CC_WORLD_CLOCK"
+zones_spec="${CC_WORLD_CLOCK:-$(cat "$HOME/.claude/world-clock" 2>/dev/null)}"
+if [ -n "$zones_spec" ]; then
+    IFS=',' read -ra _zones <<< "$zones_spec"
     for tz in "${_zones[@]}"; do
         if [ -f "/usr/share/zoneinfo/$tz" ]; then
             clocks+=" ${tz##*/}:$(TZ="$tz" date +%H:%M)"
