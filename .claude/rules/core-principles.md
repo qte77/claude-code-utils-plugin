@@ -19,7 +19,7 @@ conflicts arise. Every decision optimizes for user value, clarity, and usability
 
 ## Decision
 
-- **Rigor and sufficiency** — research enough to decide confidently; stop there.
+- **Rigor and sufficiency** — research enough to decide with confidence, then move.
 - **High-impact quick wins** — prioritize must-do tasks; ship fast, iterate.
 
 ## Communication
