@@ -9,7 +9,7 @@ network exfiltration protection.
 ## Deployed files
 
 - **rules/*.md** → `.claude/rules/` — core principles, context management
-- **scripts/statusline.sh** → `.claude/scripts/` — status line display
+- **scripts/statusline.sh** → `.claude/scripts/` — status line display. World clock off by default. Opt in with `CC_WORLD_CLOCK="Asia/Tokyo,Europe/Paris,Europe/London,UTC,America/New_York,America/Los_Angeles"` (east-to-west / sunrise order) or any IANA zones you prefer; zones render on a dedicated line below the main statusline. Invalid zones show as `?<name>`. See the comment block at the top of `.claude/scripts/statusline.sh` for the curated shortlist and usage notes.
 - **settings/.gitignore** → `.gitignore` — hides bwrap phantom files from git status
 - **settings/settings-sandbox.json** → `.claude/settings.json` — eased sandbox, permissions, env vars
 - **governance/*.md** → `AGENTS.md`, `AGENT_LEARNINGS.md`, `AGENT_REQUESTS.md` — agent governance
