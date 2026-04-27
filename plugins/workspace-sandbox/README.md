@@ -9,7 +9,7 @@ network exfiltration protection.
 ## Deployed files
 
 - **rules/*.md** → `.claude/rules/` — core principles, context management
-- **scripts/statusline.sh** → `.claude/scripts/` — status line display. World clock off by default. Opt in with `CC_WORLD_CLOCK="Asia/Tokyo,Europe/Paris,Europe/London,UTC,America/New_York,America/Los_Angeles"` (east-to-west / sunrise order) or any IANA zones you prefer; zones render on a dedicated line below the main statusline. Invalid zones show as `?<name>`. See the comment block at the top of `.claude/scripts/statusline.sh` for the curated shortlist and usage notes.
+- **scripts/statusline.sh** → `.claude/scripts/` — status line display. World clock off by default. Two ways to opt in: (1) **persistent** — set `CC_WORLD_CLOCK="Asia/Tokyo,Europe/Paris,Europe/London,UTC,America/New_York,America/Los_Angeles"` in your shell rc (needs CC restart to change); (2) **live toggle** — write the same comma-separated zone list to `~/.claude/world-clock` (next prompt render picks it up; `rm` the file to turn off). Env var wins over file. Use east-to-west / sunrise order or any IANA zones you prefer. Zones render on a dedicated line below the main statusline; invalid zones show as `?<name>`. See the comment block at the top of `.claude/scripts/statusline.sh` for the curated shortlist and usage notes.
 - **settings/.gitignore** → `.gitignore` — hides bwrap phantom files from git status
 - **settings/settings-sandbox.json** → `.claude/settings.json` — eased sandbox, permissions, env vars
 - **governance/*.md** → `AGENTS.md`, `AGENT_LEARNINGS.md`, `AGENT_REQUESTS.md` — agent governance
