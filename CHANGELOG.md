@@ -115,6 +115,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`.claude/rules/skill-authoring.md`**: Resolved internal contradiction on `references/` requirement — adopted conditional reading (mandatory only when extraction is triggered by the 150-line cap), consistent with the SKILL.md body-size section.
 - **market-research**: Front-loaded all 8 skill descriptions with action verbs (Assess/Map/Integrate/Score/Develop/Detect/Synthesize/Generate) per skill-authoring convention; phase labels moved to suffix so ordering info is preserved. Plugin version 1.0.1 → 1.0.2.
 - **ralph**: Front-loaded `generating-interactive-userstory-md` description (verb-led "Build UserStory.md interactively..."). Plugin version 1.0.2 → 1.0.3.
+- **readme-generator**: `writing-readme` SKILL.md 197 → 70 lines (under the 150-line cap); extracted four README template snippets (GitHub Action, Library/Application, Account, Organization) and per-scope conventions to `references/readme-templates.md`. Description tightened from 290 → 225 chars and front-loaded with action verb. Plugin version 1.0.0 → 1.0.1.
 
 ### Fixed
 
