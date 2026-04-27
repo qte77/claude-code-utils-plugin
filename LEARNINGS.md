@@ -5,8 +5,6 @@ scope: qte77/claude-code-plugins
 updated: 2026-04-11
 ---
 
-# Plugin Development Learnings
-
 Non-obvious knowledge captured over multiple sessions. Newer sections appended; older sections preserved verbatim.
 
 ## Plugin manifest schemas
@@ -116,6 +114,7 @@ Non-obvious knowledge captured over multiple sessions. Newer sections appended; 
 1. **Verify license** — `gh repo view <owner/repo> --json licenseInfo`. MIT allows reuse with attribution. GPL/non-MIT licenses require escalation.
 2. **Adapt upstream cross-references** — the upstream file may reference agents/skills (`refactor-cleaner`, `architect`, `tdd-guide`, `security-reviewer`) that don't exist in this repo. Rewrite "When NOT to use" or "Complementary skills" sections to point at THIS repo's real skills.
 3. **Add attribution footer** at the bottom of the agent/skill file:
+
    ```markdown
    ## Attribution
 
@@ -123,6 +122,7 @@ Non-obvious knowledge captured over multiple sessions. Newer sections appended; 
    Original path: `<path>`.
    Adapted: <describe local changes>
    ```
+
 4. **Overlap audit** — before importing, compare the upstream artifact against existing skills in this repo. If it duplicates behavior, don't cherry-pick; close the tracking issue as "covered by existing X".
 5. **Decide host plugin** per the agents convention above.
 6. **Bump host plugin version** (plugin-versioning rule).
