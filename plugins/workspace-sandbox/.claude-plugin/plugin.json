@@ -1,6 +1,6 @@
 {
   "name": "workspace-sandbox",
-  "version": "1.3.10",
+  "version": "1.3.11",
   "description": "Deploys workspace rules, statusline script, eased sandbox settings, and read-once deduplication hook",
   "author": { "name": "Claude Code Utils Contributors" },
   "keywords": ["workspace", "settings", "rules", "statusline", "sandbox", "read-once"]
