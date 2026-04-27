@@ -1,6 +1,6 @@
 ---
 name: generating-interactive-userstory-md
-description: Interactive Q&A to build UserStory.md from user input. Use when the user wants to create a user story document or start the assisted workflow.
+description: Build UserStory.md interactively via Q&A. Use when the user wants to create a user story document or start the assisted workflow.
 compatibility: Designed for Claude Code
 metadata:
   allowed-tools: AskUserQuestion, Read, Write, WebFetch, WebSearch

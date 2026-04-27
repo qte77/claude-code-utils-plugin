@@ -1,6 +1,6 @@
 ---
 name: validating-product-market-fit
-description: Phase 2 — Product-market fit scoring using Phase 1B market analysis. Produces PMF score, evidence matrix, and risk register. Use after researching-market completes.
+description: Score product-market fit from Phase 1B market analysis; produce PMF score, evidence matrix, and risk register. Run after `researching-market` (Phase 2).
 compatibility: Designed for Claude Code
 metadata:
   stability: development

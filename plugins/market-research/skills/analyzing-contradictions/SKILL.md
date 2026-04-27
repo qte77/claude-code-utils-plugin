@@ -1,6 +1,6 @@
 ---
 name: analyzing-contradictions
-description: Phase 4 — Gap detection and contradiction analysis across all prior phases. Surfaces cross-phase tensions, unresolved assumptions, and sales/investor objections. Use after developing-gtm-strategy completes.
+description: Detect gaps and contradictions across all prior phases; surface cross-phase tensions, unresolved assumptions, and sales/investor objections. Run after `developing-gtm-strategy` (Phase 4).
 compatibility: Designed for Claude Code
 metadata:
   stability: development

@@ -113,6 +113,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **`.claude/rules/skill-authoring.md`**: Agents convention section added — documents `plugins/<name>/agents/<agent-name>.md` layout, host-plugin selection, README `## Agents` section requirement, cherry-pick attribution template (#112)
 - **`.claude/rules/core-principles.md`**: Tightened 73 → 55 lines — kept acronym expansions (KISS, DRY, AHA, YAGNI) and added failure-mode glosses where the name alone wasn't self-evident; folded "User-Centric Principles" into the intro; merged "Reuse and Extend" + "Resolve Ambiguity" into "Match existing patterns; ask before diverging"; preserved Consistency-and-Coherence, Rigor-and-Sufficiency, High-Impact-Quick-Wins, Clarity, Actionable-and-Concrete, Root-Cause-and-First-Principles, and Touch-only-task-related-code as named bullets. workspace-setup 1.3.11 → 1.3.12, workspace-sandbox 1.3.10 → 1.3.11.
 - **`.claude/rules/skill-authoring.md`**: Resolved internal contradiction on `references/` requirement — adopted conditional reading (mandatory only when extraction is triggered by the 150-line cap), consistent with the SKILL.md body-size section.
+- **market-research**: Front-loaded all 8 skill descriptions with action verbs (Assess/Map/Integrate/Score/Develop/Detect/Synthesize/Generate) per skill-authoring convention; phase labels moved to suffix so ordering info is preserved. Plugin version 1.0.1 → 1.0.2.
+- **ralph**: Front-loaded `generating-interactive-userstory-md` description (verb-led "Build UserStory.md interactively..."). Plugin version 1.0.2 → 1.0.3.
 
 ### Fixed
 
